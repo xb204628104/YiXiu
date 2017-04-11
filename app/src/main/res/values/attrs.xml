@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="Topbar">
+        <!--标题-->
+        <attr name="title" format="string"></attr>
+        <attr name="titleSize" format="dimension"></attr>
+        <attr name="titleBg" format="color"></attr>
+        <!--左侧-->
+        <attr name="leftTiele" format="string"></attr>
+        <attr name="leftTieleSize" format="dimension"></attr>
+        <attr name="leftTieleBg" format="color"></attr>
+        <!--右侧-->
+        <attr name="rightTiele" format="string"></attr>
+        <attr name="rightTieleSize" format="dimension"></attr>
+        <attr name="rightTieleBg" format="color"></attr>
+
+    </declare-styleable>
+
+</resources>
