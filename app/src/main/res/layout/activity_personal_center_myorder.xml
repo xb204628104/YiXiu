@@ -51,7 +51,6 @@
             android:src="@mipmap/hei_shuxian"/>
         <LinearLayout
             android:gravity="center"
-
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1">

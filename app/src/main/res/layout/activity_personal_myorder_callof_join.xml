@@ -188,37 +188,37 @@ android:layout_marginTop="5dp"
                 android:layout_marginLeft="10dp"
                 android:layout_width="5dp"
                 android:layout_height="5dp"
-                android:src="@mipmap/order_dian_hei"/>
+                android:src="@mipmap/order_dian2"/>
             <ImageView
                 android:layout_marginLeft="10dp"
                 android:layout_width="5dp"
                 android:layout_height="5dp"
-                android:src="@mipmap/order_dian_hei"/>
+                android:src="@mipmap/order_dian2"/>
             <ImageView
                 android:layout_marginLeft="10dp"
                 android:layout_width="5dp"
                 android:layout_height="5dp"
-                android:src="@mipmap/order_dian_hei"/>
+                android:src="@mipmap/order_dian2"/>
             <ImageView
                 android:layout_marginLeft="10dp"
                 android:layout_width="5dp"
                 android:layout_height="5dp"
-                android:src="@mipmap/order_dian_hei"/>
+                android:src="@mipmap/order_dian2"/>
             <ImageView
                 android:layout_marginLeft="10dp"
                 android:layout_width="5dp"
                 android:layout_height="5dp"
-                android:src="@mipmap/order_dian_hei"/>
+                android:src="@mipmap/order_dian2"/>
             <ImageView
                 android:layout_marginLeft="10dp"
                 android:layout_width="5dp"
                 android:layout_height="5dp"
-                android:src="@mipmap/order_dian_hei"/>
+                android:src="@mipmap/order_dian2"/>
             <ImageView
                 android:layout_marginLeft="10dp"
                 android:layout_width="5dp"
                 android:layout_height="5dp"
-                android:src="@mipmap/order_dian_hei"/>
+                android:src="@mipmap/order_dian2"/>
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"

@@ -24,6 +24,11 @@
             android:gravity="center"
             />
     </LinearLayout>
+    <include
+        layout="@layout/include_line"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        ></include>
     <LinearLayout
 
         android:padding="10dp"
