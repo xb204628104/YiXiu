@@ -2,8 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#dff9f9">
+    android:orientation="vertical">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
@@ -19,7 +18,7 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"
-            android:text="电脑维修"
+            android:text="家电维修"
             android:textSize="25sp"
             android:textColor="#6ce0e0"
             android:gravity="center"
@@ -56,16 +55,12 @@
                 android:layout_width="3dp"
                 android:layout_height="match_parent"
                 android:src="@mipmap/blue_shuxian"/>
-            <TextView
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="13dp"
-                android:gravity="right"
-                android:textColor="#0ee2e2"
-                android:textSize="15sp"
+            <EditText
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="联想"/>
+                android:hint="请选择您的家电品牌"
+                />
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -100,16 +95,12 @@
                 android:layout_width="3dp"
                 android:layout_height="match_parent"
                 android:src="@mipmap/blue_shuxian"/>
-            <TextView
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="13dp"
-                android:gravity="right"
-                android:textColor="#0ee2e2"
-                android:textSize="15sp"
+            <EditText
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="笔记本"/>
+                android:hint="请选择您的家电类型"
+                />
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -138,21 +129,18 @@
                 android:layout_width="3dp"
                 android:layout_height="match_parent"
                 android:src="@mipmap/blue_shuxian"/>
-            <TextView
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="13dp"
-                android:gravity="right"
-                android:textColor="#0ee2e2"
-                android:textSize="15sp"
+            <EditText
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="Y460A_ITH"/>
+                android:hint="请选择您的家电类型号"
+                />
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/jinru"
-                android:layout_gravity="center_vertical"/>
+                android:layout_gravity="center_vertical"
+                android:id="@+id/imageView" />
         </LinearLayout>
         <include layout="@layout/include_line_one"></include>
         <LinearLayout
@@ -176,16 +164,12 @@
                 android:layout_width="3dp"
                 android:layout_height="match_parent"
                 android:src="@mipmap/blue_shuxian"/>
-            <TextView
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="13dp"
-                android:gravity="right"
-                android:textColor="#0ee2e2"
-                android:textSize="15sp"
+            <EditText
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="主板"/>
+                android:hint="请选择您的手机故障点"
+                />
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -203,12 +187,14 @@
             android:orientation="horizontal"
             android:background="#ffffff"
             >
+
             <EditText
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:hint="开机进不去系统，黑屏白字"
-                />
+                android:hint="请对您的家电的故障进行检点的描述"
+                android:id="@+id/editText2" />
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -260,4 +246,5 @@
         android:text="确定"
         android:textColor="#ffffff"
         android:textSize="20sp"/>
+
 </LinearLayout>
