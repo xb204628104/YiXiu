@@ -38,10 +38,11 @@
             android:layout_height="wrap_content"
             android:textColor="#807f7f"
             android:text="手机号"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:id="@+id/textView" />
 
         <EditText
+            android:textSize="16sp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"

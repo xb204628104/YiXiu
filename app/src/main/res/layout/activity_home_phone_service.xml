@@ -29,12 +29,13 @@
                 android:textColor="#807f7f"
                 android:text="品牌"
                 android:layout_gravity="center"
-                android:textSize="25sp" />
+                android:textSize="18sp" />
             <ImageView
                 android:layout_width="3dp"
                 android:layout_height="match_parent"
                 android:src="@mipmap/blue_shuxian"/>
             <EditText
+                android:textSize="16sp"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -61,6 +62,7 @@
             android:orientation="horizontal"
             android:background="#ffffff"
             >
+
             <TextView
                 android:layout_marginRight="10dp"
                 android:layout_width="wrap_content"
@@ -68,12 +70,15 @@
                 android:textColor="#817f7f"
                 android:text="型号"
                 android:layout_gravity="center"
-                android:textSize="25sp" />
+                android:textSize="18sp"
+                android:id="@+id/textView2" />
+
             <ImageView
                 android:layout_width="3dp"
                 android:layout_height="match_parent"
                 android:src="@mipmap/blue_shuxian"/>
             <EditText
+                android:textSize="16sp"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -102,12 +107,13 @@
                 android:textColor="#817f7f"
                 android:text="故障"
                 android:layout_gravity="center"
-                android:textSize="25sp" />
+                android:textSize="18sp" />
             <ImageView
                 android:layout_width="3dp"
                 android:layout_height="match_parent"
                 android:src="@mipmap/blue_shuxian"/>
             <EditText
+                android:textSize="16sp"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -133,6 +139,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:textSize="16sp"
                 android:hint="请对您的手机的故障进行简单的描述"
                 />
             <ImageView

@@ -50,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="#807f7f"
                 android:text="品牌"
-                android:textSize="25sp"
+                android:textSize="18sp"
                 android:id="@+id/textView" />
             <ImageView
                 android:layout_width="3dp"
@@ -94,7 +94,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="#807f7f"
                 android:text="类型"
-                android:textSize="25sp"
+                android:textSize="18sp"
                 />
             <ImageView
                 android:layout_width="3dp"
@@ -133,7 +133,7 @@
                 android:textColor="#817f7f"
                 android:text="型号"
                 android:layout_gravity="center"
-                android:textSize="25sp" />
+                android:textSize="18sp" />
             <ImageView
                 android:layout_width="3dp"
                 android:layout_height="match_parent"
@@ -171,7 +171,7 @@
                 android:textColor="#817f7f"
                 android:text="故障"
                 android:layout_gravity="center"
-                android:textSize="25sp" />
+                android:textSize="18sp" />
             <ImageView
                 android:layout_width="3dp"
                 android:layout_height="match_parent"
@@ -207,6 +207,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:textSize="16sp"
                 android:hint="开机进不去系统，黑屏白字"
                 />
             <ImageView
