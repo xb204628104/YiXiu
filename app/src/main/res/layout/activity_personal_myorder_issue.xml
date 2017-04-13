@@ -46,10 +46,8 @@
             android:textColor="#8c8c8c"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="22dp"/>
-
-
         <LinearLayout
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="5dp"
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -57,18 +55,116 @@
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@mipmap/order_quxiao"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="订单已取消"
+                android:src="@mipmap/order_duihao"/>
+            <ImageView
                 android:layout_marginLeft="10dp"
-                android:textSize="18sp"
-                android:textColor="#8c8c8c"/>
+                android:layout_width="5dp"
+                android:layout_height="5dp"
+                android:src="@mipmap/order_dian"/>
+            <ImageView
+                android:layout_marginLeft="10dp"
+                android:layout_width="5dp"
+                android:layout_height="5dp"
+                android:src="@mipmap/order_dian"/>
+            <ImageView
+                android:layout_marginLeft="10dp"
+                android:layout_width="5dp"
+                android:layout_height="5dp"
+                android:src="@mipmap/order_dian"/>
+            <ImageView
+                android:layout_marginLeft="10dp"
+                android:layout_width="5dp"
+                android:layout_height="5dp"
+                android:src="@mipmap/order_dian"/>
+            <ImageView
+                android:layout_marginLeft="10dp"
+                android:layout_width="5dp"
+                android:layout_height="5dp"
+                android:src="@mipmap/order_dian"/>
+            <ImageView
+                android:layout_marginLeft="10dp"
+                android:layout_width="5dp"
+                android:layout_height="5dp"
+                android:src="@mipmap/order_dian"/>
+            <ImageView
+                android:layout_marginLeft="10dp"
+                android:layout_width="5dp"
+                android:layout_height="5dp"
+                android:src="@mipmap/order_dian"/>
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@mipmap/order_duihao_hei"/>
+            <ImageView
+                android:layout_marginLeft="10dp"
+                android:layout_width="5dp"
+                android:layout_height="5dp"
+                android:src="@mipmap/order_dian_hei"/>
+            <ImageView
+                android:layout_marginLeft="10dp"
+                android:layout_width="5dp"
+                android:layout_height="5dp"
+                android:src="@mipmap/order_dian_hei"/>
+            <ImageView
+                android:layout_marginLeft="10dp"
+                android:layout_width="5dp"
+                android:layout_height="5dp"
+                android:src="@mipmap/order_dian_hei"/>
+            <ImageView
+                android:layout_marginLeft="10dp"
+                android:layout_width="5dp"
+                android:layout_height="5dp"
+                android:src="@mipmap/order_dian_hei"/>
+            <ImageView
+                android:layout_marginLeft="10dp"
+                android:layout_width="5dp"
+                android:layout_height="5dp"
+                android:src="@mipmap/order_dian_hei"/>
+            <ImageView
+                android:layout_marginLeft="10dp"
+                android:layout_width="5dp"
+                android:layout_height="5dp"
+                android:src="@mipmap/order_dian_hei"/>
+            <ImageView
+                android:layout_marginLeft="10dp"
+                android:layout_width="5dp"
+                android:layout_height="5dp"
+                android:src="@mipmap/order_dian_hei"/>
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@mipmap/order_duihao_hei"/>
         </LinearLayout>
+        <LinearLayout
 
-
-
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_marginTop="5dp"
+                android:gravity="center_horizontal"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="发布成功"
+                android:textColor="#ff6733" />
+            <TextView
+                android:layout_marginTop="5dp"
+                android:gravity="center_horizontal"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="已接单"
+                android:textColor="#8c8c8c" />
+            <TextView
+                android:layout_marginTop="5dp"
+                android:gravity="center_horizontal"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="完成订单"
+                android:textColor="#8c8c8c" />
+        </LinearLayout>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
