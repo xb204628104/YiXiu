@@ -4,6 +4,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#f2f2f2">
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
@@ -19,7 +21,7 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"
-            android:text="设置"
+            android:text="修改密码"
             android:textSize="25sp"
             android:textColor="#6ce0e0"
             android:gravity="center"
@@ -30,37 +32,31 @@
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         ></include>
+
     <LinearLayout
 
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:background="#ffffff"
         android:orientation="horizontal">
+
         <TextView
-            android:layout_marginLeft="20dp"
-            android:layout_gravity="center"
+            android:layout_marginRight="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="修改密码"
-            android:textSize="20sp"
-            android:textColor="#938e8e"/>
-        <TextView
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="15dp"
-            android:gravity="right"
-            android:textColor="#938e8e"
-            android:textSize="20sp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:text="新密码"
+            android:textColor="#6c6969"
+            android:textSize="20sp" />
+
+        <EditText
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
             android:layout_weight="1"
-
-            />
-        <ImageView
-            android:layout_marginRight="5dp"
-            android:layout_gravity="center"
-            android:layout_width="30dp"
-            android:layout_height="20dp"
-            android:src="@mipmap/jinru"/>
+            android:hint="请输入新密码"
+            android:textColorHint="#969292" />
     </LinearLayout>
     <View
         android:layout_width="match_parent"
@@ -75,49 +71,45 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="#cac9c9"></View>
-
     <LinearLayout
 
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:background="#ffffff"
         android:orientation="horizontal">
+
         <TextView
-            android:layout_marginLeft="20dp"
-            android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="消息通知"
-            android:textSize="22sp"
-            android:textColor="#938e8e"/>
-        <TextView
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="15dp"
-            android:gravity="right"
-            android:textColor="#938e8e"
-            android:textSize="20sp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:text="确认密码"
+            android:textColor="#6c6969"
+            android:textSize="20sp" />
+
+        <EditText
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
             android:layout_weight="1"
-
-            />
-        <ImageView
-            android:layout_marginRight="5dp"
-            android:layout_gravity="center"
-            android:layout_width="30dp"
-            android:layout_height="20dp"
-            android:src="@mipmap/jinru"/>
+            android:hint="请再次输入新密码"
+            android:textColorHint="#969292" />
     </LinearLayout>
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="#cac9c9"></View>
+
+
     <Button
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
         android:textSize="18sp"
-        android:textColor="#ff6733"
-        android:text="退出登录"
+        android:textColor="#ffffff"
+        android:background="@drawable/shape"
         android:layout_marginTop="15dp"
-        android:background="@drawable/shapebaise"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="确认"/>
+
 </LinearLayout>

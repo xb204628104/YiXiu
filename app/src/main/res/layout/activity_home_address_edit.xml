@@ -37,7 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#807f7f"
-            android:text="品牌"
+            android:text="姓名"
             android:textSize="18sp"
             android:id="@+id/textView" />
 
