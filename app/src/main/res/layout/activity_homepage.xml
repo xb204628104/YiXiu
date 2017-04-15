@@ -80,6 +80,7 @@
                         android:textSize="25sp"
                         android:textColor="#6d6d6d"/>
                     <FrameLayout
+                        android:id="@+id/main_set_phone"
                         android:layout_marginTop="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content">
@@ -90,6 +91,7 @@
                             android:layout_marginLeft="5dp"
                             />
                         <ImageView
+
                             android:layout_width="30dp"
                             android:layout_height="30dp"
                             android:padding="5dp"
@@ -127,6 +129,7 @@
                     android:orientation="horizontal"
                     android:gravity="right">
                     <FrameLayout
+                        android:id="@+id/main_set_computer"
                         android:layout_gravity="center"
                         android:layout_marginTop="10dp"
                         android:layout_width="wrap_content"
@@ -137,12 +140,13 @@
                             android:src="@mipmap/jian_left"
 
                             />
+
                         <ImageView
                             android:layout_width="30dp"
                             android:layout_height="30dp"
                             android:padding="5dp"
                             android:src="@mipmap/ban_right"
-                            />
+                            android:id="@+id/imageView5" />
                     </FrameLayout>
 
                     <TextView
@@ -212,6 +216,7 @@
                         android:textSize="25sp"
                         android:textColor="#6d6d6d"/>
                     <FrameLayout
+                        android:id="@+id/main_set_house"
                         android:layout_marginTop="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content">
