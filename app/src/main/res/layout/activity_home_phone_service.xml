@@ -15,6 +15,7 @@
         android:orientation="vertical"
         >
         <LinearLayout
+            android:id="@+id/phone_ll_brand"
             android:padding="10dp"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -58,6 +59,7 @@
             android:layout_height="5dp"
             android:background="#f2f2f2"></LinearLayout>
         <LinearLayout
+            android:id="@+id/phone_ll_model"
             android:layout_marginTop="5dp"
             android:padding="10dp"
             android:layout_width="match_parent"
@@ -100,6 +102,7 @@
         </LinearLayout>
         <include layout="@layout/include_line_one"></include>
         <LinearLayout
+            android:id="@+id/phone_ll_fault"
             android:layout_marginTop="5dp"
             android:padding="10dp"
             android:layout_width="match_parent"
