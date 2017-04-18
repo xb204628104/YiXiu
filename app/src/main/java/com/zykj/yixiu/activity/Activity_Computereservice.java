@@ -23,6 +23,8 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import cn.finalteam.galleryfinal.GalleryFinal;
+import cn.finalteam.galleryfinal.model.PhotoInfo;
 
 /**
  * Created by zykj on 2017/4/18.
@@ -50,6 +52,8 @@ public class Activity_Computereservice extends Activity {
     TextView tvComputerCategory;
     @Bind(R.id.bt_computer_okcall)
     Button btComputerOkcall;
+    @Bind(R.id.ll_computer_add)
+    LinearLayout llComputerAdd;
     private List<ComputerBean> lists;
     private int index = -1;
 
@@ -61,7 +65,7 @@ public class Activity_Computereservice extends Activity {
 
 
     @OnClick({R.id.ll_computer_brand, R.id.ll_computer_model, R.id.ll_computer_type, R.id.ll_computer_fault
-    ,R.id.bt_computer_okcall})
+            , R.id.bt_computer_okcall,R.id.ll_computer_add})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.ll_computer_brand:
@@ -208,8 +212,21 @@ public class Activity_Computereservice extends Activity {
                 break;
             case R.id.bt_computer_okcall:
 
-                Intent intent=new Intent(Activity_Computereservice.this,Activity_Callservice.class);
+                Intent intent = new Intent(Activity_Computereservice.this, Activity_Callservice.class);
                 startActivity(intent);
+                break;
+            case R.id.ll_computer_add:
+                GalleryFinal.openGallerySingle(1001, new GalleryFinal.OnHanlderResultCallback() {
+                    @Override
+                    public void onHanlderSuccess(int reqeustCode, List<PhotoInfo> resultList) {
+
+                    }
+
+                    @Override
+                    public void onHanlderFailure(int requestCode, String errorMsg) {
+
+                    }
+                });
                 break;
         }
     }

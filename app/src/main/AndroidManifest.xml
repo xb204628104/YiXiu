@@ -23,16 +23,19 @@
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="WCK7aKanxYRa6E8qonV98RDeh9lQDXnu" />
-        <activity android:name=".activity.Mainactivity">
+        <activity android:name=".activity.Main_only">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"></action>
                 <category android:name="android.intent.category.LAUNCHER"></category>
             </intent-filter>
         </activity>
+        <activity android:name=".activity.Mainactivity"></activity>
         <activity android:name=".activity.Activity_Phoneservice"></activity>
         <activity android:name=".activity.Activity_Computereservice"></activity>
         <activity android:name=".activity.Activity_Houseereservice"></activity>
         <activity android:name=".activity.Activity_Callservice"></activity>
+        <activity android:name=".activity.BaiDuMap"></activity>
+        <activity android:name=".activity.Activity_Prcenter"></activity>
     </application>
 
 </manifest>

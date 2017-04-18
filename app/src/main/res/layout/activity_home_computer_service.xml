@@ -234,6 +234,7 @@
         android:layout_height="wrap_content"
         android:background="#ffffff">
         <LinearLayout
+            android:id="@+id/ll_computer_add"
             android:layout_margin="10dp"
             android:gravity="center"
             android:layout_width="80dp"

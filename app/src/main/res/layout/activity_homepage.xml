@@ -28,6 +28,7 @@
             android:textColor="#6ce0e0"
             />
         <ImageView
+            android:id="@+id/main_geren"
             android:layout_gravity="center_vertical"
             android:layout_width="25dp"
             android:layout_height="25dp"

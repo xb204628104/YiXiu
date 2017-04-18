@@ -2,6 +2,7 @@ package com.zykj.yixiu.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,6 +11,8 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.bigkoo.pickerview.OptionsPickerView;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.zykj.yixiu.R;
 import com.zykj.yixiu.bean.HouseBean;
 import com.zykj.yixiu.utils.Y;
@@ -23,6 +26,13 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import cn.finalteam.galleryfinal.CoreConfig;
+import cn.finalteam.galleryfinal.FunctionConfig;
+import cn.finalteam.galleryfinal.GalleryFinal;
+import cn.finalteam.galleryfinal.ImageLoader;
+import cn.finalteam.galleryfinal.ThemeConfig;
+import cn.finalteam.galleryfinal.model.PhotoInfo;
+import cn.finalteam.galleryfinal.widget.GFImageView;
 
 /**
  * Created by zykj on 2017/4/18.
@@ -47,6 +57,8 @@ public class Activity_Houseereservice extends Activity {
     LinearLayout llHouseFault;
     @Bind(R.id.bt_house_okcall)
     Button btHouseOkcall;
+    @Bind(R.id.ll_house_add)
+    LinearLayout llHouseAdd;
     private List<HouseBean> lists;
     private int index = -1;
 
@@ -58,7 +70,7 @@ public class Activity_Houseereservice extends Activity {
     }
 
     @OnClick({R.id.ll_house_brand, R.id.ll_house_typ, R.id.ll_house_nodel, R.id.ll_house_fault
-    ,R.id.bt_house_okcall})
+            , R.id.bt_house_okcall,R.id.ll_house_add})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.ll_house_brand:
@@ -188,9 +200,23 @@ public class Activity_Houseereservice extends Activity {
                 });
                 break;
             case R.id.bt_house_okcall:
-                Intent intent=new Intent(Activity_Houseereservice.this,Activity_Callservice.class);
+                Intent intent = new Intent(Activity_Houseereservice.this, Activity_Callservice.class);
                 startActivity(intent);
+                break;
+            case R.id.ll_house_add:
+                GalleryFinal.openGallerySingle(1001, new GalleryFinal.OnHanlderResultCallback() {
+                    @Override
+                    public void onHanlderSuccess(int reqeustCode, List<PhotoInfo> resultList) {
+                       // Glide.with(Activity_Houseereservice.this).load(resultList.get(0).getPhotoPath());
+                    }
+
+                    @Override
+                    public void onHanlderFailure(int requestCode, String errorMsg) {
+
+                    }
+                });
                 break;
         }
     }
+
 }

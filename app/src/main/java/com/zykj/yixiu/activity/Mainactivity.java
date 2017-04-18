@@ -59,7 +59,7 @@ public class Mainactivity extends Activity {
     }
 
     @OnClick({R.id.main_set_phone, R.id.main_set_computer, R.id.main_set_house, R.id.honepage_banner
-    ,R.id.tv_home_city})
+    ,R.id.tv_home_city,R.id.main_geren})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.main_set_phone:
@@ -77,6 +77,10 @@ public class Mainactivity extends Activity {
             case R.id.honepage_banner:
                 break;
             case R.id.tv_home_city:
+                break;
+            case R.id.main_geren:
+                Intent intent3=new Intent(Mainactivity.this,Activity_Prcenter.class);
+                startActivity(intent3);
                 break;
 
         }

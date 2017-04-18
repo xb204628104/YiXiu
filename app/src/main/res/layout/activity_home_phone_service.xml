@@ -173,8 +173,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#ffffff">
+        android:background="#ffffff"
+        android:orientation="horizontal">
       <LinearLayout
+          android:id="@+id/ll_phone_add"
           android:layout_margin="10dp"
           android:gravity="center"
           android:layout_width="80dp"
@@ -196,6 +198,12 @@
                   android:src="@mipmap/add_camera"/>
           </FrameLayout>
       </LinearLayout>
+        <ImageView
+            android:id="@+id/iv_phone_img"
+            android:layout_gravity="center"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            />
 
     </LinearLayout>
 

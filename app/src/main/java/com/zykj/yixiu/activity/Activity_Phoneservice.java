@@ -2,14 +2,18 @@ package com.zykj.yixiu.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.bigkoo.pickerview.OptionsPickerView;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.zykj.yixiu.R;
 import com.zykj.yixiu.bean.MobileBean;
 import com.zykj.yixiu.utils.Y;
@@ -23,6 +27,13 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import cn.finalteam.galleryfinal.CoreConfig;
+import cn.finalteam.galleryfinal.FunctionConfig;
+import cn.finalteam.galleryfinal.GalleryFinal;
+import cn.finalteam.galleryfinal.ImageLoader;
+import cn.finalteam.galleryfinal.ThemeConfig;
+import cn.finalteam.galleryfinal.model.PhotoInfo;
+import cn.finalteam.galleryfinal.widget.GFImageView;
 
 /**
  * Created by zykj on 2017/4/15.
@@ -43,8 +54,17 @@ public class Activity_Phoneservice extends Activity {
     LinearLayout phoneLlFault;
     @Bind(R.id.bt_phone_okcall)
     Button btPhoneOkcall;
+    @Bind(R.id.ll_phone_add)
+    LinearLayout llPhoneAdd;
+    @Bind(R.id.iv_phone_img)
+    ImageView ivPhoneImg;
     private List<MobileBean> lists;
+    private List<ImageView> list;
     private int index = -1;
+    private final int REQUEST_CODE_CAMERA = 1000; //相机表示
+    private final int REQUEST_CODE_GALLERY = 1001; //相册标示
+    private final int REQUEST_CODE_CROP = 1002;    //裁剪表示
+    private final int REQUEST_CODE_EDIT = 1003;       //编辑表示
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +73,8 @@ public class Activity_Phoneservice extends Activity {
         ButterKnife.bind(this);
     }
 
-    @OnClick({R.id.phone_ll_brand, R.id.phone_ll_model, R.id.phone_ll_fault,R.id.bt_phone_okcall})
+    @OnClick({R.id.phone_ll_brand, R.id.phone_ll_model, R.id.phone_ll_fault, R.id.bt_phone_okcall
+            , R.id.ll_phone_add})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.phone_ll_brand:
@@ -70,6 +91,9 @@ public class Activity_Phoneservice extends Activity {
                                     //返回的分别是三个级别的选中位置
                                     phoneserviceBrand.setText(lists.get(options1).getName());
                                     index = options1;
+                                    if (index != options1) {
+
+                                    }
                                 }
                             }).build();
                             List<String> list = new ArrayList<String>();
@@ -165,9 +189,26 @@ public class Activity_Phoneservice extends Activity {
                 break;
             case R.id.bt_phone_okcall:
 
-                Intent intent=new Intent(Activity_Phoneservice.this,Activity_Callservice.class);
+                Intent intent = new Intent(Activity_Phoneservice.this, Activity_Callservice.class);
                 startActivity(intent);
                 break;
+            case R.id.ll_phone_add:
+
+                GalleryFinal.openGallerySingle(1001, new GalleryFinal.OnHanlderResultCallback() {
+                    @Override
+                    public void onHanlderSuccess(int reqeustCode, List<PhotoInfo> resultList) {
+
+                    }
+
+                    @Override
+                    public void onHanlderFailure(int requestCode, String errorMsg) {
+
+                    }
+                });
+                break;
         }
+
     }
+
+
 }
