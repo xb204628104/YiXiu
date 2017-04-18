@@ -20,40 +20,40 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile 'com.android.support:appcompat-v7:25.3.1'
     testCompile 'junit:junit:4.12'
-    /*FastJson*/				compile group: 'com.alibaba', name: 'fastjson', version: '1.2.12'
-
-    /*Galleryfinal*/                            compile 'cn.finalteam:galleryfinal:1.4.8.7'
-
-    /*Glide*/	                                compile group: 'com.github.bumptech.glide', name: 'glide', version: '3.7.0'
-
-    /*logger*/                                  compile 'com.orhanobut:logger:1.15'
-
-    /*Banner*/                                  compile 'com.youth.banner:banner:1.4.9'
-
-    /*xutils*/					compile group: 'org.xutils', name: 'xutils', version: '3.3.40'
-    /*butterknife*/   			        compile group: 'com.jakewharton', name: 'butterknife', version: '7.0.1'
-    /*Gson*/					compile group: 'com.google.code.gson', name: 'gson', version: '2.8.0'
-
-
-    /*OkHttp*/					compile group: 'com.squareup.okhttp3', name: 'okhttp', version: '3.6.0'
-
-    /*上下拉控件*/                              compile 'com.huxq17.xrefreshview:xrefreshview:3.6.5'
-
-    /*二维码*/                                  compile 'cn.yipianfengye.android:zxing-library:2.1'
-
-    /*recyclerview*/                            compile 'com.android.support:recyclerview-v7:25.1.0'
-
-
-    /*鲁班压缩*/                                 compile 'top.zibin:Luban:1.0.9'
-
+    /*FastJson*/
+    compile 'com.alibaba:fastjson:1.2.12'
+    /*Galleryfinal*/
+    compile 'cn.finalteam:galleryfinal:1.4.8.7'
+    /*Glide*/
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+    /*logger*/
+    compile 'com.orhanobut:logger:1.15'
+    /*Banner*/
+    compile 'com.youth.banner:banner:1.4.9'
+    /*xutils*/
+    compile 'org.xutils:xutils:3.3.40'
+    /*butterknife*/
+    compile 'com.jakewharton:butterknife:7.0.1'
+    /*Gson*/
+    compile 'com.google.code.gson:gson:2.8.0'
+    /*OkHttp*/
+    compile 'com.squareup.okhttp3:okhttp:3.6.0'
+    /*上下拉控件*/
+    compile 'com.huxq17.xrefreshview:xrefreshview:3.6.5'
+    /*二维码*/
+    compile 'cn.yipianfengye.android:zxing-library:2.1'
+    /*recyclerview*/
+    compile 'com.android.support:recyclerview-v7:25.1.0'
+    /*鲁班压缩*/
+    compile 'top.zibin:Luban:1.0.9'
     compile 'io.reactivex:rxandroid:1.2.1'
-
     compile 'io.reactivex:rxjava:1.1.6'
     compile 'com.contrarywind:Android-PickerView:3.2.4'
+    compile files('src/main/java/com/zykj/yixiu/BaiduLBS_Android.jar')
 }

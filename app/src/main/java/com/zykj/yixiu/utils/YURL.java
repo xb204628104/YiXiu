@@ -19,13 +19,27 @@ public class YURL {
     //查找手机品牌
     public static   final  String  FIND_PHONE_BRAND=HOST+"findPhoneBrand";
 
-
-
     //根据品牌查找型号
     public static   final  String  FIND_PHONE_MODEL=HOST+"findPhoneModel";
 
     //查询手机故障
     public static   final  String  FIND_PHONE_FAULT=HOST+"findPhoneFault";
 
+    //查询电脑型号
+    public static   final  String  FIND_BYCOMPUTER_MODEL=HOST+"findByComputerModel";
 
+    //查找电脑品牌
+    public static   final  String  FIND_COMPUTER_BRAND=HOST+"findComputerBrand";
+
+    //查找电脑下的分类
+    public static   final  String  FIND_COMPUTER_CATEGORY=HOST+"findComputerCategory";
+
+    //查找家电下的分类
+    public static   final  String  FIND_APPLIANCE_CATEGORY=HOST+"findApplianceCategory";
+
+    //查找家电下的品牌
+    public static   final  String  FIND_BYAPPLIANCE_BRAND=HOST+"findByApplianceBrand";
+
+    //查找家电下的分类
+    public static   final  String  FIND_BYAPPLIANCE_MODEL=HOST+"findByApplianceModel";
 }

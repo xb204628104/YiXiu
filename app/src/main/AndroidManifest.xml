@@ -4,6 +4,15 @@
     <uses-permission android:name="android.permission.INTERNET"></uses-permission>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
     <!--xutlis结束-->
+    <!--百度地图开始-->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <!--百度地图结束-->
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,6 +20,9 @@
         android:supportsRtl="true"
         android:name=".app.MyApplication"
         android:theme="@style/AppTheme">
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="WCK7aKanxYRa6E8qonV98RDeh9lQDXnu" />
         <activity android:name=".activity.Mainactivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"></action>
@@ -18,7 +30,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.Activity_Phoneservice"></activity>
-
+        <activity android:name=".activity.Activity_Computereservice"></activity>
+        <activity android:name=".activity.Activity_Houseereservice"></activity>
+        <activity android:name=".activity.Activity_Callservice"></activity>
     </application>
 
 </manifest>

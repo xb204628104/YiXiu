@@ -1,8 +1,10 @@
 package com.zykj.yixiu.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -39,6 +41,8 @@ public class Activity_Phoneservice extends Activity {
     LinearLayout phoneLlModel;
     @Bind(R.id.phone_ll_fault)
     LinearLayout phoneLlFault;
+    @Bind(R.id.bt_phone_okcall)
+    Button btPhoneOkcall;
     private List<MobileBean> lists;
     private int index = -1;
 
@@ -49,7 +53,7 @@ public class Activity_Phoneservice extends Activity {
         ButterKnife.bind(this);
     }
 
-    @OnClick({R.id.phone_ll_brand, R.id.phone_ll_model, R.id.phone_ll_fault})
+    @OnClick({R.id.phone_ll_brand, R.id.phone_ll_model, R.id.phone_ll_fault,R.id.bt_phone_okcall})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.phone_ll_brand:
@@ -158,6 +162,11 @@ public class Activity_Phoneservice extends Activity {
                         }
                     }
                 });
+                break;
+            case R.id.bt_phone_okcall:
+
+                Intent intent=new Intent(Activity_Phoneservice.this,Activity_Callservice.class);
+                startActivity(intent);
                 break;
         }
     }

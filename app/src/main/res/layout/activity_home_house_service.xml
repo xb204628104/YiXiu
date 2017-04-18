@@ -34,7 +34,7 @@
         android:orientation="vertical"
         >
         <LinearLayout
-
+            android:id="@+id/ll_house_brand"
             android:padding="10dp"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -55,12 +55,16 @@
                 android:layout_width="3dp"
                 android:layout_height="match_parent"
                 android:src="@mipmap/blue_shuxian"/>
-            <EditText
+            <TextView
+                android:id="@+id/tv_house_brand"
+                android:layout_marginLeft="20dp"
+                android:textColor="#8c8b8b"
+                android:gravity="center_vertical"
                 android:textSize="16sp"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:hint="请选择您的家电品牌"
+                android:text="请选择您的家电品牌"
                 />
             <ImageView
                 android:layout_width="wrap_content"
@@ -73,9 +77,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="5dp"
-            android:background="#dff9f9"></LinearLayout>
+            android:background="#f2f2f2"></LinearLayout>
         <LinearLayout
-
+            android:id="@+id/ll_house_typ"
             android:padding="10dp"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -96,14 +100,17 @@
                 android:layout_width="3dp"
                 android:layout_height="match_parent"
                 android:src="@mipmap/blue_shuxian"/>
-            <EditText
+            <TextView
+                android:id="@+id/tv_house_typ"
+                android:layout_marginLeft="20dp"
+                android:textColor="#8c8b8b"
+                android:gravity="center_vertical"
                 android:textSize="16sp"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:hint="请选择您的家电类型"
-                />
-            <ImageView
+                android:text="请选择您的家电类型"
+                />            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/jinru"
@@ -111,6 +118,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/ll_house_nodel"
             android:layout_marginTop="5dp"
             android:padding="10dp"
             android:layout_width="match_parent"
@@ -131,12 +139,16 @@
                 android:layout_width="3dp"
                 android:layout_height="match_parent"
                 android:src="@mipmap/blue_shuxian"/>
-            <EditText
+            <TextView
+                android:id="@+id/tv_house_model"
+                android:layout_marginLeft="20dp"
+                android:textColor="#8c8b8b"
+                android:gravity="center_vertical"
                 android:textSize="16sp"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:hint="请选择您的家电类型号"
+                android:text="请选择您的手机型号"
                 />
             <ImageView
                 android:layout_width="wrap_content"
@@ -147,6 +159,7 @@
         </LinearLayout>
         <include layout="@layout/include_line_one"></include>
         <LinearLayout
+            android:id="@+id/ll_house_fault"
             android:layout_marginTop="5dp"
             android:padding="10dp"
             android:layout_width="match_parent"
@@ -167,12 +180,16 @@
                 android:layout_width="3dp"
                 android:layout_height="match_parent"
                 android:src="@mipmap/blue_shuxian"/>
-            <EditText
+            <TextView
+                android:id="@+id/tv_house_fault"
+                android:layout_marginLeft="20dp"
+                android:textColor="#8c8b8b"
+                android:gravity="center_vertical"
                 android:textSize="16sp"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:hint="请选择您的手机故障点"
+                android:text="请选择您的家电故障点"
                 />
 
             <ImageView
@@ -241,6 +258,7 @@
     </LinearLayout>
     <include layout="@layout/include_line_one"></include>
     <Button
+        android:id="@+id/bt_house_okcall"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/shape"
