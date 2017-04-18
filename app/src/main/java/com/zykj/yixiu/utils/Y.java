@@ -4,11 +4,14 @@ import android.content.Context;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
+import com.hss01248.dialog.StyledDialog;
 import com.orhanobut.logger.Logger;
 
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
+
+import java.util.Map;
 
 /**
  * 工具类
@@ -71,8 +74,24 @@ public  class Y {
      * @param call
      * @return
      */
-    public static Callback.Cancelable get(RequestParams params, MyCommonCall<String> call){
-        return   x.http().get(params, call);
+    public static Callback.Cancelable get(String url, Map<String,String> params, MyCommonCall<String> call){
+
+
+
+        //请求的对象
+        RequestParams rp  =new RequestParams(url);
+
+        //检测外部是否传入了参数
+        if(params!=null){
+            //把参数取出来这是到rp
+            for (Map.Entry<String,String> entry :params.entrySet()) {
+                rp.addBodyParameter(entry.getKey(),entry.getValue());
+            }
+        }
+        i(rp.toString());
+        // 只要发起Get请求就开启对话框
+        StyledDialog.buildLoading().show();
+        return   x.http().get(rp, call);
     }
     /**
      * post请求  返回成功回调

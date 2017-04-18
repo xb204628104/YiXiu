@@ -34,7 +34,6 @@
         <activity android:name=".activity.Activity_Computereservice"></activity>
         <activity android:name=".activity.Activity_Houseereservice"></activity>
         <activity android:name=".activity.Activity_Callservice"></activity>
-        <activity android:name=".activity.BaiDuMap"></activity>
         <activity android:name=".activity.Activity_Prcenter"></activity>
     </application>
 

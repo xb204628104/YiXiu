@@ -18,7 +18,9 @@ import com.zykj.yixiu.utils.YURL;
 import org.xutils.http.RequestParams;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -69,7 +71,7 @@ public class Activity_Computereservice extends Activity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.ll_computer_brand:
-                Y.get(new RequestParams(YURL.FIND_COMPUTER_BRAND), new Y.MyCommonCall<String>() {
+                Y.get(YURL.FIND_COMPUTER_BRAND,null, new Y.MyCommonCall<String>() {
                     @Override
                     public void onSuccess(String result) {
                         if (Y.getRespCode(result)) {
@@ -100,10 +102,9 @@ public class Activity_Computereservice extends Activity {
                 if (index == -1) {
                     Y.t("请您先选择电脑品牌");
                 } else {
-                    RequestParams rp = new RequestParams(YURL.FIND_COMPUTER_CATEGORY);
-                    rp.addBodyParameter("pid", lists.get(index).getId() + "");
-                    Y.i(rp + "");
-                    Y.get(rp, new Y.MyCommonCall<String>() {
+                    Map<String,String> map=new HashMap<>();
+                    map.put("pid",lists.get(index).getId() + "");
+                    Y.get(YURL.FIND_COMPUTER_CATEGORY,map, new Y.MyCommonCall<String>() {
                         @Override
                         public void onSuccess(String result) {
                             if (Y.getRespCode(result)) {
@@ -139,11 +140,10 @@ public class Activity_Computereservice extends Activity {
                     Y.t("请您先选择电脑品牌");
                 } else {
                     //开始获取型号数据
-                    //发起请求
-                    RequestParams rp1 = new RequestParams(YURL.FIND_BYCOMPUTER_MODEL);
-                    rp1.addBodyParameter("pid", lists.get(index).getId() + "");
-                    rp1.addBodyParameter("category", "1");
-                    Y.get(rp1, new Y.MyCommonCall<String>() {
+                    Map<String,String> map=new HashMap<>();
+                    map.put("pid", lists.get(index).getId() + "");
+                    map.put("category", "1");
+                    Y.get(YURL.FIND_BYCOMPUTER_MODEL,map, new Y.MyCommonCall<String>() {
                         @Override
                         public void onSuccess(String result) {
                             if (Y.getRespCode(result)) {
@@ -183,7 +183,7 @@ public class Activity_Computereservice extends Activity {
 
                 break;
             case R.id.ll_computer_fault:
-                Y.get(new RequestParams(YURL.FIND_PHONE_FAULT), new Y.MyCommonCall<String>() {
+                Y.get(YURL.FIND_PHONE_FAULT,null, new Y.MyCommonCall<String>() {
                     @Override
                     public void onSuccess(String result) {
                         if (Y.getRespCode(result)) {

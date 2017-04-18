@@ -107,8 +107,6 @@ public class Activity_Callservice extends Activity {
                 pvTime.show();
                 break;
             case R.id.ll_call_map:
-                Intent intent=new Intent(Activity_Callservice.this,BaiDuMap.class);
-                startActivity(intent);
                 break;
         }
     }

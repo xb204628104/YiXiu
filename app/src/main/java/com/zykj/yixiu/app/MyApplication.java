@@ -6,9 +6,9 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.widget.ImageView;
 
-import com.baidu.mapapi.SDKInitializer;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.hss01248.dialog.StyledDialog;
 import com.orhanobut.logger.Logger;
 import com.youth.banner.loader.ImageLoader;
 import com.zykj.yixiu.R;
@@ -39,7 +39,8 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        SDKInitializer.initialize(getApplicationContext());
+        StyledDialog.init(this);
+        //SDKInitializer.initialize(getApplicationContext());
         x.Ext.init(this);
         Y.context=this;
 

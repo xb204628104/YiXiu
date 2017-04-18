@@ -22,7 +22,9 @@ import com.zykj.yixiu.utils.YURL;
 import org.xutils.http.RequestParams;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -79,7 +81,7 @@ public class Activity_Phoneservice extends Activity {
         switch (view.getId()) {
             case R.id.phone_ll_brand:
             case R.id.phoneservice_brand:
-                Y.get(new RequestParams(YURL.FIND_PHONE_BRAND), new Y.MyCommonCall<String>() {
+                Y.get(YURL.FIND_PHONE_BRAND,null, new Y.MyCommonCall<String>() {
                     @Override
                     public void onSuccess(String result) {
                         if (Y.getRespCode(result)) {
@@ -116,9 +118,9 @@ public class Activity_Phoneservice extends Activity {
                 } else {
                     //开始获取型号数据
                     //发起请求
-                    RequestParams rp = new RequestParams(YURL.FIND_PHONE_MODEL);
-                    rp.addBodyParameter("pid", lists.get(index).getId() + "");
-                    Y.get(rp, new Y.MyCommonCall<String>() {
+                    Map<String,String> map=new HashMap<>();
+                    map.put("pid",lists.get(index).getId() + "");
+                    Y.get(YURL.FIND_PHONE_MODEL,map, new Y.MyCommonCall<String>() {
                         @Override
                         public void onSuccess(String result) {
                             if (Y.getRespCode(result)) {
@@ -160,7 +162,7 @@ public class Activity_Phoneservice extends Activity {
 
                 break;
             case R.id.phone_ll_fault:
-                Y.get(new RequestParams(YURL.FIND_PHONE_FAULT), new Y.MyCommonCall<String>() {
+                Y.get(YURL.FIND_PHONE_FAULT,null, new Y.MyCommonCall<String>() {
                     @Override
                     public void onSuccess(String result) {
                         if (Y.getRespCode(result)) {
