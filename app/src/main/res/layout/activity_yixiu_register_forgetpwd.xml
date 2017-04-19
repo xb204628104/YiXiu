@@ -33,6 +33,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"></include>
     <EditText
+        android:id="@+id/et_forget_num"
         android:padding="15dp"
         android:layout_width="match_parent"
         android:layout_height="60dp"
@@ -47,14 +48,19 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:orientation="horizontal">
+
         <EditText
+
             android:padding="15dp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:textColorHint="#8c8a8a"
-            android:hint="请输入验证码"/>
+            android:hint="请输入验证码"
+            android:id="@+id/et_forget_yan" />
+
         <Button
+            android:id="@+id/bt_forget_getyan"
             android:layout_marginRight="20dp"
             android:layout_width="150dp"
             android:layout_height="40dp"
@@ -68,6 +74,7 @@
         android:background="#d2cdcd"></View>
 
     <Button
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="下一步"
@@ -76,5 +83,6 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:textSize="18sp"
-        android:textColor="#ffffff"/>
+        android:textColor="#ffffff"
+        android:id="@+id/bt_forget_next" />
 </LinearLayout>

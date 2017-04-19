@@ -35,6 +35,16 @@
         <activity android:name=".activity.Activity_Houseereservice"></activity>
         <activity android:name=".activity.Activity_Callservice"></activity>
         <activity android:name=".activity.Activity_Prcenter"></activity>
+        <activity android:name=".activity.Main_only_register"></activity>
+        <activity android:name=".activity.Main_only_register_pwd"></activity>
+        <activity android:name=".activity.Main_only_register_forgetpwd"></activity>
+        <activity android:name=".activity.Activity_Prcenter_myself"></activity>
+        <activity android:name=".activity.Activity_Prcenter_mywallet"></activity>
+        <activity android:name=".activity.Activity_Prcenter_myself_address"></activity>
+        <activity android:name=".activity.Activity_Prcenter_myself_approve"></activity>
+        <activity android:name=".activity.Activity_Prcenter_myself_service"></activity>
+        <activity android:name=".activity.Activity_Prcenter_myself_aboutus"></activity>
+        <activity android:name=".activity.Activity_Prcenter_myself_setting"></activity>
     </application>
 
 </manifest>

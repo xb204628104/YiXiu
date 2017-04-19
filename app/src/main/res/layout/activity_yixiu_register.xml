@@ -33,6 +33,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"></include>
     <EditText
+        android:id="@+id/et_register_num"
         android:padding="15dp"
         android:layout_width="match_parent"
         android:layout_height="60dp"
@@ -48,6 +49,7 @@
         android:layout_height="60dp"
         android:orientation="horizontal">
         <EditText
+            android:id="@+id/et_register_yan"
             android:padding="15dp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -55,6 +57,7 @@
             android:textColorHint="#8c8a8a"
             android:hint="请输入验证码"/>
         <Button
+            android:id="@+id/bt_register_getyan"
             android:layout_marginRight="20dp"
             android:layout_width="150dp"
             android:layout_height="40dp"
@@ -68,6 +71,7 @@
         android:background="#d2cdcd"></View>
 
     <Button
+        android:id="@+id/bt_register"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="注册"

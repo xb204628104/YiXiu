@@ -40,8 +40,12 @@ public class Main_only extends Activity {
                 startActivity(intent);
                 break;
             case R.id.tv_yixiu_zhuce:
+                Intent intent1=new Intent(Main_only.this,Main_only_register.class);
+                startActivity(intent1);
                 break;
             case R.id.tv_yixiu_forget:
+                Intent intent2=new Intent(Main_only.this,Main_only_register_forgetpwd.class);
+                startActivity(intent2);
                 break;
         }
     }

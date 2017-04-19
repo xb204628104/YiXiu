@@ -33,17 +33,18 @@
         android:orientation="horizontal">
         <LinearLayout
             android:gravity="center"
-
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1">
             <TextView
+                android:id="@+id/tv_nyordle_wei"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="未完成"
-                android:textColor="#6ce0e0" />
+                android:textColor="#18d6d6" />
         </LinearLayout>
         <ImageView
+
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
             android:layout_width="5dp"
@@ -55,10 +56,11 @@
             android:layout_height="match_parent"
             android:layout_weight="1">
             <TextView
+                android:id="@+id/tv_nyordle_yi"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="已完成"
-                android:textColor="#6ce0e0" />
+                android:textColor="#979797" />
         </LinearLayout>
         <ImageView
             android:layout_marginTop="5dp"
@@ -74,10 +76,11 @@
             android:layout_height="match_parent"
             android:layout_weight="1">
             <TextView
+                android:id="@+id/tv_nyordle_quxiao"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="已取消"
-                android:textColor="#6ce0e0" />
+                android:textColor="#979797" />
         </LinearLayout>
 
     </LinearLayout>
@@ -85,25 +88,37 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:orientation="horizontal">
-        <View
-            android:layout_weight="1"
+       <ImageView
+           android:id="@+id/iv_nyordle_wei"
+           android:layout_width="0dp"
+           android:layout_height="match_parent"
+           android:layout_weight="1"
+           android:src="@mipmap/yaoyongdexian"
+           android:scaleType="fitXY"/>
+        <ImageView
+            android:id="@+id/iv_nyordle_yi"
+            android:visibility="invisible"
             android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:background="#1ff5f5"></View>
-        <View
-
-            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:layout_height="1dp"
-            android:background="#adf1f1"></View>
-        <View
+            android:src="@mipmap/yaoyongdexian"
+            android:scaleType="fitXY"/>
+        <ImageView
+            android:id="@+id/iv_nyordle_qu"
+            android:visibility="invisible"
             android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:layout_height="1dp"
-            android:background="#adf1f1"></View>
+            android:src="@mipmap/yaoyongdexian"
+            android:scaleType="fitXY"/>
     </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#c9c6c6"></View>
+
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/personal_center_myorder_rv"></android.support.v7.widget.RecyclerView>
+        android:id="@+id/rv"></android.support.v7.widget.RecyclerView>
 </LinearLayout>

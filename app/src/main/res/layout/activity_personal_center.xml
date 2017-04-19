@@ -76,6 +76,7 @@
         android:layout_height="70dp"
         android:orientation="horizontal">
         <LinearLayout
+            android:id="@+id/ll_pc_undone"
             android:gravity="center_horizontal"
             android:orientation="vertical"
             android:layout_width="0dp"
@@ -111,6 +112,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/ll_pc_offthestocks"
             android:gravity="center_horizontal"
             android:orientation="vertical"
             android:layout_width="0dp"
@@ -133,6 +135,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/ll_pc_canceled"
             android:gravity="center_horizontal"
             android:orientation="vertical"
             android:layout_width="0dp"
@@ -158,6 +161,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
         <LinearLayout
+            android:id="@+id/ll_pc_mymeans"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -178,7 +182,7 @@
                 android:textColor="#000000"/>
             <TextView
                 android:layout_marginRight="10dp"
-                android:layout_marginTop="13dp"
+                android:layout_marginTop="15dp"
                 android:gravity="right"
                 android:textColor="#b6b1b6"
                 android:textSize="13sp"
@@ -198,7 +202,7 @@
             android:layout_height="1dp"
             android:background="#c9c6c6"></View>
         <LinearLayout
-
+            android:id="@+id/ll_pc_mywallet"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -210,13 +214,16 @@
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:src="@mipmap/geren_qianbao"/>
+
             <TextView
                 android:layout_marginLeft="5dp"
                 android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="我的钱包"
-                android:textColor="#000000"/>
+                android:textColor="#000000"
+                android:id="@+id/textView4" />
+
             <TextView
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="13dp"
@@ -240,7 +247,7 @@
             android:background="#d2cdcd"></View>
 
         <LinearLayout
-
+            android:id="@+id/ll_pc_address"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -283,7 +290,7 @@
 
 
         <LinearLayout
-
+            android:id="@+id/ll_pc_approve"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -333,7 +340,7 @@
             android:background="#d2cdcd"></View>
 
         <LinearLayout
-
+            android:id="@+id/ll_pc_terrace"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -375,7 +382,7 @@
             android:background="#d2cdcd"></View>
 
         <LinearLayout
-
+            android:id="@+id/ll_pc_aboutus"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -425,7 +432,7 @@
             android:background="#d2cdcd"></View>
 
         <LinearLayout
-
+            android:id="@+id/ll_pc_setting"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
