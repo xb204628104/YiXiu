@@ -4,7 +4,6 @@ import android.content.Context;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
-import com.hss01248.dialog.StyledDialog;
 import com.orhanobut.logger.Logger;
 
 import org.xutils.common.Callback;
@@ -90,7 +89,7 @@ public  class Y {
         }
         i(rp.toString());
         // 只要发起Get请求就开启对话框
-        StyledDialog.buildLoading().show();
+
         return   x.http().get(rp, call);
     }
     /**
