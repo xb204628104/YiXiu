@@ -49,12 +49,19 @@ public class Activity_Prcenter extends Activity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.ll_pc_undone:
-                Intent intent7=new Intent(Activity_Prcenter.this,null);
+                Intent intent7=new Intent(Activity_Prcenter.this,Activity_Prcenter_myorder.class);
+                intent7.putExtra("Wei","1");
                 startActivity(intent7);
                 break;
             case R.id.ll_pc_offthestocks:
+                Intent intent8=new Intent(Activity_Prcenter.this,Activity_Prcenter_myorder.class);
+                intent8.putExtra("Wei","2");
+                startActivity(intent8);
                 break;
             case R.id.ll_pc_canceled:
+                Intent intent9=new Intent(Activity_Prcenter.this,Activity_Prcenter_myorder.class);
+                intent9.putExtra("Wei","3");
+                startActivity(intent9);
                 break;
             case R.id.ll_pc_mymeans:
                 Intent intent=new Intent(Activity_Prcenter.this,Activity_Prcenter_myself.class);

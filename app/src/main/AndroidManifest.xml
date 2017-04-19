@@ -45,6 +45,8 @@
         <activity android:name=".activity.Activity_Prcenter_myself_service"></activity>
         <activity android:name=".activity.Activity_Prcenter_myself_aboutus"></activity>
         <activity android:name=".activity.Activity_Prcenter_myself_setting"></activity>
+        <activity android:name=".activity.Activity_Prcenter_myorder"></activity>
+
     </application>
 
 </manifest>

@@ -32,6 +32,7 @@
         android:layout_height="50dp"
         android:orientation="horizontal">
         <LinearLayout
+            android:id="@+id/ll_nyordle_wei"
             android:gravity="center"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -51,6 +52,7 @@
             android:layout_height="match_parent"
             android:src="@mipmap/hei_shuxian"/>
         <LinearLayout
+            android:id="@+id/ll_nyordle_yi"
             android:gravity="center"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -70,8 +72,8 @@
             android:src="@mipmap/hei_shuxian"/>
 
         <LinearLayout
+            android:id="@+id/ll_nyordle_qu"
             android:gravity="center"
-
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1">
@@ -112,13 +114,15 @@
             android:src="@mipmap/yaoyongdexian"
             android:scaleType="fitXY"/>
     </LinearLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#c9c6c6"></View>
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/rv"></android.support.v7.widget.RecyclerView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#c9c6c6"></View>
+
 </LinearLayout>

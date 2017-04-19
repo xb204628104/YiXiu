@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.support.v7.widget.LinearLayoutManager;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -41,6 +42,9 @@ public class MyApplication extends Application {
         //SDKInitializer.initialize(getApplicationContext());
         x.Ext.init(this);
         Y.context=this;
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+
 
         ThemeConfig themeConfig = new ThemeConfig.Builder().build();
         FunctionConfig functionConfig = new FunctionConfig.Builder().setEnableCamera(true)
