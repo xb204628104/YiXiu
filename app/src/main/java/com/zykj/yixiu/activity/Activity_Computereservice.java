@@ -10,8 +10,10 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.bigkoo.pickerview.OptionsPickerView;
+import com.hss01248.dialog.StyledDialog;
 import com.zykj.yixiu.R;
 import com.zykj.yixiu.bean.ComputerBean;
+import com.zykj.yixiu.bean.HouseBean;
 import com.zykj.yixiu.utils.Y;
 import com.zykj.yixiu.utils.YURL;
 
@@ -57,7 +59,12 @@ public class Activity_Computereservice extends Activity {
     @Bind(R.id.ll_computer_add)
     LinearLayout llComputerAdd;
     private List<ComputerBean> lists;
+    private List<ComputerBean> listsmodel;
+    private List<ComputerBean> listsmodel2;
     private int index = -1;
+    private int indexmodel = -1;
+    private int indexmodel2 = -1;
+    private OptionsPickerView pvOptions;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,15 +81,20 @@ public class Activity_Computereservice extends Activity {
                 Y.get(YURL.FIND_COMPUTER_BRAND,null, new Y.MyCommonCall<String>() {
                     @Override
                     public void onSuccess(String result) {
+                        StyledDialog.dismissLoading();
                         if (Y.getRespCode(result)) {
                             lists = JSON.parseArray(Y.getData(result), ComputerBean.class);
                             //条件选择器
-                            OptionsPickerView pvOptions = new OptionsPickerView.Builder(Activity_Computereservice.this, new OptionsPickerView.OnOptionsSelectListener() {
+                            //返回的分别是三个级别的选中位置
+                            if (pvOptions==null)
+                            pvOptions = new OptionsPickerView.Builder(Activity_Computereservice.this, new OptionsPickerView.OnOptionsSelectListener() {
                                 @Override
                                 public void onOptionsSelect(int options1, int option2, int options3, View v) {
                                     //返回的分别是三个级别的选中位置
+                                    
                                     tvComputerBrand.setText(lists.get(options1).getName());
                                     index = options1;
+                                    pvOptions=null;
                                 }
                             }).build();
                             List<String> list = new ArrayList<String>();
@@ -90,6 +102,7 @@ public class Activity_Computereservice extends Activity {
                                 list.add(str.getName());
                             }
                             pvOptions.setPicker(list, null, null);
+                            if (!pvOptions.isShowing())
                             pvOptions.show();
 
                         } else {
@@ -107,22 +120,25 @@ public class Activity_Computereservice extends Activity {
                     Y.get(YURL.FIND_COMPUTER_CATEGORY,map, new Y.MyCommonCall<String>() {
                         @Override
                         public void onSuccess(String result) {
+                            StyledDialog.dismissLoading();
                             if (Y.getRespCode(result)) {
-                                lists = JSON.parseArray(Y.getData(result), ComputerBean.class);
+                                listsmodel = JSON.parseArray(Y.getData(result), ComputerBean.class);
                                 //条件选择器
-                                OptionsPickerView pvOptions = new OptionsPickerView.Builder(Activity_Computereservice.this, new OptionsPickerView.OnOptionsSelectListener() {
+                                pvOptions = new OptionsPickerView.Builder(Activity_Computereservice.this, new OptionsPickerView.OnOptionsSelectListener() {
                                     @Override
                                     public void onOptionsSelect(int options1, int option2, int options3, View v) {
                                         //返回的分别是三个级别的选中位置
-                                        tvComputerCategory.setText(lists.get(options1).getName());
-
+                                        tvComputerCategory.setText(listsmodel.get(options1).getName());
+                                        indexmodel=options1;
+                                        pvOptions=null;
                                     }
                                 }).build();
                                 List<String> list = new ArrayList<String>();
-                                for (ComputerBean str : lists) {
+                                for (ComputerBean str : listsmodel) {
                                     list.add(str.getName());
                                 }
                                 pvOptions.setPicker(list, null, null);
+                                if (!pvOptions.isShowing())
                                 pvOptions.show();
 
                             } else {
@@ -135,57 +151,55 @@ public class Activity_Computereservice extends Activity {
 
                 break;
             case R.id.ll_computer_type:
-                //检测是否选择了品牌
                 if (index == -1) {
                     Y.t("请您先选择电脑品牌");
-                } else {
-                    //开始获取型号数据
-                    Map<String,String> map=new HashMap<>();
-                    map.put("pid", lists.get(index).getId() + "");
-                    map.put("category", "1");
-                    Y.get(YURL.FIND_BYCOMPUTER_MODEL,map, new Y.MyCommonCall<String>() {
-                        @Override
-                        public void onSuccess(String result) {
-                            if (Y.getRespCode(result)) {
-                                //成功
-                                lists = JSON.parseArray(Y.getData(result), ComputerBean.class);
-
-                                //创建选择器
-                                OptionsPickerView opv = new OptionsPickerView.Builder(Activity_Computereservice.this, new OptionsPickerView.OnOptionsSelectListener() {
-                                    @Override
-                                    public void onOptionsSelect(int options1, int options2, int options3, View v) {
-                                        //选择后的监听器
-                                        tvComputerType.setText(lists.get(options1).getName());
-
-                                    }
-                                }).build();
-
-                                //把lists 进行转换
-                                List<String> strs = new ArrayList<String>();
-                                for (ComputerBean cb : lists) {
-                                    strs.add(cb.getName());
-                                }
-
-                                //添加数据
-                                opv.setPicker(strs, null, null);
-                                //显示选择器
-                                opv.show();
-
-                            } else {
-                                //失败
-                                Y.t("服务器解析异常");
-
-                            }
-                        }
-                    });
-
+                    return;
                 }
+                if (indexmodel == -1) {
+                    Y.t("请您先选择电脑型号");
+                    return;
+                }
+                Map<String,String> map=new HashMap<>();
+                map.put("pid", lists.get(index).getId() + "");
+                map.put("category", listsmodel.get(indexmodel).getId()+"");
+                Y.get(YURL.FIND_BYAPPLIANCE_MODEL,map, new Y.MyCommonCall<String>() {
+                    @Override
+                    public void onSuccess(String result) {
+                        StyledDialog.dismissLoading();
+                        if (Y.getRespCode(result)) {
+                            listsmodel2 = JSON.parseArray(Y.getData(result), ComputerBean.class);
+                            //条件选择器
+                            pvOptions = new OptionsPickerView.Builder(Activity_Computereservice.this, new OptionsPickerView.OnOptionsSelectListener() {
+                                @Override
+                                public void onOptionsSelect(int options1, int option2, int options3, View v) {
+                                    //返回的分别是三个级别的选中位置
+                                    tvComputerType.setText(listsmodel2.get(options1).getName());
+                                    indexmodel2=options1;
+                                    pvOptions=null;
+
+                                }
+                            }).build();
+                            List<String> list = new ArrayList<String>();
+                            for (ComputerBean str : listsmodel2) {
+                                list.add(str.getName());
+                            }
+                            pvOptions.setPicker(list, null, null);
+                            if (!pvOptions.isShowing())
+                                pvOptions.show();
+
+                        } else {
+                            Y.t("服务器解析异常");
+                        }
+                    }
+                });
+
 
                 break;
             case R.id.ll_computer_fault:
                 Y.get(YURL.FIND_PHONE_FAULT,null, new Y.MyCommonCall<String>() {
                     @Override
                     public void onSuccess(String result) {
+                        StyledDialog.dismissLoading();
                         if (Y.getRespCode(result)) {
                             lists = JSON.parseArray(Y.getData(result), ComputerBean.class);
                             //条件选择器

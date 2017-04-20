@@ -13,6 +13,7 @@ import com.alibaba.fastjson.JSON;
 import com.bigkoo.pickerview.OptionsPickerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.hss01248.dialog.StyledDialog;
 import com.zykj.yixiu.R;
 import com.zykj.yixiu.bean.HouseBean;
 import com.zykj.yixiu.utils.Y;
@@ -62,7 +63,12 @@ public class Activity_Houseereservice extends Activity {
     @Bind(R.id.ll_house_add)
     LinearLayout llHouseAdd;
     private List<HouseBean> lists;
+    private List<HouseBean> listsmodle;
+    private List<HouseBean> listsmodle2;
     private int index = -1;
+    private int modleindex = -1;
+    private int modleindex2 = -1;
+    private OptionsPickerView pvOptions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,15 +85,19 @@ public class Activity_Houseereservice extends Activity {
                 Y.get(YURL.FIND_BYAPPLIANCE_BRAND,null, new Y.MyCommonCall<String>() {
                     @Override
                     public void onSuccess(String result) {
+                        StyledDialog.dismissLoading();
                         if (Y.getRespCode(result)) {
                             lists = JSON.parseArray(Y.getData(result), HouseBean.class);
                             //条件选择器
-                            OptionsPickerView pvOptions = new OptionsPickerView.Builder(Activity_Houseereservice.this, new OptionsPickerView.OnOptionsSelectListener() {
+                            //返回的分别是三个级别的选中位置
+                            if (pvOptions==null)
+                            pvOptions = new OptionsPickerView.Builder(Activity_Houseereservice.this, new OptionsPickerView.OnOptionsSelectListener() {
                                 @Override
                                 public void onOptionsSelect(int options1, int option2, int options3, View v) {
                                     //返回的分别是三个级别的选中位置
                                     tvHouseBrand.setText(lists.get(options1).getName());
                                     index = options1;
+                                    pvOptions=null;
                                 }
                             }).build();
                             List<String> list = new ArrayList<String>();
@@ -95,6 +105,7 @@ public class Activity_Houseereservice extends Activity {
                                 list.add(str.getName());
                             }
                             pvOptions.setPicker(list, null, null);
+                            if (!pvOptions.isShowing())
                             pvOptions.show();
 
                         } else {
@@ -103,31 +114,39 @@ public class Activity_Houseereservice extends Activity {
                     }
                 });
                 break;
+            //类型
             case R.id.ll_house_typ:
                 if (index == -1) {
                     Y.t("请您先选择电脑品牌");
+                    return;
                 } else {
                     Map<String,String> map=new HashMap<>();
                     map.put("pid",lists.get(index).getId() + "");
                     Y.get(YURL.FIND_APPLIANCE_CATEGORY,map, new Y.MyCommonCall<String>() {
                         @Override
                         public void onSuccess(String result) {
+                            StyledDialog.dismissLoading();
                             if (Y.getRespCode(result)) {
-                                lists = JSON.parseArray(Y.getData(result), HouseBean.class);
+                                listsmodle = JSON.parseArray(Y.getData(result), HouseBean.class);
                                 //条件选择器
-                                OptionsPickerView pvOptions = new OptionsPickerView.Builder(Activity_Houseereservice.this, new OptionsPickerView.OnOptionsSelectListener() {
+                                if (pvOptions==null)
+                               pvOptions = new OptionsPickerView.Builder(Activity_Houseereservice.this, new OptionsPickerView.OnOptionsSelectListener() {
                                     @Override
                                     public void onOptionsSelect(int options1, int option2, int options3, View v) {
                                         //返回的分别是三个级别的选中位置
-                                        tvHouseTyp.setText(lists.get(options1).getName());
+                                        tvHouseTyp.setText(listsmodle.get(options1).getName());
+                                        modleindex=options1;
+
+                                        pvOptions=null;
 
                                     }
                                 }).build();
                                 List<String> list = new ArrayList<String>();
-                                for (HouseBean str : lists) {
+                                for (HouseBean str : listsmodle) {
                                     list.add(str.getName());
                                 }
                                 pvOptions.setPicker(list, null, null);
+                                if (!pvOptions.isShowing())
                                 pvOptions.show();
 
                             } else {
@@ -140,29 +159,38 @@ public class Activity_Houseereservice extends Activity {
             case R.id.ll_house_nodel:
                 if (index == -1) {
                     Y.t("请您先选择电脑品牌");
-                } else {
-                    Map<String,String> map=new HashMap<>();
+                    return;
+                }
+                if (modleindex == -1) {
+                Y.t("请您先选择电脑型号");
+                return;
+            }
+                Map<String,String> map=new HashMap<>();
                     map.put("pid", lists.get(index).getId() + "");
-                    map.put("category", "1");
+                    map.put("category", listsmodle.get(modleindex).getId()+"");
                     Y.get(YURL.FIND_BYAPPLIANCE_MODEL,map, new Y.MyCommonCall<String>() {
                         @Override
                         public void onSuccess(String result) {
+                            StyledDialog.dismissLoading();
                             if (Y.getRespCode(result)) {
-                                lists = JSON.parseArray(Y.getData(result), HouseBean.class);
+                                listsmodle2 = JSON.parseArray(Y.getData(result), HouseBean.class);
                                 //条件选择器
-                                OptionsPickerView pvOptions = new OptionsPickerView.Builder(Activity_Houseereservice.this, new OptionsPickerView.OnOptionsSelectListener() {
+                                pvOptions = new OptionsPickerView.Builder(Activity_Houseereservice.this, new OptionsPickerView.OnOptionsSelectListener() {
                                     @Override
                                     public void onOptionsSelect(int options1, int option2, int options3, View v) {
                                         //返回的分别是三个级别的选中位置
-                                        tvHouseModel.setText(lists.get(options1).getName());
+                                        tvHouseModel.setText(listsmodle2.get(options1).getName());
+                                        modleindex2=options1;
+                                        pvOptions=null;
 
                                     }
                                 }).build();
                                 List<String> list = new ArrayList<String>();
-                                for (HouseBean str : lists) {
+                                for (HouseBean str : listsmodle2) {
                                     list.add(str.getName());
                                 }
                                 pvOptions.setPicker(list, null, null);
+                                if (!pvOptions.isShowing())
                                 pvOptions.show();
 
                             } else {
@@ -170,12 +198,13 @@ public class Activity_Houseereservice extends Activity {
                             }
                         }
                     });
-                }
+
                 break;
             case R.id.ll_house_fault:
                 Y.get(YURL.FIND_PHONE_FAULT,null, new Y.MyCommonCall<String>() {
                     @Override
                     public void onSuccess(String result) {
+                        StyledDialog.dismissLoading();
                         if (Y.getRespCode(result)) {
                             lists = JSON.parseArray(Y.getData(result), HouseBean.class);
                             //条件选择器

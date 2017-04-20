@@ -114,11 +114,10 @@
             android:src="@mipmap/yaoyongdexian"
             android:scaleType="fitXY"/>
     </LinearLayout>
-
-    <android.support.v7.widget.RecyclerView
+    <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/rv"></android.support.v7.widget.RecyclerView>
+        android:id="@+id/lv"></ListView>
 
     <View
         android:layout_width="match_parent"

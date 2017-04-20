@@ -4,6 +4,7 @@ import android.content.Context;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
+import com.hss01248.dialog.StyledDialog;
 import com.orhanobut.logger.Logger;
 
 import org.xutils.common.Callback;
@@ -76,7 +77,7 @@ public  class Y {
     public static Callback.Cancelable get(String url, Map<String,String> params, MyCommonCall<String> call){
 
 
-
+        StyledDialog.buildLoading().show();
         //请求的对象
         RequestParams rp  =new RequestParams(url);
 
@@ -99,6 +100,7 @@ public  class Y {
      * @return
      */
     public static Callback.Cancelable post(RequestParams params, MyCommonCall<String> call){
+        StyledDialog.buildLoading().show();
         return   x.http().post(params, call);
     }
     /**
@@ -115,6 +117,7 @@ public  class Y {
         public void onError(Throwable ex, boolean isOnCallback) {
             t("服务器异常");
             ex.printStackTrace();
+            StyledDialog.dismissLoading();
         }
     }
 

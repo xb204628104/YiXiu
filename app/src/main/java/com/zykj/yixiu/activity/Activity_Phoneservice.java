@@ -14,6 +14,7 @@ import com.alibaba.fastjson.JSON;
 import com.bigkoo.pickerview.OptionsPickerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.hss01248.dialog.StyledDialog;
 import com.zykj.yixiu.R;
 import com.zykj.yixiu.bean.MobileBean;
 import com.zykj.yixiu.utils.Y;
@@ -84,6 +85,7 @@ public class Activity_Phoneservice extends Activity {
                 Y.get(YURL.FIND_PHONE_BRAND,null, new Y.MyCommonCall<String>() {
                     @Override
                     public void onSuccess(String result) {
+                        StyledDialog.dismissLoading();
                         if (Y.getRespCode(result)) {
                             lists = JSON.parseArray(Y.getData(result), MobileBean.class);
                             //条件选择器
@@ -123,6 +125,7 @@ public class Activity_Phoneservice extends Activity {
                     Y.get(YURL.FIND_PHONE_MODEL,map, new Y.MyCommonCall<String>() {
                         @Override
                         public void onSuccess(String result) {
+                            StyledDialog.dismissLoading();
                             if (Y.getRespCode(result)) {
                                 //成功
                                 lists = JSON.parseArray(Y.getData(result), MobileBean.class);
@@ -165,6 +168,7 @@ public class Activity_Phoneservice extends Activity {
                 Y.get(YURL.FIND_PHONE_FAULT,null, new Y.MyCommonCall<String>() {
                     @Override
                     public void onSuccess(String result) {
+                        StyledDialog.dismissLoading();
                         if (Y.getRespCode(result)) {
                             lists = JSON.parseArray(Y.getData(result), MobileBean.class);
                             //条件选择器

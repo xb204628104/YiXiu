@@ -12,6 +12,7 @@ import com.bigkoo.pickerview.OptionsPickerView;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.zykj.yixiu.R;
+import com.zykj.yixiu.utils.OptionsPicke;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,27 +36,36 @@ public class Mainactivity extends Activity {
     Banner honepageBanner;
     @Bind(R.id.tv_home_city)
     TextView tvHomeCity;
-    private String[] imggs = {"http://enjoy.eastday.com/images/thumbnailimg/month_1704/201704111456291136.jpg",
+   /* private String[] imggs = {"http://enjoy.eastday.com/images/thumbnailimg/month_1704/201704111456291136.jpg",
             "http://fun.youth.cn/yl24xs/201704/W020170407308982716757.png",
             "http://fun.youth.cn/yl24xs/201703/W020170307332125513690.png",
             "http://img3.imgtn.bdimg.com/it/u=2327585548,1525749689&fm=21&gp=0.jpg",
-            "http://cms-bucket.nosdn.127.net/1636acc956d5400e918998fac591299120170407084959.jpg"};
+            "http://cms-bucket.nosdn.127.net/1636acc956d5400e918998fac591299120170407084959.jpg"};*/
     //用于储存图片路径
-    private List<String> strs = new ArrayList<String>();
+    /*private List<String> strs = new ArrayList<String>();*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage);
         ButterKnife.bind(this);
+        List<Integer> list=new ArrayList<Integer>();
+        list.add(R.mipmap.banner);
+        list.add(R.mipmap.banner);
+        list.add(R.mipmap.banner);
         honepageBanner.setImageLoader(new MyImageLoader());
+        honepageBanner.setImages(list);
+        honepageBanner.setBannerStyle(BannerConfig.NUM_INDICATOR);
+        honepageBanner.start();
+
+        /*honepageBanner.setImageLoader(new MyImageLoader());
         for (int i = 0; i < imggs.length; i++) {
             strs.add(imggs[i]);
         }
         honepageBanner.setImages(strs);
         //指示器样式
         honepageBanner.setBannerStyle(BannerConfig.NUM_INDICATOR);
-        honepageBanner.start();
+        honepageBanner.start();*/
     }
 
     @OnClick({R.id.main_set_phone, R.id.main_set_computer, R.id.main_set_house, R.id.honepage_banner
@@ -77,6 +87,13 @@ public class Mainactivity extends Activity {
             case R.id.honepage_banner:
                 break;
             case R.id.tv_home_city:
+                OptionsPicke optionsPicke=new OptionsPicke();
+                optionsPicke.showOptionsPicke(Mainactivity.this, new OptionsPicke.OptionsSelectListener() {
+                    @Override
+                    public void selectListener(String province, String city, String district) {
+                        tvHomeCity.setText(city+district);
+                    }
+                });
                 break;
             case R.id.main_geren:
                 Intent intent3=new Intent(Mainactivity.this,Activity_Prcenter.class);

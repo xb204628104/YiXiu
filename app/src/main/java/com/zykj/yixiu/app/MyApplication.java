@@ -4,11 +4,15 @@ import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.widget.ImageView;
 
+import com.baidu.mapapi.SDKInitializer;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.hss01248.dialog.MyActyManager;
+import com.hss01248.dialog.StyledDialog;
 import com.orhanobut.logger.Logger;
 import com.youth.banner.loader.ImageLoader;
 import com.zykj.yixiu.R;
@@ -40,12 +44,10 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         //SDKInitializer.initialize(getApplicationContext());
+        //SDKInitializer.initialize(getApplicationContext());
+        StyledDialog.init(this);
         x.Ext.init(this);
         Y.context=this;
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-
-
         ThemeConfig themeConfig = new ThemeConfig.Builder().build();
         FunctionConfig functionConfig = new FunctionConfig.Builder().setEnableCamera(true)
                 .setEnableEdit(true).setEnableCrop(true).setEnableRotate(true)
@@ -56,9 +58,46 @@ public class MyApplication extends Application {
                 .setFunctionConfig(functionConfig)
                 .build();
         GalleryFinal.init(coreConfig);
+        registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
+            @Override
+            public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
+
+            }
+
+            @Override
+            public void onActivityStarted(Activity activity) {
+
+            }
+
+            @Override
+            public void onActivityResumed(Activity activity) {
+                //在这里保存顶层activity的引用(内部以软引用实现)
+                MyActyManager.getInstance().setCurrentActivity(activity);
+
+            }
+
+            @Override
+            public void onActivityPaused(Activity activity) {
+
+            }
+
+            @Override
+            public void onActivityStopped(Activity activity) {
+
+            }
+
+            @Override
+            public void onActivitySaveInstanceState(Activity activity, Bundle outState) {
+
+            }
+
+            @Override
+            public void onActivityDestroyed(Activity activity) {
+
+            }
+        });
 
     }
-
     public class myImageLoader implements cn.finalteam.galleryfinal.ImageLoader {
 
         @Override
@@ -76,4 +115,8 @@ public class MyApplication extends Application {
 
         }
     }
+
+
+
 }
+

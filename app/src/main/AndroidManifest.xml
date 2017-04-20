@@ -46,6 +46,8 @@
         <activity android:name=".activity.Activity_Prcenter_myself_aboutus"></activity>
         <activity android:name=".activity.Activity_Prcenter_myself_setting"></activity>
         <activity android:name=".activity.Activity_Prcenter_myorder"></activity>
+        <activity android:name=".activity.Activity_Prcenter_myself_setting_pwd"></activity>
+        <activity android:name=".activity.Activity_Prcenter_myself_setting_image"></activity>
 
     </application>
 

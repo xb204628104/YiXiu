@@ -3,7 +3,6 @@ package com.zykj.yixiu.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
@@ -12,6 +11,9 @@ import android.widget.TextView;
 
 import com.zykj.yixiu.R;
 import com.zykj.yixiu.utils.Y;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -36,8 +38,6 @@ public class Activity_Prcenter_myorder extends Activity {
     ImageView ivNyordleYi;
     @Bind(R.id.iv_nyordle_qu)
     ImageView ivNyordleQu;
-    @Bind(R.id.rv)
-    RecyclerView rv;
     @Bind(R.id.ll_nyordle_wei)
     LinearLayout llNyordleWei;
     @Bind(R.id.ll_nyordle_yi)
@@ -45,12 +45,14 @@ public class Activity_Prcenter_myorder extends Activity {
     @Bind(R.id.ll_nyordle_qu)
     LinearLayout llNyordleQu;
 
+    private List<String> lists=new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal_center_myorder);
         ButterKnife.bind(this);
         Intent intent = getIntent();
+
         if (intent!=null){
             String wei = intent.getStringExtra("Wei");
             Y.i(wei);
@@ -62,7 +64,6 @@ public class Activity_Prcenter_myorder extends Activity {
                     ivNyordleWei.setVisibility(View.VISIBLE);
                     ivNyordleYi.setVisibility(View.INVISIBLE);
                     ivNyordleQu.setVisibility(View.INVISIBLE);
-
                     break;
                 case "2":
                     tvNyordleWei.setTextColor(HEI);
