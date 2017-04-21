@@ -42,4 +42,15 @@ public class YURL {
 
     //查找家电下的分类
     public static   final  String  FIND_BYAPPLIANCE_MODEL=HOST+"findByApplianceModel";
+
+
+    //注册页面的接口
+    public static   final  String  REGISTER=HOST+"register";
+
+    //设置密码的接口
+    public static   final  String  SET_PASSWORD=HOST+"setpassword";
+
+    //设置登录的接口
+    public static   final  String  LOGIN=HOST+"login";
+
 }

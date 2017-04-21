@@ -26,13 +26,21 @@
             android:text="密码"
             android:textColor="#6ce0e0"
             android:textSize="25sp" />
+        <ImageView
+            android:id="@+id/iv_pwd_xianshi"
+            android:layout_marginRight="10dp"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical"
+            android:src="@mipmap/xianshimima" />
     </LinearLayout>
-
     <include
         layout="@layout/include_line"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"></include>
     <EditText
+        android:maxLength="15"
+        android:inputType="textPassword"
         android:id="@+id/et_repwd"
         android:padding="15dp"
         android:layout_width="match_parent"
@@ -44,6 +52,8 @@
         android:layout_height="1dp"
         android:background="#d2cdcd"></View>
     <EditText
+        android:maxLength="15"
+        android:inputType="textPassword"
         android:id="@+id/et_re_onebyon"
         android:padding="15dp"
         android:layout_width="match_parent"
@@ -66,4 +76,5 @@
         android:layout_marginRight="20dp"
         android:textSize="18sp"
         android:textColor="#ffffff"/>
+
 </LinearLayout>
