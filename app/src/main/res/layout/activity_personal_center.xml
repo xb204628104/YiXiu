@@ -31,23 +31,28 @@
         android:background="#02cccc"
         android:orientation="vertical">
         <FrameLayout
-            android:layout_gravity="center_horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:id="@+id/fm_pe_touxiang"
+
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="#00cccc">
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/touxiang"/>
+                android:id="@+id/iv_pe_mytou"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center"
+                android:src="@mipmap/touxiang" />
             <Button
-                android:layout_marginLeft="50dp"
-                android:layout_gravity="bottom"
                 android:layout_width="40dp"
-                android:layout_height="20dp"
+                android:layout_height="15dp"
+                android:layout_gravity="center|bottom"
+                android:layout_marginBottom="6dp"
+                android:layout_marginLeft="34dp"
+                android:background="@drawable/shape11"
+                android:gravity="center"
                 android:text="未认证"
-                android:textSize="8dp"
-                android:textColor="#de890b"
-                android:id="@+id/button"
-                android:background="@drawable/shape11"/>
+                android:textColor="#ff6633"
+                android:textSize="8dp" />
         </FrameLayout>
         <LinearLayout
             android:layout_marginTop="5dp"

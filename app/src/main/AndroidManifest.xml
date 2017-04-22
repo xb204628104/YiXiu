@@ -48,6 +48,8 @@
         <activity android:name=".activity.Activity_Prcenter_myorder"></activity>
         <activity android:name=".activity.Activity_Prcenter_myself_setting_pwd"></activity>
         <activity android:name=".activity.Activity_Prcenter_myself_setting_image"></activity>
+        <activity android:name=".activity.Activity_Prcenter_myself_service_message"></activity>
+        <activity android:name=".activity.Activity_Prcenter_myself_service_common"></activity>
 
     </application>
 

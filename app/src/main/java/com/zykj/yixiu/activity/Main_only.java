@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.hss01248.dialog.StyledDialog;
 import com.zykj.yixiu.R;
+import com.zykj.yixiu.bean.User;
 import com.zykj.yixiu.utils.Y;
 import com.zykj.yixiu.utils.YURL;
 
@@ -54,7 +55,7 @@ public class Main_only extends Activity {
                 String pwd = etPwd.getText().toString().trim();
                 //判断手机号是否为空
                 if (TextUtils.isEmpty(num)){
-                    Y.t("手机号不能为空");
+                    Y.t("请输入手机号");
                     return;
                 }
                 //判断手机号是否为合法的手机号
@@ -64,7 +65,7 @@ public class Main_only extends Activity {
                 }
                 //判断验证码是否为空
                 if (TextUtils.isEmpty(pwd)){
-                    Y.t("验证码不能为空");
+                    Y.t("请输入密码");
                     return;
                 }
                 //创建map的集合 把需要的数据传上去
@@ -78,6 +79,12 @@ public class Main_only extends Activity {
                         StyledDialog.dismissLoading();
                         if (Y.getRespCode(result)){
                             Y.t("登录成功");
+                            User user = JSON.parseObject(Y.getData(result), User.class);
+                            Y.USER=user;
+                            user.setIcon(getIntent().getStringExtra("token"));
+                            Y.TOKEN=user.getToken();
+                            Y.i(Y.USER.getUser_id()+"");
+                            Y.i(Y.TOKEN);
                             //成功之后跳转页面 调到主页面
                             Intent intent = new Intent(Main_only.this, Mainactivity.class);
                             startActivity(intent);

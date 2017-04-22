@@ -53,4 +53,12 @@ public class YURL {
     //设置登录的接口
     public static   final  String  LOGIN=HOST+"login";
 
+    //设置上传头像的接口
+    public static   final  String  UP_LOAD_ICON=HOST+"uploadIcon";
+
+    //设置用户信息的接口
+    public static   final  String  SET_USER_INFO=HOST+"setUserInfo";
+
+    //设置上传身份证的接口
+    public static   final  String   UP_LOADID_CARD=HOST+"uploadIdCard";
 }

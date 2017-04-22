@@ -29,6 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"></include>
     <LinearLayout
+        android:id="@+id/ll_my_touxianh"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:orientation="horizontal"
@@ -50,18 +51,21 @@
             android:layout_weight="1"
             android:layout_height="match_parent">
             <FrameLayout
+
+                android:id="@+id/fm_my_touxiang"
                 android:layout_marginRight="15dp"
                 android:layout_marginTop="12dp"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1">
                 <ImageView
-
+                    android:id="@+id/iv_my_touxiang"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:src="@mipmap/myself_touxiang_bg"
                     android:layout_gravity="right"/>
                 <ImageView
+                    android:id="@+id/iv_my_beijing"
                     android:layout_marginRight="5dp"
                     android:layout_marginTop="10dp"
                     android:layout_width="wrap_content"
@@ -84,6 +88,7 @@
         android:orientation="vertical"
         android:background="#f2f2f2"></LinearLayout>
     <LinearLayout
+        android:id="@+id/ll_my_xingming"
         android:padding="10dp"
         android:layout_width="match_parent"
         android:layout_height="65dp"
@@ -104,6 +109,7 @@
             android:layout_height="match_parent"
             android:src="@mipmap/blue_shuxian"/>
         <EditText
+            android:id="@+id/et_my_name"
             android:padding="10dp"
             android:textSize="16sp"
             android:layout_width="0dp"
@@ -112,6 +118,7 @@
             android:hint="请选择您的姓名"
             />
         <ImageView
+            android:id="@+id/iv_my_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@mipmap/jinru"
@@ -124,6 +131,7 @@
         android:background="#f2f2f2"></LinearLayout>
 
     <LinearLayout
+        android:id="@+id/ll_my_xingbie"
         android:padding="10dp"
         android:layout_width="match_parent"
         android:layout_height="65dp"
@@ -131,6 +139,7 @@
         android:background="#ffffff"
         >
         <TextView
+            android:id="@+id/tv_id_sex"
             android:layout_marginLeft="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -144,40 +153,39 @@
             android:layout_height="match_parent"
             android:src="@mipmap/blue_shuxian"/>
         <RadioGroup
+            android:gravity="center"
+            android:id="@+id/rg_my_sex"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
+            android:layout_height="50dp"
             android:orientation="horizontal">
             <RadioButton
+                android:button="@null"
                 android:id="@+id/nan"
                 android:checked="true"
-                android:layout_marginLeft="60dp"
-                android:layout_marginTop="10dp"
-                android:layout_gravity="center_vertical"
                 android:background="@drawable/selector_roadio"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 />
+
             <TextView
                 android:layout_gravity="center_vertical"
-                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="男"
                 android:textColor="#000000"
                 android:textSize="15sp"/>
             <RadioButton
+                android:button="@null"
                 android:id="@+id/nv"
                 android:layout_marginLeft="30dp"
-                android:layout_marginTop="10dp"
-                android:layout_gravity="center_vertical"
                 android:background="@drawable/selector_roadio"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 />
             <TextView
+                android:layout_marginLeft="10dp"
                 android:layout_gravity="center_vertical"
-                android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="女"
@@ -185,12 +193,14 @@
                 android:textSize="15sp"/>
         </RadioGroup>
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="8dp"
         android:orientation="vertical"
         android:background="#f2f2f2"></LinearLayout>
     <LinearLayout
+        android:id="@+id/ll_my_shouji"
         android:padding="10dp"
         android:layout_width="match_parent"
         android:layout_height="65dp"
@@ -231,6 +241,7 @@
         android:orientation="vertical"
         android:background="#f2f2f2"></LinearLayout>
     <LinearLayout
+        android:id="@+id/ll_my_diqu"
         android:padding="10dp"
         android:layout_width="match_parent"
         android:layout_height="65dp"
@@ -251,6 +262,7 @@
             android:layout_height="match_parent"
             android:src="@mipmap/blue_shuxian"/>
         <TextView
+            android:id="@+id/tv_my_sheng"
             android:layout_marginRight="10dp"
             android:layout_marginTop="13dp"
             android:gravity="right"
@@ -258,8 +270,18 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="黑龙江 哈尔滨"/>
+            android:text="黑龙江"/>
+        <TextView
+            android:id="@+id/tv_my_shi"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="13dp"
+            android:gravity="right"
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="哈尔滨"/>
         <ImageView
+            android:id="@+id/iv_my_diqu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@mipmap/jinru"

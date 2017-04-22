@@ -29,6 +29,7 @@
         android:layout_height="wrap_content"
         ></include>
     <LinearLayout
+        android:id="@+id/ll_yixiuzixun"
         android:padding="10dp"
         android:layout_width="match_parent"
         android:layout_height="75dp"
@@ -72,6 +73,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/ll_chuangjian"
         android:padding="10dp"
         android:layout_width="match_parent"
         android:layout_height="75dp"

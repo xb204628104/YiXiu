@@ -81,7 +81,7 @@ public class Main_only_register_pwd extends Activity {
                     return;
                 }
                 //判断俩次输入的密码是否一样
-                if (onepwd!=twopwd){
+                if (onepwd.equals(twopwd)){
                     Y.t("两次输入的密码不一致");
                     return;
                 }
@@ -97,10 +97,9 @@ public class Main_only_register_pwd extends Activity {
                         //判断返回的resp_code是否为 0
                         if (Y.getRespCode(result)){
                             Y.t("密码设置成功");
-                            User user = JSON.parseObject(Y.getData(result), User.class);
-                            Y.user=user;
                             //成功之后跳转到登录页面
                             Intent intent=new Intent(Main_only_register_pwd.this,Main_only.class);
+                            intent.putExtra("token",data);
                             startActivity(intent);
                         }else {
                             //返回的resp-code为 1

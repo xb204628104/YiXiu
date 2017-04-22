@@ -27,7 +27,8 @@ public  class Y {
 
 
     //user的类
-    public static User user;
+    public static User USER;
+    public static String TOKEN;
 
 
 
@@ -104,9 +105,21 @@ public  class Y {
      * @param call
      * @return
      */
-    public static Callback.Cancelable post(RequestParams params, MyCommonCall<String> call){
+    public static Callback.Cancelable post(String url, Map<String,String> params, MyCommonCall<String> call){
         StyledDialog.buildLoading().show();
-        return   x.http().post(params, call);
+        //请求的对象
+        RequestParams rp  =new RequestParams(url);
+
+        //检测外部是否传入了参数
+        if(params!=null){
+            //把参数取出来这是到rp
+            for (Map.Entry<String,String> entry :params.entrySet()) {
+                rp.addBodyParameter(entry.getKey(),entry.getValue());
+            }
+        }
+        i(rp.toString());
+        // 只要发起Post请求就开启对话框
+        return   x.http().post(rp, call);
     }
     /**
        实现不需要外部完成的两个函数
