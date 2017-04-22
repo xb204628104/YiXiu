@@ -160,6 +160,7 @@ public class Activity_Prcenter_myself extends Activity {
                             Y.USER.setProvince(province);
                             Y.USER.setCity(city);
                         }else {
+                            Y.t("woshi");
                             Y.t("失败了");
                         }
                     }
