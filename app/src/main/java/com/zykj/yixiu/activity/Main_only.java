@@ -51,7 +51,7 @@ public class Main_only extends Activity {
         switch (view.getId()) {
             case R.id.bt_login:
                 //把手机号和密码取出来
-                String num = etNum.getText().toString().trim();
+                final String num = etNum.getText().toString().trim();
                 String pwd = etPwd.getText().toString().trim();
                 //判断手机号是否为空
                 if (TextUtils.isEmpty(num)){
@@ -83,6 +83,7 @@ public class Main_only extends Activity {
                             Y.USER=user;
                             user.setIcon(getIntent().getStringExtra("token"));
                             Y.TOKEN=user.getToken();
+                            Y.USER.setPhone(num);
                             Y.i(Y.USER.getUser_id()+"");
                             Y.i(Y.TOKEN);
                             //成功之后跳转页面 调到主页面

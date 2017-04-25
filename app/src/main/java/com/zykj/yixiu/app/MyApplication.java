@@ -43,7 +43,7 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        //SDKInitializer.initialize(getApplicationContext());
+        SDKInitializer.initialize(getApplicationContext());
         //SDKInitializer.initialize(getApplicationContext());
         StyledDialog.init(this);
         x.Ext.init(this);

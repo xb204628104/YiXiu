@@ -47,7 +47,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:hint="请选择您的姓名"
-            android:id="@+id/editText" />
+            android:id="@+id/et_edit_name" />
     </LinearLayout>
     <include layout="@layout/include_line_one"></include>
     <LinearLayout
@@ -87,6 +87,7 @@
             android:layout_gravity="center_vertical"/>
     </LinearLayout>
     <LinearLayout
+        android:id="@+id/ll_edit_adress"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:orientation="horizontal"
@@ -103,6 +104,7 @@
             android:textSize="18sp"
              />
         <EditText
+            android:id="@+id/et_edit_adress"
             android:textSize="16sp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -132,6 +134,7 @@
             android:textSize="18sp"
             />
         <Switch
+            android:id="@+id/sw_edie_moren"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

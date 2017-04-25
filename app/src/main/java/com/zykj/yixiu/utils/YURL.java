@@ -61,4 +61,7 @@ public class YURL {
 
     //设置上传身份证的接口
     public static   final  String   UP_LOADID_CARD=HOST+"uploadIdCard";
+
+    //设置发布订单的接口
+    public static   final  String   ADD_ORDER=HOST+"addOrder";
 }

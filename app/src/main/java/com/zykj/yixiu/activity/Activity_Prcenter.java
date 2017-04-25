@@ -82,10 +82,8 @@ public class Activity_Prcenter extends Activity {
                     @Override
                     public void onHanlderSuccess(int reqeustCode, List<PhotoInfo> resultList) {
                         if (reqeustCode == 1001) {
-                            String photoPath = resultList.get(0).getPhotoPath();
-                                for (PhotoInfo info:resultList) {
-                                    ImageOptions imageOptions=new ImageOptions.Builder().setUseMemCache(true).setCircular(true).build();
-                                    x.image().bind(ivPeMytou,info.getPhotoPath(),imageOptions);
+                            final String photoPath = resultList.get(0).getPhotoPath();//本地路径
+
                                     // Glide.with(Activity_Prcenter.this).load(photoPath).into(ivPeMytou);
                                     Map<String, String> map = new HashMap<String, String>();
                                     map.put("icon", photoPath);//icon: 头像文件
@@ -97,15 +95,17 @@ public class Activity_Prcenter extends Activity {
                                             String message = JSON.parseObject(result).getString("message");
                                             if (Y.getRespCode(result)) {
                                                 Y.t("成功" + message);
-                                                data = Y.getData(result);
-                                                Y.USER.setIcon(Y.getData(result));
+                                                data = Y.getData(result);//上传成功后返回的网络路径
+                                                Y.USER.setIcon(data);
                                                 Y.i(data);
+                                                ImageOptions imageOptions=new ImageOptions.Builder().setUseMemCache(true).setCircular(true).build();
+                                                x.image().bind(ivPeMytou,photoPath,imageOptions);
                                             } else {
                                                 Y.t("失败" + message);
                                             }
                                         }
                                     });
-                                }
+
 
 
                         }else {}
@@ -135,7 +135,6 @@ public class Activity_Prcenter extends Activity {
             case R.id.ll_pc_mymeans:
                 Intent intent = new Intent(Activity_Prcenter.this, Activity_Prcenter_myself.class);
                 intent.putExtra("data",data);
-                startActivity(intent);
                 startActivity(intent);
                 break;
             case R.id.ll_pc_mywallet:

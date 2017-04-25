@@ -27,8 +27,8 @@ public  class Y {
 
 
     //user的类
-    public static User USER;
-    public static String TOKEN;
+    public static User USER;//用户信息
+    public static String TOKEN;//用户的标识
 
 
 

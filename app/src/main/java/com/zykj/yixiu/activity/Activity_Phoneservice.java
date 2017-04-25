@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -80,7 +81,6 @@ public class Activity_Phoneservice extends Activity {
             , R.id.ll_phone_add})
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.phone_ll_brand:
             case R.id.phoneservice_brand:
                 Y.get(YURL.FIND_PHONE_BRAND,null, new Y.MyCommonCall<String>() {
                     @Override
@@ -194,8 +194,34 @@ public class Activity_Phoneservice extends Activity {
                 });
                 break;
             case R.id.bt_phone_okcall:
+                String brand = phoneserviceBrand.getText().toString().trim();
+                String model = phoneserviceModel.getText().toString().trim();
+                String fault = phoneserviceFault.getText().toString().trim();
+                if (TextUtils.isEmpty(brand)){
+                    Y.t("请选择您的手机品牌");
+                    return;
+                }
 
+                if (TextUtils.isEmpty(model)){
+                    Y.t("请选择您的手机型号");
+                    return;
+                }
+                if (TextUtils.isEmpty(fault)){
+                    Y.t("请选择您的手机故障点");
+                    return;
+                }
+                Y.post(YURL.ADD_ORDER, null, new Y.MyCommonCall<String>() {
+                    @Override
+                    public void onSuccess(String result) {
+
+                    }
+                });
                 Intent intent = new Intent(Activity_Phoneservice.this, Activity_Callservice.class);
+                intent.putExtra("order_type",1);
+                intent.putExtra("brand",brand);
+                intent.putExtra("model",model);
+                intent.putExtra("fault_desc",fault);
+               // intent.putExtra("image1",);
                 startActivity(intent);
                 break;
             case R.id.ll_phone_add:
@@ -203,7 +229,14 @@ public class Activity_Phoneservice extends Activity {
                 GalleryFinal.openGallerySingle(1001, new GalleryFinal.OnHanlderResultCallback() {
                     @Override
                     public void onHanlderSuccess(int reqeustCode, List<PhotoInfo> resultList) {
+                        //ivPhoneImg
+                        if (reqeustCode==1001){
+                            String photoPath = resultList.get(0).getPhotoPath();
+                            Glide.with(Activity_Phoneservice.this).load(photoPath).into(ivPhoneImg);
 
+                        }else {
+
+                        }
                     }
 
                     @Override

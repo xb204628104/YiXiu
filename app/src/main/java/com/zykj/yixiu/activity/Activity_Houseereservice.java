@@ -158,11 +158,11 @@ public class Activity_Houseereservice extends Activity {
                 break;
             case R.id.ll_house_nodel:
                 if (index == -1) {
-                    Y.t("请您先选择电脑品牌");
+                    Y.t("请您先选择家电品牌");
                     return;
                 }
                 if (modleindex == -1) {
-                Y.t("请您先选择电脑型号");
+                Y.t("请您先选择家电型号");
                 return;
             }
                 Map<String,String> map=new HashMap<>();

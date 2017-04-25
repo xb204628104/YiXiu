@@ -50,6 +50,8 @@
         <activity android:name=".activity.Activity_Prcenter_myself_setting_image"></activity>
         <activity android:name=".activity.Activity_Prcenter_myself_service_message"></activity>
         <activity android:name=".activity.Activity_Prcenter_myself_service_common"></activity>
+        <activity android:name=".activity.Activity_Callservice_Adress"></activity>
+        <activity android:name=".activity.Activity_Callservice_Adress_Edit"></activity>
 
     </application>
 

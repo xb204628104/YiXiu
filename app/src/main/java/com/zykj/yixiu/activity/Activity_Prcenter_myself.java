@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -74,42 +75,49 @@ public class Activity_Prcenter_myself extends Activity {
     RadioButton nan;
     @Bind(R.id.nv)
     RadioButton nv;
+    @Bind(R.id.tvnum)
+    TextView tvnum;
+    @Bind(R.id.ivback)
+    ImageView ivback;
     private String data;
+    private Button ok;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal_center_myself);
         ButterKnife.bind(this);
+        ok = (Button) findViewById(R.id.ok);
+        tvnum.setText(Y.USER.getPhone());
         Intent intent = getIntent();
         if (intent != null) {
             data = intent.getStringExtra("data");
             Glide.with(Activity_Prcenter_myself.this).load(data).into(ivMyTouxiang);
             ivMyBeijing.setVisibility(View.GONE);
         }
-        if (!TextUtils.isEmpty(Y.USER.getIcon())){
+        if (!TextUtils.isEmpty(Y.USER.getIcon())) {
             Glide.with(Activity_Prcenter_myself.this).load(Y.USER.getIcon()).into(ivMyTouxiang);
         }
-        if (!TextUtils.isEmpty(Y.USER.getUsername())){
+        if (!TextUtils.isEmpty(Y.USER.getUsername())) {
             etMyName.setText(Y.USER.getUsername());
         }
-        if (!TextUtils.isEmpty(Y.USER.getSex())){
-            if ("男".equals(Y.USER.getSex())){
+        if (!TextUtils.isEmpty(Y.USER.getSex())) {
+            if ("男".equals(Y.USER.getSex())) {
                 nan.setChecked(true);
-            }else if ("女".equals(Y.USER.getSex())){
+            } else if ("女".equals(Y.USER.getSex())) {
                 nv.setChecked(true);
             }
         }
-        if (!TextUtils.isEmpty(Y.USER.getProvince())){
+        if (!TextUtils.isEmpty(Y.USER.getProvince())) {
             tvMySheng.setText(Y.USER.getProvince());
         }
-        if (!TextUtils.isEmpty(Y.USER.getCity())){
+        if (!TextUtils.isEmpty(Y.USER.getCity())) {
             tvMyShi.setText(Y.USER.getCity());
         }
         rgMySex.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                switch (checkedId){
+                switch (checkedId) {
                     case R.id.nan:
                         Y.USER.setSex("男");
                         break;
@@ -123,10 +131,15 @@ public class Activity_Prcenter_myself extends Activity {
     }
 
 
-    @OnClick({R.id.iv_my_name, R.id.tv_id_sex, R.id.iv_my_diqu, R.id.ll_my_diqu,R.id.iv_my_touxiang})
+    @OnClick({R.id.iv_my_name, R.id.tv_id_sex, R.id.iv_my_diqu, R.id.ll_my_diqu, R.id.iv_my_touxiang,
+            R.id.ok,R.id.ivback})
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.iv_my_name:
+            case R.id.ivback:
+                Intent intent=new Intent(Activity_Prcenter_myself.this,Activity_Prcenter.class);
+                startActivity(intent);
+                break;
+            case R.id.ok:
                 String name = etMyName.getText().toString().trim();
                 String sheng = tvMySheng.getText().toString().trim();
                 String shi = tvMyShi.getText().toString().trim();
@@ -141,7 +154,7 @@ public class Activity_Prcenter_myself extends Activity {
                     @Override
                     public void onSuccess(String result) {
                         StyledDialog.dismissLoading();
-                        if (Y.getRespCode(result)){
+                        if (Y.getRespCode(result)) {
                             Y.t("成功了");
                             String username = map.get("username");
                             String sex = map.get("sex");
@@ -149,17 +162,18 @@ public class Activity_Prcenter_myself extends Activity {
                             String city = map.get("city");
                             String user_id = map.get("user_id");
                             String token = map.get("token");
-                            Y.i(username+"-------");
-                            Y.i(sex+"-------");
-                            Y.i(province+"-------");
-                            Y.i(city+"-------");
-                            Y.i(user_id+"-------");
-                            Y.i(token+"-------");
+                            Y.i(username + "-------");
+                            Y.i(sex + "-------");
+                            Y.i(province + "-------");
+                            Y.i(city + "-------");
+                            Y.i(user_id + "-------");
+                            Y.i(token + "-------");
                             Y.USER.setUsername(username);
                             Y.USER.setSex(sex);
                             Y.USER.setProvince(province);
                             Y.USER.setCity(city);
-                        }else {
+                            finish();
+                        } else {
                             Y.t("woshi");
 
 
@@ -188,9 +202,9 @@ public class Activity_Prcenter_myself extends Activity {
                     public void onHanlderSuccess(int reqeustCode, List<PhotoInfo> resultList) {
                         if (reqeustCode == 1001) {
                             String photoPath = resultList.get(0).getPhotoPath();
-                            for (PhotoInfo info:resultList) {
-                                ImageOptions imageOptions=new ImageOptions.Builder().setUseMemCache(true).setCircular(true).build();
-                                x.image().bind(ivMyBeijing,info.getPhotoPath(),imageOptions);
+                            for (PhotoInfo info : resultList) {
+                                ImageOptions imageOptions = new ImageOptions.Builder().setUseMemCache(true).setCircular(true).build();
+                                x.image().bind(ivMyBeijing, info.getPhotoPath(), imageOptions);
                                 // Glide.with(Activity_Prcenter.this).load(photoPath).into(ivPeMytou);
                                 Map<String, String> map = new HashMap<String, String>();
                                 map.put("icon", photoPath);//icon: 头像文件
@@ -213,7 +227,8 @@ public class Activity_Prcenter_myself extends Activity {
                             }
 
 
-                        }else {}
+                        } else {
+                        }
                     }
 
                     @Override
