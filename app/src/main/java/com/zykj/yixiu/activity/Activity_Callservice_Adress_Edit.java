@@ -36,13 +36,18 @@ public class Activity_Callservice_Adress_Edit extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_address_edit);
         ButterKnife.bind(this);
+        Intent intent = getIntent();
+        if (intent!=null){
+            String adress = intent.getStringExtra("adress");
+            etEditAdress.setText(adress);
+        }
     }
 
-    @OnClick({R.id.ll_edit_adress, R.id.sw_edie_moren})
+    @OnClick({R.id.ll_edit_adress,R.id.et_edit_adress, R.id.sw_edie_moren})
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.ll_edit_adress:
-                Intent intent=new Intent(Activity_Callservice_Adress_Edit.this,null);
+            case R.id.et_edit_adress:
+                Intent intent=new Intent(Activity_Callservice_Adress_Edit.this,Activity_Baidu_Map.class);
                 startActivity(intent);
                 break;
             case R.id.sw_edie_moren:

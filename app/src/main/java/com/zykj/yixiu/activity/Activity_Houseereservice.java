@@ -136,7 +136,6 @@ public class Activity_Houseereservice extends Activity {
                                         //返回的分别是三个级别的选中位置
                                         tvHouseTyp.setText(listsmodle.get(options1).getName());
                                         modleindex=options1;
-
                                         pvOptions=null;
 
                                     }

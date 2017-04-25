@@ -36,15 +36,16 @@
                 android:layout_height="match_parent"
                 android:src="@mipmap/blue_shuxian"/>
             <TextView
+                android:hint="请选择您的手机品牌"
                 android:id="@+id/phoneservice_brand"
                 android:layout_marginLeft="20dp"
-                android:textColor="#8c8b8b"
+                android:textColorHint="#8c8b8b"
                 android:gravity="center_vertical"
                 android:textSize="16sp"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="请选择您的手机品牌"
+
                 />
             <ImageView
                 android:layout_width="wrap_content"
@@ -84,15 +85,15 @@
                 android:layout_height="match_parent"
                 android:src="@mipmap/blue_shuxian"/>
             <TextView
+                android:hint="请选择您的手机型号"
                 android:id="@+id/phoneservice_model"
                 android:layout_marginLeft="20dp"
-                android:textColor="#8c8b8b"
+                android:textColorHint="#8c8b8b"
                 android:gravity="center_vertical"
                 android:textSize="16sp"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="请选择您的手机型号"
                 />
             <ImageView
                 android:layout_width="wrap_content"
@@ -124,15 +125,15 @@
                 android:layout_height="match_parent"
                 android:src="@mipmap/blue_shuxian"/>
             <TextView
+                android:hint="请选择您的手机故障点"
                 android:id="@+id/phoneservice_fault"
                 android:layout_marginLeft="20dp"
-                android:textColor="#8c8b8b"
+                android:textColorHint="#8c8b8b"
                 android:gravity="center_vertical"
                 android:textSize="16sp"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="请选择您的手机故障点"
                 />
             <ImageView
                 android:layout_width="wrap_content"

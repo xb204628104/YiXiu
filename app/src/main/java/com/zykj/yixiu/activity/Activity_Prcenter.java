@@ -99,7 +99,7 @@ public class Activity_Prcenter extends Activity {
                                                 Y.USER.setIcon(data);
                                                 Y.i(data);
                                                 ImageOptions imageOptions=new ImageOptions.Builder().setUseMemCache(true).setCircular(true).build();
-                                                x.image().bind(ivPeMytou,photoPath,imageOptions);
+                                                x.image().bind(ivPeMytou,"file://"+photoPath,imageOptions);
                                             } else {
                                                 Y.t("失败" + message);
                                             }

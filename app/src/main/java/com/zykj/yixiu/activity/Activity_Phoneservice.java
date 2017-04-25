@@ -63,12 +63,15 @@ public class Activity_Phoneservice extends Activity {
     @Bind(R.id.iv_phone_img)
     ImageView ivPhoneImg;
     private List<MobileBean> lists;
+    private List<MobileBean> lists1;
     private List<ImageView> list;
     private int index = -1;
+    private int index2 = -1;
     private final int REQUEST_CODE_CAMERA = 1000; //相机表示
     private final int REQUEST_CODE_GALLERY = 1001; //相册标示
     private final int REQUEST_CODE_CROP = 1002;    //裁剪表示
     private final int REQUEST_CODE_EDIT = 1003;       //编辑表示
+    private OptionsPickerView pvOptions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +84,7 @@ public class Activity_Phoneservice extends Activity {
             , R.id.ll_phone_add})
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.phoneservice_brand:
+            case R.id.phone_ll_brand:
                 Y.get(YURL.FIND_PHONE_BRAND,null, new Y.MyCommonCall<String>() {
                     @Override
                     public void onSuccess(String result) {
@@ -89,15 +92,14 @@ public class Activity_Phoneservice extends Activity {
                         if (Y.getRespCode(result)) {
                             lists = JSON.parseArray(Y.getData(result), MobileBean.class);
                             //条件选择器
-                            OptionsPickerView pvOptions = new OptionsPickerView.Builder(Activity_Phoneservice.this, new OptionsPickerView.OnOptionsSelectListener() {
+                            //返回的分别是三个级别的选中位置
+                            pvOptions = new OptionsPickerView.Builder(Activity_Phoneservice.this, new OptionsPickerView.OnOptionsSelectListener() {
                                 @Override
                                 public void onOptionsSelect(int options1, int option2, int options3, View v) {
                                     //返回的分别是三个级别的选中位置
                                     phoneserviceBrand.setText(lists.get(options1).getName());
                                     index = options1;
-                                    if (index != options1) {
-
-                                    }
+                                    pvOptions=null;
                                 }
                             }).build();
                             List<String> list = new ArrayList<String>();
@@ -128,28 +130,29 @@ public class Activity_Phoneservice extends Activity {
                             StyledDialog.dismissLoading();
                             if (Y.getRespCode(result)) {
                                 //成功
-                                lists = JSON.parseArray(Y.getData(result), MobileBean.class);
+                                lists1= JSON.parseArray(Y.getData(result), MobileBean.class);
 
                                 //创建选择器
-                                OptionsPickerView opv = new OptionsPickerView.Builder(Activity_Phoneservice.this, new OptionsPickerView.OnOptionsSelectListener() {
+                                pvOptions= new OptionsPickerView.Builder(Activity_Phoneservice.this, new OptionsPickerView.OnOptionsSelectListener() {
                                     @Override
                                     public void onOptionsSelect(int options1, int options2, int options3, View v) {
                                         //选择后的监听器
-                                        phoneserviceModel.setText(lists.get(options1).getName());
-
+                                        phoneserviceModel.setText(lists1.get(options1).getName());
+                                        index2=options1;
+                                        pvOptions=null;
                                     }
                                 }).build();
 
                                 //把lists 进行转换
                                 List<String> strs = new ArrayList<String>();
-                                for (MobileBean mb : lists) {
+                                for (MobileBean mb : lists1) {
                                     strs.add(mb.getName());
                                 }
 
                                 //添加数据
-                                opv.setPicker(strs, null, null);
+                                pvOptions.setPicker(strs, null, null);
                                 //显示选择器
-                                opv.show();
+                                pvOptions.show();
 
 
                             } else {

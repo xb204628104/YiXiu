@@ -25,6 +25,7 @@ import com.zykj.yixiu.utils.YURL;
 import org.xutils.image.ImageOptions;
 import org.xutils.x;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,6 +35,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.finalteam.galleryfinal.GalleryFinal;
 import cn.finalteam.galleryfinal.model.PhotoInfo;
+import top.zibin.luban.Luban;
+import top.zibin.luban.OnCompressListener;
 
 /**
  * Created by zykj on 2017/4/19.
@@ -200,11 +203,9 @@ public class Activity_Prcenter_myself extends Activity {
                 GalleryFinal.openGallerySingle(1001, new GalleryFinal.OnHanlderResultCallback() {
                     @Override
                     public void onHanlderSuccess(int reqeustCode, List<PhotoInfo> resultList) {
+                        final String photoPath = resultList.get(0).getPhotoPath();
+
                         if (reqeustCode == 1001) {
-                            String photoPath = resultList.get(0).getPhotoPath();
-                            for (PhotoInfo info : resultList) {
-                                ImageOptions imageOptions = new ImageOptions.Builder().setUseMemCache(true).setCircular(true).build();
-                                x.image().bind(ivMyBeijing, info.getPhotoPath(), imageOptions);
                                 // Glide.with(Activity_Prcenter.this).load(photoPath).into(ivPeMytou);
                                 Map<String, String> map = new HashMap<String, String>();
                                 map.put("icon", photoPath);//icon: 头像文件
@@ -219,12 +220,14 @@ public class Activity_Prcenter_myself extends Activity {
                                             //data = Y.getData(result);
                                             Y.USER.setIcon(Y.getData(result));
                                             //Y.i(data);
+                                            ImageOptions imageOptions = new ImageOptions.Builder().setUseMemCache(true).setCircular(true).build();
+                                            x.image().bind(ivMyBeijing, "file://"+photoPath, imageOptions);
                                         } else {
                                             Y.t("失败" + message);
                                         }
                                     }
                                 });
-                            }
+
 
 
                         } else {

@@ -28,7 +28,7 @@ public class Activity_Callservice_Adress extends Activity {
 
     @OnClick(R.id.ll_add_adress)
     public void onClick() {
-        Intent intent=new Intent(Activity_Callservice_Adress.this,Activity_Callservice_Adress.class);
+        Intent intent=new Intent(Activity_Callservice_Adress.this,Activity_Callservice_Adress_Edit.class);
         startActivity(intent);
     }
 }
