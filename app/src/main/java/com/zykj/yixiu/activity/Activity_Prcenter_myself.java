@@ -93,6 +93,9 @@ public class Activity_Prcenter_myself extends Activity {
         ok = (Button) findViewById(R.id.ok);
         tvnum.setText(Y.USER.getPhone());
         Intent intent = getIntent();
+        ImageOptions options = new ImageOptions.Builder().setCircular(true).build();
+        x.image().bind(ivMyTouxiang, "http://221.207.184.124:7071/yxg/" + Y.USER.getIcon(), options);
+
         if (intent != null) {
             data = intent.getStringExtra("data");
             Glide.with(Activity_Prcenter_myself.this).load(data).into(ivMyTouxiang);

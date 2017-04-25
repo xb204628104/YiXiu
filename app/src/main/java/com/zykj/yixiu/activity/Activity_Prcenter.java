@@ -66,9 +66,9 @@ public class Activity_Prcenter extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal_center);
         ButterKnife.bind(this);
-        if (!TextUtils.isEmpty(Y.USER.getIcon())){
-            ImageOptions imageOptions=new ImageOptions.Builder().setUseMemCache(true).setCircular(true).build();
-            x.image().bind(ivPeMytou,YURL.HOST+Y.USER.getIcon(),imageOptions);
+        if (!TextUtils.isEmpty(Y.USER.getIcon())) {
+            ImageOptions options = new ImageOptions.Builder().setCircular(true).build();
+            x.image().bind(ivPeMytou, "http://221.207.184.124:7071/yxg/" + Y.USER.getIcon(), options);
         }
     }
 
