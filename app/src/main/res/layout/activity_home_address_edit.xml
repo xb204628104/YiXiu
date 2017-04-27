@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
@@ -23,7 +24,17 @@
             android:textColor="#6ce0e0"
             android:gravity="center"
             />
+        <TextView
+            android:id="@+id/tv_finsh"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="完成"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:layout_marginRight="15dp"
+            android:textColor="#6ce0e0"/>
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
@@ -57,7 +68,7 @@
         android:orientation="horizontal"></LinearLayout>
     <include layout="@layout/include_line_one"></include>
     <LinearLayout
-
+        android:id="@+id/ll_change_num"
         android:padding="10dp"
         android:layout_width="match_parent"
         android:layout_height="60dp"
@@ -74,12 +85,13 @@
             android:text="手 机 号"
             android:textSize="18sp" />
         <TextView
+            android:id="@+id/tv_num"
             android:layout_marginRight="10dp"
             android:layout_marginTop="13dp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="13874678412"
+            android:text="18246177353"
             android:gravity="right"/>
         <ImageView
             android:layout_width="wrap_content"
@@ -90,7 +102,7 @@
     <LinearLayout
         android:id="@+id/ll_edit_adress"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="65dp"
         android:orientation="horizontal"
         android:background="#ffffff"
         >
@@ -104,7 +116,8 @@
             android:text="详细地址"
             android:textSize="18sp"
              />
-        <EditText
+        <TextView
+            android:gravity="center"
             android:padding="15dp"
             android:id="@+id/et_edit_adress"
             android:textSize="16sp"

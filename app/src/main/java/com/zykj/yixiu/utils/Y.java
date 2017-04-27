@@ -7,13 +7,20 @@ import android.widget.Toast;
 import com.alibaba.fastjson.JSON;
 import com.hss01248.dialog.StyledDialog;
 import com.orhanobut.logger.Logger;
+import com.zykj.yixiu.bean.Address;
 import com.zykj.yixiu.bean.User;
 
 import org.xutils.common.Callback;
+import org.xutils.common.util.KeyValue;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
 
+import java.io.File;
+import java.util.List;
 import java.util.Map;
+
+import top.zibin.luban.Luban;
+import top.zibin.luban.OnCompressListener;
 
 /**
  * 工具类
@@ -28,6 +35,7 @@ public  class Y {
 
     //user的类
     public static User USER;//用户信息
+    public static Address ADDRESS=new Address();//地址信息
     public static String TOKEN;//用户的标识
 
 
@@ -120,6 +128,45 @@ public  class Y {
         i(rp.toString());
         // 只要发起Post请求就开启对话框
         return   x.http().post(rp, call);
+    }
+    /**
+     * postfile请求  压缩图片
+     * @param params
+     * @param call
+     * @return
+     */
+    public static void postFile(final RequestParams params, final MyCommonCall<String> call){
+        StyledDialog.buildLoading().show();
+        //请求的对象
+        List<KeyValue> fileParams = params.getFileParams();
+        for (final KeyValue value:fileParams) {
+            File file = (File)value.value;
+            i("之前的file"+file);
+            //params.addBodyParameter(value.key,file);
+            Luban.get(context).load(file).putGear(Luban.THIRD_GEAR)
+                    .setCompressListener(new OnCompressListener() {
+                        @Override
+                        public void onStart() {
+                        }
+                        @Override
+                        public void onSuccess(File file) {
+                            t("压缩成功");
+                            i("之后的file"+file);
+                            //检测外部是否传入了参数
+                            params.addBodyParameter(value.key,file);
+                            params.setMultipart(true);
+                            i(params.toString());
+                            // 只要发起Post请求就开启对话框
+                            x.http().post(params,call);
+                        }
+                        @Override
+                        public void onError(Throwable e) {
+                        }
+                    })
+                    .launch();
+        }
+
+
     }
     /**
        实现不需要外部完成的两个函数

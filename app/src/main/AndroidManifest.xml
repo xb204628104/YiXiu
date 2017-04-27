@@ -71,6 +71,7 @@
         <activity android:name=".activity.Activity_Callservice_Adress"></activity>
         <activity android:name=".activity.Activity_Callservice_Adress_Edit"></activity>
         <activity android:name=".activity.Activity_Baidu_Map"></activity>
+        <activity android:name=".activity.Activity_Change_Num"></activity>
 
 
     </application>

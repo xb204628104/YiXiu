@@ -16,9 +16,11 @@ import com.zykj.yixiu.R;
 import com.zykj.yixiu.utils.Y;
 import com.zykj.yixiu.utils.YURL;
 
+import org.xutils.http.RequestParams;
 import org.xutils.image.ImageOptions;
 import org.xutils.x;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -83,10 +85,31 @@ public class Activity_Prcenter extends Activity {
                     public void onHanlderSuccess(int reqeustCode, List<PhotoInfo> resultList) {
                         if (reqeustCode == 1001) {
                             final String photoPath = resultList.get(0).getPhotoPath();//本地路径
-
+                            /*File file=new File(photoPath);
+                            RequestParams requestParams=new RequestParams(YURL.UP_LOAD_ICON);
+                            requestParams.addBodyParameter("icon",file);
+                            requestParams.addBodyParameter("token",Y.TOKEN);
+                            Y.postFile(requestParams,new Y.MyCommonCall<String>() {
+                                @Override
+                                public void onSuccess(String result) {
+                                    StyledDialog.dismissLoading();
+                                    String message = JSON.parseObject(result).getString("message");
+                                    if (Y.getRespCode(result)) {
+                                        Y.t("成功" + message);
+                                        data = Y.getData(result);//上传成功后返回的网络路径
+                                        Y.USER.setIcon(data);
+                                        Y.i(data);
+                                        ImageOptions imageOptions=new ImageOptions.Builder().setUseMemCache(true).setCircular(true).build();
+                                        x.image().bind(ivPeMytou,"file://"+photoPath,imageOptions);
+                                    } else {
+                                        Y.t("失败" + message);
+                                    }
+                                }
+                            });*/
                                     // Glide.with(Activity_Prcenter.this).load(photoPath).into(ivPeMytou);
                                     Map<String, String> map = new HashMap<String, String>();
-                                    map.put("icon", photoPath);//icon: 头像文件
+                                    File file=new File(photoPath);
+                                    map.put("icon",file+"");//icon: 头像文件
                                     map.put("token", Y.TOKEN);//token: 用户令牌
                                     Y.post(YURL.UP_LOAD_ICON, map, new Y.MyCommonCall<String>() {
                                         @Override
@@ -105,7 +128,6 @@ public class Activity_Prcenter extends Activity {
                                             }
                                         }
                                     });
-
 
 
                         }else {}
@@ -142,7 +164,7 @@ public class Activity_Prcenter extends Activity {
                 startActivity(intent1);
                 break;
             case R.id.ll_pc_address:
-                Intent intent2 = new Intent(Activity_Prcenter.this, Activity_Prcenter_myself_address.class);
+                Intent intent2 = new Intent(Activity_Prcenter.this,Activity_Callservice_Adress_Edit.class);
                 startActivity(intent2);
                 break;
             case R.id.ll_pc_approve:

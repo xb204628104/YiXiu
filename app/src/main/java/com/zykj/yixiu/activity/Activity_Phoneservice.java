@@ -213,9 +213,13 @@ public class Activity_Phoneservice extends Activity {
                     Y.t("请选择您的手机故障点");
                     return;
                 }
-                Y.post(YURL.ADD_ORDER, null, new Y.MyCommonCall<String>() {
+                Y.post(YURL.ADD_ORDER,null, new Y.MyCommonCall<String>() {
                     @Override
                     public void onSuccess(String result) {
+                        StyledDialog.dismissLoading();
+                        if (Y.getRespCode(result)){
+
+                        }
 
                     }
                 });

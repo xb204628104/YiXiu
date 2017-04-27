@@ -64,4 +64,11 @@ public class YURL {
 
     //设置发布订单的接口
     public static   final  String   ADD_ORDER=HOST+"addOrder";
+
+    //设置添加地址的接口
+    public static   final  String   ADD_ADDRESS=HOST+"addaddress";
+
+    //设置查询地址的接口
+    public static   final  String   SELECT_ADDRESS=HOST+"selectAddress";
+
 }

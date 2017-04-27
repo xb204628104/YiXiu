@@ -52,8 +52,9 @@ public class Activity_Baidu_Map extends Activity {
     private BaiduMap baiduMap;
     private LocationClient locationClient;
     boolean isFristLoc=true;
-    private LatLng latLng;
     private String adress;
+    private LatLng latLng;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,7 +102,6 @@ public class Activity_Baidu_Map extends Activity {
                         baiduMap.addOverlay(overlayOptions);
                         MapStatusUpdate mapStatusUpdate= MapStatusUpdateFactory.newLatLng(location);
                         baiduMap.animateMapStatus(mapStatusUpdate);
-
                         Intent intent=new Intent(Activity_Baidu_Map.this,Activity_Callservice_Adress_Edit.class);
                         intent.putExtra("adress",adress);
                         startActivity(intent);
@@ -129,7 +129,6 @@ public class Activity_Baidu_Map extends Activity {
         geoCoder.setOnGetGeoCodeResultListener(new OnGetGeoCoderResultListener() {
             @Override
             public void onGetGeoCodeResult(GeoCodeResult geoCodeResult) {
-
             }
 
             @Override
@@ -137,6 +136,12 @@ public class Activity_Baidu_Map extends Activity {
                 if (reverseGeoCodeResult != null) {
                     Toast.makeText(Activity_Baidu_Map.this, reverseGeoCodeResult.getAddress(), Toast.LENGTH_SHORT).show();
                     etBaiduAdress.setText(reverseGeoCodeResult.getAddress());
+                    ReverseGeoCodeResult.AddressComponent addressDetail = reverseGeoCodeResult.getAddressDetail();
+                    Y.ADDRESS.setAddress(reverseGeoCodeResult.getAddress());
+                    Y.ADDRESS.setRegion(addressDetail.district);
+                    Y.ADDRESS.setCity_name(addressDetail.city);
+                    Y.ADDRESS.setLon(reverseGeoCodeResult.getLocation().longitude+"");
+                    Y.ADDRESS.setLat(reverseGeoCodeResult.getLocation().latitude+"");
 
                 }
             }
@@ -172,7 +177,9 @@ public class Activity_Baidu_Map extends Activity {
             public void onReceiveLocation(final BDLocation bdLocation) {
                 if (bdLocation==null||baiduMap==null){
                     Y.t("定位失败");
+
                 }else {
+
                     Y.t(bdLocation.getAddrStr());
                     MyLocationData myLocationData=new MyLocationData.Builder()
                             .accuracy(bdLocation.getRadius())//设置半径
@@ -181,9 +188,16 @@ public class Activity_Baidu_Map extends Activity {
                             .build();
                     // 把定位信息交给百度地图
                     baiduMap.setMyLocationData(myLocationData);
+
                     //获取经纬度
-                    latLng = new LatLng(bdLocation.getLongitude(),bdLocation.getLongitude());
+                    latLng = new LatLng(bdLocation.getLatitude(),bdLocation.getLongitude());
                     if (isFristLoc){
+                        Y.ADDRESS.setCity_code(bdLocation.getAddress().cityCode);
+                        Y.ADDRESS.setAddress(bdLocation.getAddrStr());
+                        Y.ADDRESS.setRegion(bdLocation.getDistrict());
+                        Y.ADDRESS.setCity_name(bdLocation.getAddress().city);
+                        Y.ADDRESS.setLon(bdLocation.getLatitude()+"");
+                        Y.ADDRESS.setLat(bdLocation.getLongitude()+"");
                         //不是第一次了
                         isFristLoc=false;
                         //更新百度地图对象

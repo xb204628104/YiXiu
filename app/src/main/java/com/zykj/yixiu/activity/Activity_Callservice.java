@@ -1,10 +1,12 @@
 package com.zykj.yixiu.activity;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -39,14 +41,20 @@ public class Activity_Callservice extends Activity {
     TextView tvCallTime;
     @Bind(R.id.tv_call_map)
     TextView tvCallMap;
-    private MapView map;
-    private BaiduMap mymap;
-
+    private Button bt_ok;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_call_service);
         ButterKnife.bind(this);
+        bt_ok= (Button) findViewById(R.id.bt_ok);
+        bt_ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Dialog dialog=new Dialog(getApplicationContext());
+                dialog.setContentView(R.layout.item_fabu);
+            }
+        });
 
     }
 
@@ -69,7 +77,6 @@ public class Activity_Callservice extends Activity {
             case R.id.ll_call_map:
                 Intent intent=new Intent(Activity_Callservice.this,Activity_Callservice_Adress.class);
                 startActivity(intent);
-
                 break;
         }
     }
