@@ -51,11 +51,15 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:orientation="horizontal">
-        <RadioButton
-            android:id="@+id/item_adress_rb"
+        <ImageView
+            android:id="@+id/iv"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:src="@mipmap/nan"/>
         <TextView
+            android:textColor="#1bcce7"
+            android:layout_gravity="center"
+            android:id="@+id/tv_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="默认"/>

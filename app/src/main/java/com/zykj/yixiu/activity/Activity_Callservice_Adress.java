@@ -46,8 +46,8 @@ public class Activity_Callservice_Adress extends Activity {
                 if (Y.getRespCode(result)){
                     Y.t("成功");
                     String data = Y.getData(result);
-                    lists = JSON.parseArray(data, Address.class);
-                    AdressBaseAdapter adressBaseAdapter=new AdressBaseAdapter(lists,Activity_Callservice_Adress.this);
+                    List<Address> addresses = JSON.parseArray(data, Address.class);
+                    AdressBaseAdapter adressBaseAdapter=new AdressBaseAdapter(addresses,Activity_Callservice_Adress.this);
                     lisetview.setAdapter(adressBaseAdapter);
                 }else {
                     Y.t("失败了");

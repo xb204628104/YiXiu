@@ -71,4 +71,6 @@ public class YURL {
     //设置查询地址的接口
     public static   final  String   SELECT_ADDRESS=HOST+"selectAddress";
 
+    //设置删除地址的接口
+    public static   final  String   DELA_DDRESS=HOST+"delAddress";
 }
