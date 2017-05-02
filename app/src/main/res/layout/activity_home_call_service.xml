@@ -49,12 +49,15 @@
             android:id="@+id/tv_call_time"
             android:layout_marginLeft="20dp"
             android:textColor="#8c8b8b"
+            android:textColorHint="#8c8b8b"
             android:gravity="center_vertical"
             android:textSize="16sp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="请选择您的服务时间"></TextView>
+            android:hint="请选择您的服务时间">
+
+        </TextView>
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -93,7 +96,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="请选择您的详细地址"
+            android:text="黑龙江哈尔滨市银行界2号"
             />
         <ImageView
             android:layout_width="wrap_content"

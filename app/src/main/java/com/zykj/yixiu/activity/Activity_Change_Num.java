@@ -40,6 +40,7 @@ public class Activity_Change_Num extends Activity {
         Intent intent=getIntent();
         intent.putExtra("num",num);
         setResult(100,intent);
+        Y.ADDRESS.setPhone(num);
         finish();
     }
 }

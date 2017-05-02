@@ -17,6 +17,7 @@ import com.bumptech.glide.Glide;
 import com.hss01248.dialog.StyledDialog;
 import com.zykj.yixiu.R;
 import com.zykj.yixiu.bean.MobileBean;
+import com.zykj.yixiu.bean.Phone;
 import com.zykj.yixiu.utils.Y;
 import com.zykj.yixiu.utils.YURL;
 
@@ -215,7 +216,15 @@ public class Activity_Phoneservice extends Activity {
                     Y.t("请选择您的手机故障点进行描述");
                     return;
                 }
+                Phone phone=new Phone();
+                phone.setBrand(brand);
+                phone.setModle(model);
+                phone.setFault(fault);
+                phone.setDescribe(miaoshu);
+                phone.setImage1(photoPath);
                 Intent intent = new Intent(Activity_Phoneservice.this, Activity_Callservice.class);
+                intent.putExtra("order_type","1");
+                intent.putExtra("bean",phone);
                 startActivity(intent);
                 break;
             case R.id.ll_phone_add:

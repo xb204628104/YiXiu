@@ -3,6 +3,7 @@ package com.zykj.yixiu.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,6 +16,7 @@ import com.bigkoo.pickerview.OptionsPickerView;
 import com.bumptech.glide.Glide;
 import com.hss01248.dialog.StyledDialog;
 import com.zykj.yixiu.R;
+import com.zykj.yixiu.bean.Computer;
 import com.zykj.yixiu.bean.ComputerBean;
 import com.zykj.yixiu.utils.Y;
 import com.zykj.yixiu.utils.YURL;
@@ -168,7 +170,7 @@ public class Activity_Computereservice extends Activity {
                 Map<String, String> map = new HashMap<>();
                 map.put("pid", lists.get(index).getId() + "");
                 map.put("category", listsmodel.get(indexmodel).getId() + "");
-                Y.get(YURL.FIND_COMPUTER_BRAND, map, new Y.MyCommonCall<String>() {
+                Y.get(YURL.FIND_BYCOMPUTER_MODEL, map, new Y.MyCommonCall<String>() {
                     @Override
                     public void onSuccess(String result) {
                         StyledDialog.dismissLoading();
@@ -235,7 +237,34 @@ public class Activity_Computereservice extends Activity {
                 String tvcomputerType = tvComputerType.getText().toString().trim();
                 String tvcomputerFault = tvComputerFault.getText().toString().trim();
                 String etcomputerMiaoshu = etComputerMiaoshu.getText().toString().trim();
+                String tvcomputerCategory = tvComputerCategory.getText().toString().trim();
+                if (TextUtils.isEmpty(tvcomputerBrand)){
+                    Y.t("请选择您的电脑品牌");
+                    return;
+
+                }
+                if (TextUtils.isEmpty(tvcomputerType)){
+                    Y.t("请选择您的电脑型号");
+                    return;
+                }
+                if (TextUtils.isEmpty(tvcomputerFault)){
+                    Y.t("请选择您的电脑故障");
+                    return;
+                }
+                if (TextUtils.isEmpty(etcomputerMiaoshu)){
+                    Y.t("请对您的电脑故障进行描述");
+                    return;
+                }
+                Computer computer=new Computer();
+                computer.setBrand(tvcomputerBrand);
+                computer.setModle(tvcomputerType);
+                computer.setFault(tvcomputerFault);
+                computer.setDescribe(etcomputerMiaoshu);
+                computer.setImage1(photoPath);
+                computer.setCategory(tvcomputerCategory);
                 Intent intent = new Intent(Activity_Computereservice.this, Activity_Callservice.class);
+                intent.putExtra("order_type","2");
+                intent.putExtra("bean",computer);
                 startActivity(intent);
                 break;
             case R.id.ll_computer_add:

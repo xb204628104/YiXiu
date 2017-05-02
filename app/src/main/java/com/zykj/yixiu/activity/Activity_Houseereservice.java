@@ -16,6 +16,7 @@ import com.bigkoo.pickerview.OptionsPickerView;
 import com.bumptech.glide.Glide;
 import com.hss01248.dialog.StyledDialog;
 import com.zykj.yixiu.R;
+import com.zykj.yixiu.bean.House;
 import com.zykj.yixiu.bean.HouseBean;
 import com.zykj.yixiu.utils.Y;
 import com.zykj.yixiu.utils.YURL;
@@ -232,20 +233,33 @@ public class Activity_Houseereservice extends Activity {
                 String tvhouseModel = tvHouseModel.getText().toString().trim();
                 String tvhouseFault = tvHouseFault.getText().toString().trim();
                 String ethouseMiaoshu = etHouseMiaoshu.getText().toString().trim();
+                String tvhouseTyp = tvHouseTyp.getText().toString().trim();
                 if (TextUtils.isEmpty(tvhouseBrand)){
-                    Y.t("家电品牌不能为空");
+                    Y.t("请选择您的家电品牌");
                     return;
                 }
                 if (TextUtils.isEmpty(tvhouseModel)){
-                    Y.t("家电类型不能为空");
+                    Y.t("请选择您的家电型号");
+                    return;
                 }
                 if (TextUtils.isEmpty(tvhouseFault)){
                     Y.t("请选择您的家电故障点");
+                    return;
                 }
                 if (TextUtils.isEmpty(ethouseMiaoshu)){
                     Y.t("请对您的家电故障点进行描述");
+                    return;
                 }
+                House house=new House();
+                house.setBrand(tvhouseBrand);
+                house.setModle(tvhouseModel);
+                house.setFault(tvhouseFault);
+                house.setDescribe(ethouseMiaoshu);
+                house.setImage1(photoPath);
+                house.setCategory(tvhouseTyp);
                 Intent intent = new Intent(Activity_Houseereservice.this, Activity_Callservice.class);
+                intent.putExtra("order_type","3");
+                intent.putExtra("bean",house);
                 startActivity(intent);
                 break;
             case R.id.ll_house_add:
