@@ -3,17 +3,23 @@ package com.zykj.yixiu.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSON;
 import com.zykj.yixiu.R;
+import com.zykj.yixiu.adapter.MyBaseAdapter;
+import com.zykj.yixiu.bean.Oreder;
 import com.zykj.yixiu.utils.Y;
+import com.zykj.yixiu.utils.YURL;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -44,8 +50,11 @@ public class Activity_Prcenter_myorder extends Activity {
     LinearLayout llNyordleYi;
     @Bind(R.id.ll_nyordle_qu)
     LinearLayout llNyordleQu;
+    @Bind(R.id.lv)
+    ListView lv;
 
-    private List<String> lists=new ArrayList<>();
+    private List<Oreder> lists = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,10 +62,10 @@ public class Activity_Prcenter_myorder extends Activity {
         ButterKnife.bind(this);
         Intent intent = getIntent();
 
-        if (intent!=null){
+        if (intent != null) {
             String wei = intent.getStringExtra("Wei");
             Y.i(wei);
-            switch (wei){
+            switch (wei) {
                 case "1":
                     tvNyordleWei.setTextColor(LAN);
                     tvNyordleYi.setTextColor(HEI);
@@ -64,6 +73,22 @@ public class Activity_Prcenter_myorder extends Activity {
                     ivNyordleWei.setVisibility(View.VISIBLE);
                     ivNyordleYi.setVisibility(View.INVISIBLE);
                     ivNyordleQu.setVisibility(View.INVISIBLE);
+                    Map map = new HashMap();
+                    map.put("custom_id", Y.ADDRESS.getUser_id());
+                    Y.post(YURL.FIND_UNFINISHCOUNT, null, new Y.MyCommonCall<String>() {
+                        @Override
+                        public void onSuccess(String result) {
+                            if (Y.getRespCode(result)) {
+                                List<Oreder> oreders = JSON.parseArray(Y.getData(result), Oreder.class);
+                                MyBaseAdapter myBaseAdapter = new MyBaseAdapter(getApplicationContext(), oreders);
+                                lv.setAdapter(myBaseAdapter);
+                            } else {
+                                Y.t("Shibai");
+                            }
+
+                        }
+                    });
+
                     break;
                 case "2":
                     tvNyordleWei.setTextColor(HEI);
@@ -87,7 +112,7 @@ public class Activity_Prcenter_myorder extends Activity {
     }
 
     @OnClick({R.id.tv_nyordle_wei, R.id.tv_nyordle_yi, R.id.tv_nyordle_quxiao
-    ,R.id.ll_nyordle_qu,R.id.ll_nyordle_wei,R.id.ll_nyordle_yi})
+            , R.id.ll_nyordle_qu, R.id.ll_nyordle_wei, R.id.ll_nyordle_yi})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_nyordle_wei:

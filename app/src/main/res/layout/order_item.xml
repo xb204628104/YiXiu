@@ -14,6 +14,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <TextView
+            android:id="@+id/tv_typ"
             android:layout_marginLeft="10dp"
             android:textSize="15sp"
             android:layout_width="wrap_content"
@@ -108,11 +109,11 @@
             android:layout_marginTop="10dp"
             android:layout_width="100dp"
             android:layout_height="100dp"
+            android:id="@+id/iv_image"
             android:src="@mipmap/order_shouji"/>
     </LinearLayout>
     <View
         android:layout_marginLeft="20dp"
-
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="#c9c6c6"></View>

@@ -76,4 +76,6 @@ public class YURL {
 
     //设置删除地址的接口
     public static   final  String   DEF_ADDRESS=HOST+"defAddress";
+    //未完成的订单
+    public static   final  String   FIND_UNFINISHCOUNT=HOST+"findUnFinishCount";
 }
