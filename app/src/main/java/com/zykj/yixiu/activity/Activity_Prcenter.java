@@ -164,7 +164,7 @@ public class Activity_Prcenter extends Activity {
                 startActivity(intent1);
                 break;
             case R.id.ll_pc_address:
-                Intent intent2 = new Intent(Activity_Prcenter.this,Activity_Callservice_Adress_Edit.class);
+                Intent intent2 = new Intent(Activity_Prcenter.this,Activity_Callservice_Adress.class);
                 startActivity(intent2);
                 break;
             case R.id.ll_pc_approve:

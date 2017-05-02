@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.zykj.yixiu.R;
+import com.zykj.yixiu.bean.Address;
 
 import java.util.List;
 
@@ -20,9 +21,9 @@ import butterknife.ButterKnife;
 
 public class MyBaseAdapter extends BaseAdapter {
     private Context context;
-    private List<String> lists;
+    private List<Address> lists;
 
-    public MyBaseAdapter(Context context, List<String> lists) {
+    public MyBaseAdapter(Context context, List<Address> lists) {
         this.context = context;
         this.lists = lists;
     }
@@ -44,32 +45,25 @@ public class MyBaseAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder viewHolder=null;
+        ViewHoder2 viewHoder2;
         if (convertView==null){
-            convertView = View.inflate(context, R.layout.order_item, null);
-            viewHolder=new ViewHolder(convertView);
-            convertView.setTag(viewHolder);
+            convertView=View.inflate(context,R.layout.order_item,null);
+            viewHoder2=new ViewHoder2();
+            viewHoder2.tv_item_jiedan= (TextView) convertView.findViewById(R.id.tv_item_jiedan);
+            viewHoder2.tv_time= (TextView) convertView.findViewById(R.id.tv_time);
+            viewHoder2.tv_address= (TextView) convertView.findViewById(R.id.tv_address);
+            viewHoder2.bt_item_chakan= (Button) convertView.findViewById(R.id.bt_item_chakan);
+            viewHoder2.bt_item_quxiao= (Button) convertView.findViewById(R.id.bt_item_quxiao);
+            convertView.setTag(viewHoder2);
         }else {
-            viewHolder= (ViewHolder) convertView.getTag();
+            viewHoder2= (ViewHoder2) convertView.getTag();
         }
-        
+
         return convertView;
     }
 
-    static class ViewHolder {
-        @Bind(R.id.tv_item_jiedan)
-        TextView tvItemJiedan;
-        @Bind(R.id.bt_item_chakan)
-        Button btItemChakan;
-        @Bind(R.id.bt_item_quxiao)
-        Button btItemQuxiao;
-        @Bind(R.id.tv_item_time)
-        TextView tvItemTime;
-        @Bind(R.id.bt_item_fabu)
-        Button btItemFabu;
-
-        ViewHolder(View view) {
-            ButterKnife.bind(this, view);
-        }
-    }
+}
+class ViewHoder2{
+    TextView tv_item_jiedan,tv_time,tv_address;
+    Button bt_item_chakan,bt_item_quxiao;
 }

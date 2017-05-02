@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -14,12 +15,16 @@ import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.MapView;
 import com.bigkoo.pickerview.OptionsPickerView;
 import com.bigkoo.pickerview.TimePickerView;
+import com.hss01248.dialog.StyledDialog;
 import com.zykj.yixiu.R;
 import com.zykj.yixiu.utils.Y;
+import com.zykj.yixiu.utils.YURL;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -42,19 +47,47 @@ public class Activity_Callservice extends Activity {
     @Bind(R.id.tv_call_map)
     TextView tvCallMap;
     private Button bt_ok;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_call_service);
         ButterKnife.bind(this);
         bt_ok= (Button) findViewById(R.id.bt_ok);
+        Intent intent = getIntent();
+        if (intent!=null){
+
+        }
+        final String tvcallTime = tvCallTime.getText().toString().trim();
+        final String tvcallMap = tvCallMap.getText().toString().trim();
         bt_ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Dialog dialog=new Dialog(getApplicationContext());
-                dialog.setContentView(R.layout.item_fabu);
+                if (TextUtils.isEmpty(tvcallTime)){
+                    Y.t("请选择您的服务时间");
+                    return;
+                }
+                if (TextUtils.isEmpty(tvcallMap)){
+                    Y.t("请选择您的服务地址");
+                    return;
+                }
+                Map map=new HashMap();
+                Y.post(YURL.ADD_ORDER,map, new Y.MyCommonCall<String>() {
+                    @Override
+                    public void onSuccess(String result) {
+                        StyledDialog.dismissLoading();
+                        if (Y.getRespCode(result)){
+                            Y.t("成功");
+                            //Dialog dialog=new Dialog(getApplicationContext());
+                        }else {
+                            Y.t("失败");
+                        }
+                    }
+                });
+
             }
         });
+
 
     }
 

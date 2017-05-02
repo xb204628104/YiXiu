@@ -73,4 +73,7 @@ public class YURL {
 
     //设置删除地址的接口
     public static   final  String   DELA_DDRESS=HOST+"delAddress";
+
+    //设置删除地址的接口
+    public static   final  String   DEF_ADDRESS=HOST+"defAddress";
 }

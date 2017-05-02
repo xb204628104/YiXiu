@@ -20,6 +20,7 @@
             android:layout_height="wrap_content"
             android:text="种类:"/>
         <TextView
+            android:id="@+id/tv_num"
             android:textSize="15sp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -68,6 +69,7 @@
                     android:text="下单时间"
                     android:textColor="#a39e9e"/>
                 <TextView
+                    android:id="@+id/tv_time"
                     android:layout_marginLeft="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -92,6 +94,7 @@
                     android:text="下单地址"
                     android:textColor="#a39e9e"/>
                 <TextView
+                    android:id="@+id/tv_address"
                     android:layout_marginTop="5dp"
                     android:layout_marginLeft="10dp"
                     android:layout_width="wrap_content"

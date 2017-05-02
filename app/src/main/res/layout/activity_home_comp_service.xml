@@ -18,7 +18,7 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"
-            android:text="家电维修"
+            android:text="电脑维修"
             android:textSize="25sp"
             android:textColor="#6ce0e0"
             android:gravity="center"
@@ -64,7 +64,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:hint="请选择您的家电品牌"
+                android:hint="请选择您的电脑品牌"
                 />
             <ImageView
                 android:layout_width="wrap_content"
@@ -109,7 +109,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:hint="请选择您的家电类型"
+                android:hint="请选择您的电脑类型"
                 />            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -149,7 +149,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:hint="请选择您的家电型号"
+                android:hint="请选择您的电脑型号"
                 />
             <ImageView
                 android:layout_width="wrap_content"
@@ -190,7 +190,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:textColorHint="#8c8b8b"
-                android:hint="请选择您的家电故障点"
+                android:hint="请选择您的电脑故障点"
                 />
 
             <ImageView
@@ -215,7 +215,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:hint="请对您的家电的故障进行检点的描述"
+                android:hint="请对您的电脑的故障进行检点的描述"
                 android:id="@+id/et_house_miaoshu" />
             <ImageView
                 android:layout_width="wrap_content"

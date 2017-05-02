@@ -57,16 +57,17 @@
                 android:layout_height="match_parent"
                 android:src="@mipmap/blue_shuxian"/>
             <TextView
+                android:hint="联想"
                 android:id="@+id/tv_computer_brand"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="13dp"
                 android:gravity="right"
-                android:textColor="#0ee2e2"
+                android:textColorHint="#0ee2e2"
                 android:textSize="15sp"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="联想"/>
+               />
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -103,16 +104,17 @@
                 android:layout_height="match_parent"
                 android:src="@mipmap/blue_shuxian"/>
             <TextView
+                android:hint="笔记本"
                 android:id="@+id/tv_computer_category"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="13dp"
                 android:gravity="right"
-                android:textColor="#0ee2e2"
+                android:textColorHint="#0ee2e2"
                 android:textSize="15sp"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="笔记本"/>
+                />
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -147,12 +149,12 @@
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="13dp"
                 android:gravity="right"
-                android:textColor="#0ee2e2"
+                android:textColorHint="#0ee2e2"
                 android:textSize="15sp"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="Y460A_ITH"/>
+                android:hint="Y460A_ITH" />
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -187,12 +189,12 @@
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="13dp"
                 android:gravity="right"
-                android:textColor="#0ee2e2"
+                android:textColorHint="#0ee2e2"
                 android:textSize="15sp"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="主板"/>
+                android:hint="主板"/>
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -211,6 +213,7 @@
             android:background="#ffffff"
             >
             <EditText
+                android:id="@+id/et_computer_miaoshu"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -256,9 +259,16 @@
                     android:src="@mipmap/add_camera"/>
             </FrameLayout>
         </LinearLayout>
+        <ImageView
+            android:id="@+id/iv_computer_img"
+            android:layout_gravity="center"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            />
 
     </LinearLayout>
     <include layout="@layout/include_line_one"></include>
+
     <Button
         android:id="@+id/bt_computer_okcall"
         android:layout_width="match_parent"

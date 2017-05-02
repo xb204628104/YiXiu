@@ -95,6 +95,35 @@ public class AdressBaseAdapter extends BaseAdapter {
                 });
             }
         });
+        viewHoder.iv.setTag(address.getAddress_id());
+        viewHoder.iv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Map map =new HashMap();
+                map.put("user_id",Y.USER.getUser_id()+"");
+                map.put("address_id",v.getTag()+"");
+                Y.get(YURL.DEF_ADDRESS, map, new Y.MyCommonCall<String>() {
+                    @Override
+                    public void onSuccess(String result) {
+                        //关闭对话框
+                        Y.t("设置成功");
+                        if(Y.getRespCode(result)){
+                            StyledDialog.dismissLoading();
+                            for (int i = 0; i <lists.size() ; i++) {
+                                if(i==position){  //需要勾选的位置
+                                    lists.get(i).setIsdefault(1);
+                                }else{  //取消勾选
+                                    lists.get(i).setIsdefault(0);
+                                }
+                            }
+                            notifyDataSetChanged();//刷新列表
+
+
+                        }
+                    }
+                });
+            }
+        });
         viewHoder.bt_bianji.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -38,7 +38,6 @@ public class Activity_Change_Num extends Activity {
             Y.t("请输入手机号");
         }
         Intent intent=getIntent();
-
         intent.putExtra("num",num);
         setResult(100,intent);
         finish();
