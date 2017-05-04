@@ -128,6 +128,25 @@ public class Activity_Prcenter_myorder extends Activity {
                 ivNyordleWei.setVisibility(View.VISIBLE);
                 ivNyordleYi.setVisibility(View.INVISIBLE);
                 ivNyordleQu.setVisibility(View.INVISIBLE);
+                Map map = new HashMap();
+                map.put("custom_id", Y.USER.getUser_id()+"");
+                map.put("order_state",1+"");
+                Y.post(YURL.FIND_ORDERBYSTATE, map, new Y.MyCommonCall<String>() {
+                    @Override
+                    public void onSuccess(String result) {
+                        StyledDialog.dismissLoading();
+                        if (Y.getRespCode(result)) {
+                            Y.t("你好");
+                            List<Oreder> oreders = JSON.parseArray(Y.getData(result), Oreder.class);
+                            Y.i(oreders.toString());
+                            MyBaseAdapter myBaseAdapter = new MyBaseAdapter(getApplicationContext(),oreders);
+                            lv.setAdapter(myBaseAdapter);
+                        } else {
+                            Y.t("失败了");
+                        }
+
+                    }
+                });
                 break;
             case R.id.tv_nyordle_yi:
                 tvNyordleWei.setTextColor(HEI);
