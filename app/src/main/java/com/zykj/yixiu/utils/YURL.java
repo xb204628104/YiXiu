@@ -78,4 +78,6 @@ public class YURL {
     public static   final  String   DEF_ADDRESS=HOST+"defAddress";
     //未完成的订单
     public static   final  String   FIND_ORDERBYSTATE=HOST+"findOrderByState";
+    //取消订单
+    public static   final  String   CAN_CELORDER=HOST+"cancelOrder";
 }

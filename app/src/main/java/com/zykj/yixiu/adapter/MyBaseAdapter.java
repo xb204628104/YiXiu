@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.hss01248.dialog.StyledDialog;
 import com.zykj.yixiu.R;
 import com.zykj.yixiu.bean.Address;
 import com.zykj.yixiu.bean.Oreder;
@@ -17,7 +18,9 @@ import com.zykj.yixiu.utils.YURL;
 import org.xutils.image.ImageOptions;
 import org.xutils.x;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -59,7 +62,7 @@ public class MyBaseAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         ViewHoder2 viewHoder2=null;
         if (convertView==null){
             convertView=View.inflate(context,R.layout.order_item,null);
@@ -70,6 +73,7 @@ public class MyBaseAdapter extends BaseAdapter {
             viewHoder2.tv_typ= (TextView) convertView.findViewById(R.id.tv_typ);
             viewHoder2.bt_item_chakan= (Button) convertView.findViewById(R.id.bt_item_chakan);
             viewHoder2.bt_item_quxiao= (Button) convertView.findViewById(R.id.bt_item_quxiao);
+            viewHoder2.bt_fabu= (Button) convertView.findViewById(R.id.bt_item_fabu);
             viewHoder2.iv_image= (ImageView) convertView.findViewById(R.id.iv_image);
             convertView.setTag(viewHoder2);
         }else {
@@ -103,6 +107,28 @@ public class MyBaseAdapter extends BaseAdapter {
         "city_name":"哈尔滨市"//城市名
         "city_code":"48"    //城市编码*/
         Oreder oreder = lists.get(position);
+        viewHoder2.bt_item_quxiao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Map map=new HashMap();
+                map.put("id",Y.OREDER.getId()+"");
+                map.put("custom_id",Y.ADDRESS.getUser_id()+"");
+                Y.get(YURL.CAN_CELORDER, map, new Y.MyCommonCall<String>() {
+
+                    @Override
+                    public void onSuccess(String result) {
+                        StyledDialog.dismissLoading();
+                        if (Y.getRespCode(result)){
+                            Y.t("删除成功");
+                            lists.remove(position);
+                            notifyDataSetChanged();
+                        }else {
+                            Y.t("删除失败");
+                        }
+                    }
+                });
+            }
+        });
         Y.i(oreder.toString());
         int order_state = oreder.getOrder_state();
         int order_type = oreder.getOrder_type();
@@ -110,6 +136,7 @@ public class MyBaseAdapter extends BaseAdapter {
         String service_time = oreder.getService_time();
         String image1 = oreder.getImage1();
         String custom_phone = oreder.getCustom_phone();
+
         switch (order_type){
             case 1:
                 viewHoder2.tv_typ.setText("手机"+Y.OREDER.getId());
@@ -121,18 +148,41 @@ public class MyBaseAdapter extends BaseAdapter {
                 viewHoder2.tv_typ.setText("家电"+Y.OREDER.getId());
                 break;
         }
+        //订单状态:1,4,5,6为未完成,2为已完成,3为已取消//1刚发布的订单 ,4确认订单,5已支付,6已接单
+        switch (order_state){
+            case 1:
+                viewHoder2.tv_item_jiedan.setText("等待接单");
+                viewHoder2.bt_fabu.setVisibility(View.VISIBLE);
+                break;
+            case 2:
+                viewHoder2.tv_item_jiedan.setText("已完成");
+                break;
+            case 3:
+                viewHoder2.tv_item_jiedan.setText("已取消");
+                break;
+            case 4:
+                viewHoder2.tv_item_jiedan.setText("确认订单");
+                break;
+            case 5:
+                viewHoder2.tv_item_jiedan.setText("已支付");
+                break;
+            case 6:
+                viewHoder2.tv_item_jiedan.setText("已接单");
+                break;
+        }
         viewHoder2.tv_address.setText(oreder.getService_address()+"---");
         viewHoder2.tv_time.setText(oreder.getAddtime());
         ImageOptions options = new ImageOptions.Builder().setCircular(true).build();
         x.image().bind(viewHoder2.iv_image, YURL.HOST+image1,options);
        // viewHoder2.tv_typ.setText(oreder.getId());
        // viewHoder2.tv_typ.setText(oreder.getBrand());
+
         return convertView;
     }
 
 }
 class ViewHoder2{
     TextView tv_item_jiedan,tv_time,tv_address,tv_typ;
-    Button bt_item_chakan,bt_item_quxiao;
+    Button bt_item_chakan,bt_item_quxiao,bt_fabu;
     ImageView iv_image;
 }
