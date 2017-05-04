@@ -62,6 +62,7 @@ public class Activity_Callservice extends Activity {
     TextView tvCallTime;
     @Bind(R.id.tv_call_map)
     TextView tvCallMap;
+    String add;
     private Button bt_ok;
 
     private PopupWindow popupWindow;
@@ -69,15 +70,29 @@ public class Activity_Callservice extends Activity {
     private Phone phone;
     private Computer computer;
     private House house;
-
-
+    private int address_id;
+    private int user_id;
+    private String name;
+    private String num;
+    private Button button;
+    private String tvcallTime;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_call_service);
         ButterKnife.bind(this);
         bt_ok= (Button) findViewById(R.id.bt_ok);
+        button= (Button) findViewById(R.id.bt_ok2);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Y.i(Y.ADDRESS.getPhone()+"点化石");
+                Y.i(Y.ADDRESS.getName()+"明星是");
+                Y.i(tvcallTime);
+            }
+        });
         Intent intent = getIntent();
+
         if (intent!=null){
             order_type = intent.getStringExtra("order_type");
             Y.i("--"+order_type);
@@ -93,14 +108,13 @@ public class Activity_Callservice extends Activity {
                     break;
             }
         }
-        final String tvcallTime = tvCallTime.getText().toString().trim();
+        tvcallTime= tvCallTime.getText().toString().trim();
         final String tvcallMap = tvCallMap.getText().toString().trim();
         bt_ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 switch (order_type){
                     case "1":
-
                         RequestParams requestParams =new RequestParams(YURL.ADD_ORDER);
                         requestParams.setMultipart(true);
                         requestParams.addBodyParameter("order_type","1");
@@ -111,12 +125,11 @@ public class Activity_Callservice extends Activity {
                         requestParams.addBodyParameter("category","");
                         requestParams.addBodyParameter("image1",new File(phone.getImage1()));
                         requestParams.addBodyParameter("service_time",tvcallTime);
-                        requestParams.addBodyParameter("service_address",tvcallMap);
+                        requestParams.addBodyParameter("service_address",add);
                         requestParams.addBodyParameter("custom_phone",Y.ADDRESS.getPhone());
                         requestParams.addBodyParameter("custom_name",Y.ADDRESS.getName());
-                        requestParams.addBodyParameter("custom_id",Y.ADDRESS.getUser_id()+"");
+                        requestParams.addBodyParameter("custom_id",Y.USER.getUser_id()+"");
                         requestParams.addBodyParameter("address_id",Y.ADDRESS.getAddress_id()+"");
-
                         x.http().post(requestParams, new Y.MyCommonCall<String>() {
                             @Override
                             public void onSuccess(String result) {
@@ -126,11 +139,19 @@ public class Activity_Callservice extends Activity {
                                     Y.i(""+new File(phone.getImage1()));
                                     Y.i(""+phone.getModle());
                                     Y.i(""+phone.getFault());
+                                    Y.i(""+phone.getDescribe());
                                     Y.i(""+tvcallTime);
-                                    Y.i(""+tvcallMap);
+                                    Y.i(""+add);
+                                    Y.i(""+Y.ADDRESS.getPhone());
                                     Y.i(""+Y.ADDRESS.getName());
-                                    Y.i(""+Y.ADDRESS.getUser_id());
-                                    Y.i(""+Y.ADDRESS.getAddress_id());
+                                    Y.i(""+Y.USER.getUser_id());
+                                    Y.i("第一个"+Y.ADDRESS.getAddress_id());
+                                    Y.i(""+address_id);
+                                    Y.OREDER.setBrand(phone.getBrand());
+                                    Y.OREDER.setService_time(tvcallTime);
+                                    Y.OREDER.setService_address(add);
+                                    Y.OREDER.setCustom_name(Y.ADDRESS.getName());
+                                    Y.OREDER.setCustom_phone(Y.ADDRESS.getPhone());
                                 }else {
                                     Y.t("失败");
                                 }
@@ -148,10 +169,10 @@ public class Activity_Callservice extends Activity {
                         requestParams1.addBodyParameter("category",computer.getCategory());
                         requestParams1.addBodyParameter("image1",new File(computer.getImage1()));
                         requestParams1.addBodyParameter("service_time",tvcallTime);
-                        requestParams1.addBodyParameter("service_address",tvcallMap);
+                        requestParams1.addBodyParameter("service_address",add);
                         requestParams1.addBodyParameter("custom_phone",Y.ADDRESS.getPhone());
                         requestParams1.addBodyParameter("custom_name",Y.ADDRESS.getName());
-                        requestParams1.addBodyParameter("custom_id",Y.ADDRESS.getUser_id()+"");
+                        requestParams1.addBodyParameter("custom_id",Y.USER.getUser_id()+"");
                         requestParams1.addBodyParameter("address_id",Y.ADDRESS.getAddress_id()+"");
                         x.http().post(requestParams1, new Y.MyCommonCall<String>() {
                             @Override
@@ -163,10 +184,14 @@ public class Activity_Callservice extends Activity {
                                     Y.i(""+computer.getModle());
                                     Y.i(""+computer.getFault());
                                     Y.i(""+tvcallTime);
-                                    Y.i(""+tvcallMap);
+                                    Y.i(""+add);
                                     Y.i(""+Y.ADDRESS.getName());
                                     Y.i(""+Y.ADDRESS.getUser_id());
-                                    Y.i(""+Y.ADDRESS.getAddress_id());
+                                    Y.i(""+address_id);
+                                    Y.OREDER.setService_time(tvcallTime);
+                                    Y.OREDER.setService_address(add);
+                                    Y.OREDER.setCustom_name(Y.ADDRESS.getName());
+                                    Y.OREDER.setCustom_phone(Y.ADDRESS.getPhone());
                                 }else {
                                     Y.t("失败");
                                 }
@@ -184,10 +209,10 @@ public class Activity_Callservice extends Activity {
                         requestParams2.addBodyParameter("category",house.getCategory());
                         requestParams2.addBodyParameter("image1",new File(house.getImage1()));
                         requestParams2.addBodyParameter("service_time",tvcallTime);
-                        requestParams2.addBodyParameter("service_address",tvcallMap);
+                        requestParams2.addBodyParameter("service_address",add);
                         requestParams2.addBodyParameter("custom_phone",Y.ADDRESS.getPhone());
                         requestParams2.addBodyParameter("custom_name",Y.ADDRESS.getName());
-                        requestParams2.addBodyParameter("custom_id",Y.ADDRESS.getUser_id()+"");
+                        requestParams2.addBodyParameter("custom_id",Y.USER.getUser_id()+"");
                         requestParams2.addBodyParameter("address_id",Y.ADDRESS.getAddress_id()+"");
                         x.http().post(requestParams2, new Y.MyCommonCall<String>() {
                             @Override
@@ -199,10 +224,14 @@ public class Activity_Callservice extends Activity {
                                     Y.i(""+house.getModle());
                                     Y.i(""+house.getFault());
                                     Y.i(""+tvcallTime);
-                                    Y.i(""+tvcallMap);
+                                    Y.i(""+add);
                                     Y.i(""+Y.ADDRESS.getName());
                                     Y.i(""+Y.ADDRESS.getUser_id());
-                                    Y.i(""+Y.ADDRESS.getAddress_id());
+                                    Y.i(""+address_id);
+                                    Y.OREDER.setService_time(tvcallTime);
+                                    Y.OREDER.setService_address(add);
+                                    Y.OREDER.setCustom_name(Y.ADDRESS.getName());
+                                    Y.OREDER.setCustom_phone(Y.ADDRESS.getPhone());
                                 }else {
                                     Y.t("失败");
                                 }
@@ -292,4 +321,16 @@ public class Activity_Callservice extends Activity {
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode==100&&resultCode==100){
+         add= data.getStringExtra("add");
+         name= data.getStringExtra("name");
+         num=data.getStringExtra("phone");
+            address_id=data.getIntExtra("address_id",0);
+            user_id=data.getIntExtra("user_id",0);
+            tvCallMap.setText(add);
+        }
+    }
 }

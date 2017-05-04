@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.alibaba.fastjson.JSON;
+import com.hss01248.dialog.StyledDialog;
 import com.zykj.yixiu.R;
 import com.zykj.yixiu.adapter.AdressBaseAdapter;
 import com.zykj.yixiu.bean.Address;
@@ -33,6 +34,7 @@ public class Activity_Callservice_Adress extends Activity {
     LinearLayout llAddAdress;
     @Bind(R.id.lisetview)
     ListView lisetview;
+    private AdressBaseAdapter adressBaseAdapter;
     private List<Address> lists = new ArrayList<Address>();
 
     @Override
@@ -45,11 +47,12 @@ public class Activity_Callservice_Adress extends Activity {
         Y.post(YURL.SELECT_ADDRESS, map, new Y.MyCommonCall<String>() {
             @Override
             public void onSuccess(String result) {
+                StyledDialog.dismissLoading();
                 if (Y.getRespCode(result)){
                     Y.t("成功");
                     String data = Y.getData(result);
-                    List<Address> addresses = JSON.parseArray(data, Address.class);
-                    AdressBaseAdapter adressBaseAdapter=new AdressBaseAdapter(addresses,Activity_Callservice_Adress.this);
+                   lists = JSON.parseArray(data, Address.class);
+                    adressBaseAdapter=new AdressBaseAdapter(lists,Activity_Callservice_Adress.this);
                     lisetview.setAdapter(adressBaseAdapter);
                 }else {
                     Y.t("失败了");
@@ -60,7 +63,32 @@ public class Activity_Callservice_Adress extends Activity {
         lisetview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Y.t(lists.get(position)+"");
+                Y.t(lists.get(position).getAddress().toString());
+                String address=lists.get(position).getAddress().toString();
+                String name=lists.get(position).getName().toString();
+                String phine=lists.get(position).getPhone().toString();
+                Y.i(name+"---");
+                Y.i(phine+"---");
+                int user_id=lists.get(position).getUser_id();
+                Y.i(user_id+"---user_id");
+                int address_id=lists.get(position).getAddress_id();
+                Y.i("Address---"+address_id);
+//                Intent intent=new Intent(Activity_Callservice_Adress.this,Activity_Callservice.class);
+//                intent.putExtra("address",lists.get(position).getAddress().toString());
+//                startActivityForResult(intent,100);
+//                finish();
+                Y.ADDRESS.setName(name);
+                Y.ADDRESS.setPhone(phine);
+                Y.ADDRESS.setAddress_id(address_id);
+                Y.ADDRESS.setUser_id(user_id);
+                Intent intent=new Intent(Activity_Callservice_Adress.this,Activity_Callservice.class);
+                intent.putExtra("add",address);
+                intent.putExtra("address_id",address_id);
+                intent.putExtra("name",name);
+                intent.putExtra("phone",phine);
+                intent.putExtra("user_id",user_id);
+                setResult(100,intent);
+                finish();
             }
         });
 

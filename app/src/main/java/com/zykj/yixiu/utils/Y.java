@@ -8,6 +8,7 @@ import com.alibaba.fastjson.JSON;
 import com.hss01248.dialog.StyledDialog;
 import com.orhanobut.logger.Logger;
 import com.zykj.yixiu.bean.Address;
+import com.zykj.yixiu.bean.Oreder;
 import com.zykj.yixiu.bean.User;
 
 import org.xutils.common.Callback;
@@ -36,6 +37,7 @@ public  class Y {
     //user的类
     public static User USER;//用户信息
     public static Address ADDRESS=new Address();//地址信息
+    public static Oreder OREDER=new Oreder();//订单信息
     public static String TOKEN;//用户的标识
 
 

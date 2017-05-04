@@ -45,6 +45,7 @@ public class Activity_Callservice_Adress_Edit extends Activity {
     TextView etEditAdress;
     private String num;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,6 +67,7 @@ public class Activity_Callservice_Adress_Edit extends Activity {
         if (swEdieMoren.isChecked()) {
             index = 1;
         }
+
     }
 
     @OnClick({R.id.tv_finsh, R.id.ll_edit_adress, R.id.et_edit_adress, R.id.sw_edie_moren, R.id.ll_change_num})
@@ -76,9 +78,9 @@ public class Activity_Callservice_Adress_Edit extends Activity {
                 String address = etEditAdress.getText().toString().trim();//地址
                 final String num = tvNum.getText().toString().trim();//手机号
                 final Map<String, String> map = new HashMap<String, String>();
-                map.put("name", name);
-                map.put("address", address);
-                map.put("phone", num);
+                map.put("name",name);
+                map.put("address",address);
+                map.put("phone",num);
                 map.put("user_id", Y.USER.getUser_id() + "");
                 map.put("lat", Y.ADDRESS.getLat());
                 map.put("lon", Y.ADDRESS.getLon());
@@ -88,6 +90,7 @@ public class Activity_Callservice_Adress_Edit extends Activity {
                 Y.post(YURL.ADD_ADDRESS, map, new Y.MyCommonCall<String>() {
                     @Override
                     public void onSuccess(String result) {
+
                         if (Y.getRespCode(result)) {
                             Y.t("成功");
                             String name1 = map.get("name");
@@ -99,8 +102,8 @@ public class Activity_Callservice_Adress_Edit extends Activity {
                             String city_name = map.get("city_name");
                             String city_code = map.get("city_code");
                             String isdefault = map.get("isdefault");
-                            Y.ADDRESS.setPhone(phone);
-                            Y.ADDRESS.setName(name1);
+                            Y.USER.setPhone(num);
+                            Y.USER.setUsername(name);
                             Y.ADDRESS.setAddress(address1);
                             Y.i(name1 + "--名字是");
                             Y.i(address1 + "--地址是");
@@ -111,6 +114,10 @@ public class Activity_Callservice_Adress_Edit extends Activity {
                             Y.i(city_code + "--城市编码");
                             Y.i(city_name + "--城市名称");
                             Y.i(isdefault + "--woshi");
+                            Intent intent=new Intent(Activity_Callservice_Adress_Edit.this,Activity_Callservice_Adress.class);
+                            intent.putExtra("name",name1);
+                            intent.putExtra("phone",phone);
+                            startActivity(intent);
                             finish();
                         } else {
                             Y.t("失败");
@@ -138,6 +145,7 @@ public class Activity_Callservice_Adress_Edit extends Activity {
         if (requestCode == 100 && resultCode == 100) {
             Bundle extras = data.getExtras();
             num = extras.getString("num");
+
             tvNum.setText(num);
         }
     }

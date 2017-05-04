@@ -105,6 +105,7 @@ public class Activity_Baidu_Map extends Activity {
                         Intent intent=new Intent(Activity_Baidu_Map.this,Activity_Callservice_Adress_Edit.class);
                         intent.putExtra("adress",adress);
                         startActivity(intent);
+                        finish();
                     }
 
                 }

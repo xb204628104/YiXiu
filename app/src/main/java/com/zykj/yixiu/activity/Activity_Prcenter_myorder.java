@@ -10,6 +10,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
+import com.hss01248.dialog.StyledDialog;
 import com.zykj.yixiu.R;
 import com.zykj.yixiu.adapter.MyBaseAdapter;
 import com.zykj.yixiu.bean.Oreder;
@@ -61,6 +62,7 @@ public class Activity_Prcenter_myorder extends Activity {
         setContentView(R.layout.activity_personal_center_myorder);
         ButterKnife.bind(this);
         Intent intent = getIntent();
+        Y.i(Y.USER.getUser_id()+"");
 
         if (intent != null) {
             String wei = intent.getStringExtra("Wei");
@@ -74,16 +76,19 @@ public class Activity_Prcenter_myorder extends Activity {
                     ivNyordleYi.setVisibility(View.INVISIBLE);
                     ivNyordleQu.setVisibility(View.INVISIBLE);
                     Map map = new HashMap();
-                    map.put("custom_id", Y.ADDRESS.getUser_id());
-                    Y.post(YURL.FIND_UNFINISHCOUNT, null, new Y.MyCommonCall<String>() {
+                    map.put("custom_id", Y.USER.getUser_id()+"");
+                    map.put("order_state",1+"");
+                    Y.post(YURL.FIND_ORDERBYSTATE, map, new Y.MyCommonCall<String>() {
                         @Override
                         public void onSuccess(String result) {
+                            StyledDialog.dismissLoading();
                             if (Y.getRespCode(result)) {
+                                Y.t("你好");
                                 List<Oreder> oreders = JSON.parseArray(Y.getData(result), Oreder.class);
-                                MyBaseAdapter myBaseAdapter = new MyBaseAdapter(getApplicationContext(), oreders);
+                                MyBaseAdapter myBaseAdapter = new MyBaseAdapter(getApplicationContext(),oreders);
                                 lv.setAdapter(myBaseAdapter);
                             } else {
-                                Y.t("Shibai");
+                                Y.t("失败了");
                             }
 
                         }

@@ -91,12 +91,13 @@
             android:id="@+id/tv_call_map"
             android:layout_marginLeft="20dp"
             android:textColor="#8c8b8b"
+            android:textColorHint="#8c8b8b"
             android:gravity="center_vertical"
             android:textSize="16sp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="黑龙江哈尔滨市银行界2号"
+            android:hint="请选择您的服务地址"
             />
         <ImageView
             android:layout_width="wrap_content"
@@ -108,6 +109,17 @@
 
     <Button
         android:id="@+id/bt_ok"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape"
+        android:text="确认发布"
+        android:textSize="15sp"
+        android:textColor="#ffffff"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"/>
+    <Button
+        android:id="@+id/bt_ok2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/shape"
