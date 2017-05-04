@@ -85,6 +85,7 @@ public class Activity_Prcenter_myorder extends Activity {
                             if (Y.getRespCode(result)) {
                                 Y.t("你好");
                                 List<Oreder> oreders = JSON.parseArray(Y.getData(result), Oreder.class);
+                                Y.i(oreders.toString());
                                 MyBaseAdapter myBaseAdapter = new MyBaseAdapter(getApplicationContext(),oreders);
                                 lv.setAdapter(myBaseAdapter);
                             } else {

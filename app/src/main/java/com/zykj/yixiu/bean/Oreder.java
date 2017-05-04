@@ -271,12 +271,37 @@ public class Oreder {
         this.city_name = city_name;
     }
 
-    public String getCity_code() {
-        return city_code;
-    }
-
-    public void setCity_code(String city_code) {
-        this.city_code = city_code;
+    @Override
+    public String toString() {
+        return "Oreder{" +
+                "model='" + model + '\'' +
+                ", engineer_id='" + engineer_id + '\'' +
+                ", order_state=" + order_state +
+                ", classX='" + classX + '\'' +
+                ", service_address='" + service_address + '\'' +
+                ", fault='" + fault + '\'' +
+                ", custom_id=" + custom_id +
+                ", custom_name='" + custom_name + '\'' +
+                ", id=" + id +
+                ", service_time='" + service_time + '\'' +
+                ", addtime='" + addtime + '\'' +
+                ", image2='" + image2 + '\'' +
+                ", price='" + price + '\'' +
+                ", image1='" + image1 + '\'' +
+                ", pay_type='" + pay_type + '\'' +
+                ", address_id='" + address_id + '\'' +
+                ", isdel=" + isdel +
+                ", brand='" + brand + '\'' +
+                ", fault_desc='" + fault_desc + '\'' +
+                ", image3='" + image3 + '\'' +
+                ", custom_phone='" + custom_phone + '\'' +
+                ", order_type=" + order_type +
+                ", region='" + region + '\'' +
+                ", lat='" + lat + '\'' +
+                ", lon='" + lon + '\'' +
+                ", city_name='" + city_name + '\'' +
+                ", city_code='" + city_code + '\'' +
+                '}';
     }
 }
 

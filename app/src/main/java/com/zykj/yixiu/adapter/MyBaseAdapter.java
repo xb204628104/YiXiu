@@ -12,6 +12,10 @@ import com.zykj.yixiu.R;
 import com.zykj.yixiu.bean.Address;
 import com.zykj.yixiu.bean.Oreder;
 import com.zykj.yixiu.utils.Y;
+import com.zykj.yixiu.utils.YURL;
+
+import org.xutils.image.ImageOptions;
+import org.xutils.x;
 
 import java.util.List;
 
@@ -56,7 +60,7 @@ public class MyBaseAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHoder2 viewHoder2;
+        ViewHoder2 viewHoder2=null;
         if (convertView==null){
             convertView=View.inflate(context,R.layout.order_item,null);
             viewHoder2=new ViewHoder2();
@@ -99,6 +103,7 @@ public class MyBaseAdapter extends BaseAdapter {
         "city_name":"哈尔滨市"//城市名
         "city_code":"48"    //城市编码*/
         Oreder oreder = lists.get(position);
+        Y.i(oreder.toString());
         int order_state = oreder.getOrder_state();
         int order_type = oreder.getOrder_type();
         String service_address = oreder.getService_address();
@@ -116,10 +121,12 @@ public class MyBaseAdapter extends BaseAdapter {
                 viewHoder2.tv_typ.setText("家电"+Y.OREDER.getId());
                 break;
         }
-        viewHoder2.tv_address.setText(oreder.getService_address());
-        viewHoder2.tv_time.setText(oreder.getService_time());
+        viewHoder2.tv_address.setText(oreder.getService_address()+"---");
+        viewHoder2.tv_time.setText(oreder.getAddtime());
+        ImageOptions options = new ImageOptions.Builder().setCircular(true).build();
+        x.image().bind(viewHoder2.iv_image, YURL.HOST+image1,options);
        // viewHoder2.tv_typ.setText(oreder.getId());
-        viewHoder2.tv_typ.setText(oreder.getBrand());
+       // viewHoder2.tv_typ.setText(oreder.getBrand());
         return convertView;
     }
 
