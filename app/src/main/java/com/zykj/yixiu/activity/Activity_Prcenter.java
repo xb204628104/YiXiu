@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -62,12 +63,29 @@ public class Activity_Prcenter extends Activity {
     @Bind(R.id.iv_pe_mytou)
     ImageView ivPeMytou;
     private String data;
+    private Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal_center);
         ButterKnife.bind(this);
+        button= (Button) findViewById(R.id.bt_pc_data);
+        Map map=new HashMap();
+        map.put("custom_id",Y.USER.getUser_id()+"");
+        Y.post(YURL.FIND_UNFINISH_COUNT, map, new Y.MyCommonCall<String>() {
+            @Override
+            public void onSuccess(String result) {
+                StyledDialog.dismissLoading();
+                if (Y.getRespCode(result)){
+                    String data = Y.getData(result);
+                    button.setText(data);
+                    Y.i(data);
+                }else {
+                    Y.t("服务器异常");
+                }
+            }
+        });
         if (!TextUtils.isEmpty(Y.USER.getIcon())) {
             ImageOptions options = new ImageOptions.Builder().setCircular(true).build();
             x.image().bind(ivPeMytou, "http://221.207.184.124:7071/yxg/" + Y.USER.getIcon(), options);

@@ -73,6 +73,10 @@
         <activity android:name=".activity.Activity_Baidu_Map"></activity>
         <activity android:name=".activity.Activity_Change_Num"></activity>
         <activity android:name=".activity.Activity_Compuservice"></activity>
+        <activity android:name=".activity.Activity_Order_Success"></activity>
+        <activity android:name=".activity.Activity_Order_Over"></activity>
+        <activity android:name=".activity.Activity_Order_Delete"></activity>
+        <activity android:name=".activity.Activity_Order_Have"></activity>
 
 
     </application>

@@ -1,10 +1,12 @@
 package com.zykj.yixiu.bean;
 
+import java.io.Serializable;
+
 /**
  * Created by zykj on 2017/5/2.
  */
 
-public class Oreder {
+public class Oreder implements Serializable{
 
     /**
      * model :

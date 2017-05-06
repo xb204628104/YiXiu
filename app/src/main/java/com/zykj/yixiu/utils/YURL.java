@@ -15,6 +15,9 @@ public class YURL {
     //项目名称
     public  static   final  String HOST=BASE_HOST+"yxg/";
 
+  //  http://221.207.184.124:7071/yxg/robOrder?order_id=333&engineer_id=20
+  //  http://221.207.184.124:7071/yxg/finishOrder?order_id=333&engineer_id=20
+  //  http://221.207.184.124:7071/yxg/findOrderByState?custom_id=150&order_state=1
 
     //查找手机品牌
     public static   final  String  FIND_PHONE_BRAND=HOST+"findPhoneBrand";
@@ -78,6 +81,11 @@ public class YURL {
     public static   final  String   DEF_ADDRESS=HOST+"defAddress";
     //未完成的订单
     public static   final  String   FIND_ORDERBYSTATE=HOST+"findOrderByState";
+    //未完成的订单数量
+    public static   final  String   FIND_UNFINISH_COUNT=HOST+"findUnFinishCount";
     //取消订单
     public static   final  String   CAN_CELORDER=HOST+"cancelOrder";
+
+    //删除订单
+    public static   final  String   DEL_ORDER=HOST+"delOrder";
 }

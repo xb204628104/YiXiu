@@ -83,10 +83,9 @@ public class Activity_Prcenter_myorder extends Activity {
                         public void onSuccess(String result) {
                             StyledDialog.dismissLoading();
                             if (Y.getRespCode(result)) {
-                                Y.t("你好");
                                 List<Oreder> oreders = JSON.parseArray(Y.getData(result), Oreder.class);
                                 Y.i(oreders.toString());
-                                MyBaseAdapter myBaseAdapter = new MyBaseAdapter(getApplicationContext(),oreders);
+                                MyBaseAdapter myBaseAdapter = new MyBaseAdapter(Activity_Prcenter_myorder.this,oreders,1);
                                 lv.setAdapter(myBaseAdapter);
                             } else {
                                 Y.t("失败了");
@@ -94,7 +93,6 @@ public class Activity_Prcenter_myorder extends Activity {
 
                         }
                     });
-
                     break;
                 case "2":
                     tvNyordleWei.setTextColor(HEI);
@@ -103,6 +101,28 @@ public class Activity_Prcenter_myorder extends Activity {
                     ivNyordleWei.setVisibility(View.INVISIBLE);
                     ivNyordleYi.setVisibility(View.VISIBLE);
                     ivNyordleQu.setVisibility(View.INVISIBLE);
+                    Map map2 = new HashMap();
+                    map2.put("custom_id", Y.USER.getUser_id()+"");
+                    map2.put("order_state",2+"");
+                    Y.post(YURL.FIND_ORDERBYSTATE, map2, new Y.MyCommonCall<String>() {
+                        @Override
+                        public void onSuccess(String result) {
+                            StyledDialog.dismissLoading();
+                            if (Y.getRespCode(result)) {
+
+                                List<Oreder> oreders = JSON.parseArray(Y.getData(result), Oreder.class);
+                                Y.i(oreders.toString());
+                                MyBaseAdapter myBaseAdapter = new MyBaseAdapter(Activity_Prcenter_myorder.this,oreders,1);
+                                lv.setAdapter(myBaseAdapter);
+                                if (oreders.size()==0){
+                                    Y.t("请耐心等待接单");
+                                }
+                            } else {
+                                Y.t("失败了");
+                            }
+
+                        }
+                    });
                     break;
                 case "3":
                     tvNyordleWei.setTextColor(HEI);
@@ -111,6 +131,25 @@ public class Activity_Prcenter_myorder extends Activity {
                     ivNyordleWei.setVisibility(View.INVISIBLE);
                     ivNyordleYi.setVisibility(View.INVISIBLE);
                     ivNyordleQu.setVisibility(View.VISIBLE);
+                    Map map1= new HashMap();
+                    map1.put("custom_id", Y.USER.getUser_id()+"");
+                    map1.put("order_state",3+"");
+                    Y.post(YURL.FIND_ORDERBYSTATE, map1, new Y.MyCommonCall<String>() {
+                        @Override
+                        public void onSuccess(String result) {
+                            StyledDialog.dismissLoading();
+                            if (Y.getRespCode(result)) {
+
+                                List<Oreder> oreders = JSON.parseArray(Y.getData(result), Oreder.class);
+                                Y.i(oreders.toString());
+                                MyBaseAdapter myBaseAdapter = new MyBaseAdapter(Activity_Prcenter_myorder.this,oreders,1);
+                                lv.setAdapter(myBaseAdapter);
+                            } else {
+                                Y.t("失败了");
+                            }
+
+                        }
+                    });
                     break;
             }
 
@@ -128,25 +167,7 @@ public class Activity_Prcenter_myorder extends Activity {
                 ivNyordleWei.setVisibility(View.VISIBLE);
                 ivNyordleYi.setVisibility(View.INVISIBLE);
                 ivNyordleQu.setVisibility(View.INVISIBLE);
-                Map map = new HashMap();
-                map.put("custom_id", Y.USER.getUser_id()+"");
-                map.put("order_state",1+"");
-                Y.post(YURL.FIND_ORDERBYSTATE, map, new Y.MyCommonCall<String>() {
-                    @Override
-                    public void onSuccess(String result) {
-                        StyledDialog.dismissLoading();
-                        if (Y.getRespCode(result)) {
-                            Y.t("你好");
-                            List<Oreder> oreders = JSON.parseArray(Y.getData(result), Oreder.class);
-                            Y.i(oreders.toString());
-                            MyBaseAdapter myBaseAdapter = new MyBaseAdapter(getApplicationContext(),oreders);
-                            lv.setAdapter(myBaseAdapter);
-                        } else {
-                            Y.t("失败了");
-                        }
 
-                    }
-                });
                 break;
             case R.id.tv_nyordle_yi:
                 tvNyordleWei.setTextColor(HEI);
@@ -171,6 +192,25 @@ public class Activity_Prcenter_myorder extends Activity {
                 ivNyordleWei.setVisibility(View.VISIBLE);
                 ivNyordleYi.setVisibility(View.INVISIBLE);
                 ivNyordleQu.setVisibility(View.INVISIBLE);
+                Map map = new HashMap();
+                map.put("custom_id", Y.USER.getUser_id()+"");
+                map.put("order_state",1+"");
+                Y.post(YURL.FIND_ORDERBYSTATE, map, new Y.MyCommonCall<String>() {
+                    @Override
+                    public void onSuccess(String result) {
+                        StyledDialog.dismissLoading();
+                        if (Y.getRespCode(result)) {
+
+                            List<Oreder> oreders = JSON.parseArray(Y.getData(result), Oreder.class);
+                            Y.i(oreders.toString());
+                            MyBaseAdapter myBaseAdapter = new MyBaseAdapter(Activity_Prcenter_myorder.this,oreders,0);
+                            lv.setAdapter(myBaseAdapter);
+                        } else {
+                            Y.t("失败了");
+                        }
+
+                    }
+                });
                 break;
             case R.id.ll_nyordle_yi:
                 tvNyordleWei.setTextColor(HEI);
@@ -179,6 +219,27 @@ public class Activity_Prcenter_myorder extends Activity {
                 ivNyordleWei.setVisibility(View.INVISIBLE);
                 ivNyordleYi.setVisibility(View.VISIBLE);
                 ivNyordleQu.setVisibility(View.INVISIBLE);
+                Map map2 = new HashMap();
+                map2.put("custom_id", Y.USER.getUser_id()+"");
+                map2.put("order_state",2+"");
+                Y.post(YURL.FIND_ORDERBYSTATE, map2, new Y.MyCommonCall<String>() {
+                    @Override
+                    public void onSuccess(String result) {
+                        StyledDialog.dismissLoading();
+                        if (Y.getRespCode(result)) {
+                            List<Oreder> oreders = JSON.parseArray(Y.getData(result), Oreder.class);
+                            Y.i(oreders.toString());
+                            MyBaseAdapter myBaseAdapter = new MyBaseAdapter(Activity_Prcenter_myorder.this,oreders,1);
+                            lv.setAdapter(myBaseAdapter);
+                            if (oreders.size()==0){
+                                Y.t("请耐心等待接单");
+                            }
+                        } else {
+                            Y.t("失败了");
+                        }
+
+                    }
+                });
                 break;
             case R.id.ll_nyordle_qu:
                 tvNyordleWei.setTextColor(HEI);
@@ -187,6 +248,25 @@ public class Activity_Prcenter_myorder extends Activity {
                 ivNyordleWei.setVisibility(View.INVISIBLE);
                 ivNyordleYi.setVisibility(View.INVISIBLE);
                 ivNyordleQu.setVisibility(View.VISIBLE);
+                Map map1= new HashMap();
+                map1.put("custom_id", Y.USER.getUser_id()+"");
+                map1.put("order_state",3+"");
+                Y.post(YURL.FIND_ORDERBYSTATE, map1, new Y.MyCommonCall<String>() {
+                    @Override
+                    public void onSuccess(String result) {
+                        StyledDialog.dismissLoading();
+                        if (Y.getRespCode(result)) {
+
+                            List<Oreder> oreders = JSON.parseArray(Y.getData(result), Oreder.class);
+                            Y.i(oreders.toString());
+                            MyBaseAdapter myBaseAdapter = new MyBaseAdapter(Activity_Prcenter_myorder.this,oreders,1);
+                            lv.setAdapter(myBaseAdapter);
+                        } else {
+                            Y.t("失败了");
+                        }
+
+                    }
+                });
                 break;
         }
     }
