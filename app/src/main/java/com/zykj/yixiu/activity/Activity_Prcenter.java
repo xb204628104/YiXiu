@@ -88,7 +88,7 @@ public class Activity_Prcenter extends Activity {
         });
         if (!TextUtils.isEmpty(Y.USER.getIcon())) {
             ImageOptions options = new ImageOptions.Builder().setCircular(true).build();
-            x.image().bind(ivPeMytou, "http://221.207.184.124:7071/yxg/" + Y.USER.getIcon(), options);
+            x.image().bind(ivPeMytou, YURL.HOST + Y.USER.getIcon(), options);
         }
     }
 
@@ -103,10 +103,10 @@ public class Activity_Prcenter extends Activity {
                     public void onHanlderSuccess(int reqeustCode, List<PhotoInfo> resultList) {
                         if (reqeustCode == 1001) {
                             final String photoPath = resultList.get(0).getPhotoPath();//本地路径
-                            /*File file=new File(photoPath);
+                            File file=new File(photoPath);
                             RequestParams requestParams=new RequestParams(YURL.UP_LOAD_ICON);
                             requestParams.addBodyParameter("icon",file);
-                            requestParams.addBodyParameter("token",Y.TOKEN);
+                            requestParams.addBodyParameter("token",Y.USER.getToken());
                             Y.postFile(requestParams,new Y.MyCommonCall<String>() {
                                 @Override
                                 public void onSuccess(String result) {
@@ -118,14 +118,14 @@ public class Activity_Prcenter extends Activity {
                                         Y.USER.setIcon(data);
                                         Y.i(data);
                                         ImageOptions imageOptions=new ImageOptions.Builder().setUseMemCache(true).setCircular(true).build();
-                                        x.image().bind(ivPeMytou,"file://"+photoPath,imageOptions);
+                                        x.image().bind(ivPeMytou,photoPath,imageOptions);
                                     } else {
                                         Y.t("失败" + message);
                                     }
                                 }
-                            });*/
+                            });
                                     // Glide.with(Activity_Prcenter.this).load(photoPath).into(ivPeMytou);
-                                    Map<String, String> map = new HashMap<String, String>();
+                                   /* Map<String, String> map = new HashMap<String, String>();
                                     File file=new File(photoPath);
                                     map.put("icon",file+"");//icon: 头像文件
                                     map.put("token", Y.TOKEN);//token: 用户令牌
@@ -146,7 +146,7 @@ public class Activity_Prcenter extends Activity {
                                             }
                                         }
                                     });
-
+*/
 
                         }else {}
                     }

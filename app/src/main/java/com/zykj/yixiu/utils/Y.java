@@ -35,7 +35,7 @@ public  class Y {
 
 
     //user的类
-    public static User USER;//用户信息
+    public static User USER=new User();//用户信息
     public static Address ADDRESS=new Address();//地址信息
     public static Oreder OREDER=new Oreder();//订单信息
     public static String TOKEN;//用户的标识
