@@ -43,7 +43,7 @@
             android:id="@+id/textView" />
 
         <EditText
-
+            android:maxLength="11"
             android:padding="15dp"
             android:textSize="16sp"
             android:layout_width="0dp"

@@ -22,6 +22,7 @@ import com.zykj.yixiu.utils.OptionsPicke;
 import com.zykj.yixiu.utils.Y;
 import com.zykj.yixiu.utils.YURL;
 
+import org.xutils.http.RequestParams;
 import org.xutils.image.ImageOptions;
 import org.xutils.x;
 
@@ -92,17 +93,11 @@ public class Activity_Prcenter_myself extends Activity {
         ButterKnife.bind(this);
         ok = (Button) findViewById(R.id.ok);
         tvnum.setText(Y.USER.getPhone());
-        Intent intent = getIntent();
-        ImageOptions options = new ImageOptions.Builder().setCircular(true).build();
-        x.image().bind(ivMyTouxiang, "http://221.207.184.124:7071/yxg/" + Y.USER.getIcon(), options);
-
-        if (intent != null) {
-            data = intent.getStringExtra("data");
-            Glide.with(Activity_Prcenter_myself.this).load(data).into(ivMyTouxiang);
-            ivMyBeijing.setVisibility(View.GONE);
-        }
         if (!TextUtils.isEmpty(Y.USER.getIcon())) {
-            Glide.with(Activity_Prcenter_myself.this).load(Y.USER.getIcon()).into(ivMyTouxiang);
+            ImageOptions options = new ImageOptions.Builder().setCircular(true).build();
+
+            x.image().bind(ivMyTouxiang, YURL.HOST + Y.USER.getIcon(), options);
+            ivMyBeijing.setVisibility(View.GONE);
         }
         if (!TextUtils.isEmpty(Y.USER.getUsername())) {
             etMyName.setText(Y.USER.getUsername());
@@ -206,32 +201,48 @@ public class Activity_Prcenter_myself extends Activity {
                 GalleryFinal.openGallerySingle(1001, new GalleryFinal.OnHanlderResultCallback() {
                     @Override
                     public void onHanlderSuccess(int reqeustCode, List<PhotoInfo> resultList) {
-                        final String photoPath = resultList.get(0).getPhotoPath();
-
                         if (reqeustCode == 1001) {
-                                // Glide.with(Activity_Prcenter.this).load(photoPath).into(ivPeMytou);
-                                Map<String, String> map = new HashMap<String, String>();
-                                map.put("icon", photoPath);//icon: 头像文件
-                                map.put("token", Y.TOKEN);//token: 用户令牌
-                                Y.post(YURL.UP_LOAD_ICON, map, new Y.MyCommonCall<String>() {
-                                    @Override
-                                    public void onSuccess(String result) {
-                                        StyledDialog.dismissLoading();
-                                        String message = JSON.parseObject(result).getString("message");
-                                        if (Y.getRespCode(result)) {
-                                            Y.t("成功" + message);
-                                            //data = Y.getData(result);
-                                            Y.USER.setIcon(Y.getData(result));
-                                            //Y.i(data);
-                                            ImageOptions imageOptions = new ImageOptions.Builder().setUseMemCache(true).setCircular(true).build();
-                                            x.image().bind(ivMyBeijing, "file://"+photoPath, imageOptions);
-                                        } else {
-                                            Y.t("失败" + message);
+                            final String photoPath = resultList.get(0).getPhotoPath();
+                            File file=new File(photoPath);
+                            ImageOptions options = new ImageOptions.Builder().setCircular(true).build();
+                            x.image().bind(ivMyTouxiang,photoPath,options);
+                            Luban.get(Activity_Prcenter_myself.this)
+                                    .load(file)                     //传人要压缩的图片
+                                    .putGear(Luban.THIRD_GEAR)      //设定压缩档次，默认三挡
+                                    .setCompressListener(new OnCompressListener() { //设置回调
+                                        @Override
+                                        public void onStart() {
+                                            //TODO 压缩开始前调用，可以在方法内启动 loading UI
                                         }
-                                    }
-                                });
-
-
+                                        @Override
+                                        public void onSuccess(File file) {
+                                            RequestParams requestParams=new RequestParams(YURL.UP_LOAD_ICON);
+                                            requestParams.addBodyParameter("icon",file);
+                                            Y.i("--------"+file);
+                                            requestParams.addBodyParameter("token",Y.USER.getToken());
+                                            Y.i(""+Y.USER.getToken());
+                                            x.http().post(requestParams, new Y.MyCommonCall<String>() {
+                                                @Override
+                                                public void onSuccess(String result) {
+                                                    String message = JSON.parseObject(result).getString("message");
+                                                    if (Y.getRespCode(result)){
+                                                        Y.t("成功"+message);
+                                                        String data = Y.getData(result);
+                                                        Y.i(""+data);
+                                                        Y.USER.setIcon(data);
+                                                        Y.i(""+Y.USER.getIcon());
+                                                    }else {
+                                                        Y.t(""+message);
+                                                    }
+                                                }
+                                            });
+                                            //TODO 压缩成功后调用，返回压缩后的图片文件
+                                        }
+                                        @Override
+                                        public void onError(Throwable e) {
+                                            //TODO 当压缩过去出现问题时调用
+                                        }
+                                    }).launch();    //启动压缩
 
                         } else {
                         }

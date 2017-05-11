@@ -36,6 +36,12 @@ public class Activity_Change_Num extends Activity {
         String num = etChangeNum.getText().toString().trim();
         if (TextUtils.isEmpty(num)){
             Y.t("请输入手机号");
+            return;
+        }
+        //判断手机号是否为合法的手机号
+        if (!Y.isMobileNO(num)){
+            Y.t("请输入正确的手机号");
+            return;
         }
         Intent intent=getIntent();
         intent.putExtra("num",num);

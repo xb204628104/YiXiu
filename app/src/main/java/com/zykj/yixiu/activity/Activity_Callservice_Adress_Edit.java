@@ -126,12 +126,17 @@ public class Activity_Callservice_Adress_Edit extends Activity {
                 });
                 break;
             case R.id.et_edit_adress:
+
                 Intent intent = new Intent(Activity_Callservice_Adress_Edit.this, Activity_Baidu_Map.class);
                 startActivity(intent);
                 break;
             case R.id.sw_edie_moren:
                 break;
             case R.id.ll_change_num:
+                if (TextUtils.isEmpty(etEditAdress.getText().toString().trim())){
+                    Y.t("请先选择地址");
+                    return;
+                }
                 Intent intent2 = new Intent(Activity_Callservice_Adress_Edit.this, Activity_Change_Num.class);
                 startActivityForResult(intent2, 100);
                 break;

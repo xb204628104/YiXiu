@@ -200,4 +200,29 @@ public class User {
     public void setUser_id(int user_id) {
         this.user_id = user_id;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "icon='" + icon + '\'' +
+                ", phone='" + phone + '\'' +
+                ", sex='" + sex + '\'' +
+                ", idcard_image1='" + idcard_image1 + '\'' +
+                ", idcard_image2='" + idcard_image2 + '\'' +
+                ", headimg='" + headimg + '\'' +
+                ", ali_account='" + ali_account + '\'' +
+                ", score=" + score +
+                ", jpush_id='" + jpush_id + '\'' +
+                ", type=" + type +
+                ", password='" + password + '\'' +
+                ", city='" + city + '\'' +
+                ", username='" + username + '\'' +
+                ", regtime='" + regtime + '\'' +
+                ", token='" + token + '\'' +
+                ", order_num=" + order_num +
+                ", province='" + province + '\'' +
+                ", ali_name='" + ali_name + '\'' +
+                ", user_id=" + user_id +
+                '}';
+    }
 }

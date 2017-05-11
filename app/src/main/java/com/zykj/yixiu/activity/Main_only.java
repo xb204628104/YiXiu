@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
+import com.baidu.location.a.r;
 import com.hss01248.dialog.StyledDialog;
 import com.zykj.yixiu.R;
 import com.zykj.yixiu.bean.User;
@@ -81,12 +82,12 @@ public class Main_only extends Activity {
                             Y.t("登录成功");
                             User user = JSON.parseObject(Y.getData(result), User.class);
                             Y.USER=user;
-                            user.setIcon(getIntent().getStringExtra("token"));
                             Y.TOKEN=user.getToken();
                             Y.USER.setPhone(num);
                             Y.i(Y.USER.getUser_id()+"");
                             Y.i(Y.TOKEN);
                             //成功之后跳转页面 调到主页面
+                            Y.i(Y.USER.toString());
                             Intent intent = new Intent(Main_only.this, Mainactivity.class);
                             startActivity(intent);
                         }else {

@@ -28,7 +28,7 @@
            android:textSize="18sp"/>
    </LinearLayout>
     <EditText
-        android:text="18246177353"
+        android:text="15114554362"
         android:inputType="phone"
         android:maxLength="11"
         android:id="@+id/et_num"

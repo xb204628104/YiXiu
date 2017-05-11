@@ -34,6 +34,7 @@ import org.xutils.http.RequestParams;
 import org.xutils.x;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -76,6 +77,8 @@ public class Activity_Callservice extends Activity {
     private String num;
     private Button button;
     private String tvcallTime;
+    private String shijian;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -108,7 +111,7 @@ public class Activity_Callservice extends Activity {
                     break;
             }
         }
-        tvcallTime= tvCallTime.getText().toString().trim();
+
         final String tvcallMap = tvCallMap.getText().toString().trim();
         bt_ok.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -134,6 +137,8 @@ public class Activity_Callservice extends Activity {
                             @Override
                             public void onSuccess(String result) {
                                 if (Y.getRespCode(result)){
+                                    Intent intent1=new Intent(Activity_Callservice.this,Mainactivity.class);
+                                    startActivity(intent1);
                                     Y.t("手机上传成功");
                                     Y.i(""+phone.getBrand());
                                     Y.i(""+new File(phone.getImage1()));
@@ -178,6 +183,8 @@ public class Activity_Callservice extends Activity {
                             @Override
                             public void onSuccess(String result) {
                                 if (Y.getRespCode(result)){
+                                    Intent intent2=new Intent(Activity_Callservice.this,Mainactivity.class);
+                                    startActivity(intent2);
                                     Y.t("电脑上传成功");
                                     Y.i(""+computer.getBrand());
                                     Y.i(""+new File(computer.getImage1()));
@@ -201,7 +208,7 @@ public class Activity_Callservice extends Activity {
                     case "3":
                         RequestParams requestParams2 =new RequestParams(YURL.ADD_ORDER);
                         requestParams2.setMultipart(true);
-                        requestParams2.addBodyParameter("order_type","2");
+                        requestParams2.addBodyParameter("order_type","3");
                         requestParams2.addBodyParameter("brand",house.getBrand());
                         requestParams2.addBodyParameter("model",house.getModle());
                         requestParams2.addBodyParameter("fault",house.getFault());
@@ -218,6 +225,8 @@ public class Activity_Callservice extends Activity {
                             @Override
                             public void onSuccess(String result) {
                                 if (Y.getRespCode(result)){
+                                    Intent intent1=new Intent(Activity_Callservice.this,Mainactivity.class);
+                                    startActivity(intent1);
                                     Y.t("家电上传成功");
                                     Y.i(""+house.getBrand());
                                     Y.i(""+new File(house.getImage1()));
@@ -306,8 +315,11 @@ public class Activity_Callservice extends Activity {
                 TimePickerView pvTime = new TimePickerView.Builder(this, new TimePickerView.OnTimeSelectListener() {
                     @Override
                     public void onTimeSelect(Date date, View v) {//选中事件回调
+                        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd,HH:mm:ss");//利用占位符来格式化时间
+                        shijian = format.format(date).toString();
                         Y.i(date + "");
-                        tvCallTime.setText(getTime(date));
+                        tvCallTime.setText(shijian);
+                        tvcallTime= tvCallTime.getText().toString().trim();
                     }
                 })
                         .build();

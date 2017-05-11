@@ -17,6 +17,7 @@ import com.zykj.yixiu.R;
 import com.zykj.yixiu.utils.Y;
 import com.zykj.yixiu.utils.YURL;
 
+import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.image.ImageOptions;
 import org.xutils.x;
@@ -31,6 +32,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.finalteam.galleryfinal.GalleryFinal;
 import cn.finalteam.galleryfinal.model.PhotoInfo;
+import top.zibin.luban.Luban;
+import top.zibin.luban.OnCompressListener;
 
 /**
  * Created by zykj on 2017/4/18.
@@ -79,6 +82,9 @@ public class Activity_Prcenter extends Activity {
                 StyledDialog.dismissLoading();
                 if (Y.getRespCode(result)){
                     String data = Y.getData(result);
+                    if ("0".equals(data)){
+                        button.setVisibility(View.INVISIBLE);
+                    }
                     button.setText(data);
                     Y.i(data);
                 }else {
@@ -86,10 +92,37 @@ public class Activity_Prcenter extends Activity {
                 }
             }
         });
+
+
+        Y.i(Y.USER.toString());
         if (!TextUtils.isEmpty(Y.USER.getIcon())) {
             ImageOptions options = new ImageOptions.Builder().setCircular(true).build();
+
             x.image().bind(ivPeMytou, YURL.HOST + Y.USER.getIcon(), options);
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Map map=new HashMap();
+        map.put("custom_id",Y.USER.getUser_id()+"");
+        Y.post(YURL.FIND_UNFINISH_COUNT, map, new Y.MyCommonCall<String>() {
+            @Override
+            public void onSuccess(String result) {
+                StyledDialog.dismissLoading();
+                if (Y.getRespCode(result)){
+                    String data = Y.getData(result);
+                    if ("0".equals(data)){
+                        button.setVisibility(View.INVISIBLE);
+                    }
+                    button.setText(data);
+                    Y.i(data);
+                }else {
+                    Y.t("服务器异常");
+                }
+            }
+        });
     }
 
     @OnClick({R.id.ll_pc_undone, R.id.ll_pc_offthestocks, R.id.ll_pc_canceled, R.id.ll_pc_mymeans,
@@ -103,28 +136,60 @@ public class Activity_Prcenter extends Activity {
                     public void onHanlderSuccess(int reqeustCode, List<PhotoInfo> resultList) {
                         if (reqeustCode == 1001) {
                             final String photoPath = resultList.get(0).getPhotoPath();//本地路径
-                            File file=new File(photoPath);
-                            RequestParams requestParams=new RequestParams(YURL.UP_LOAD_ICON);
-                            requestParams.addBodyParameter("icon",file);
-                            requestParams.addBodyParameter("token",Y.USER.getToken());
-                            Y.postFile(requestParams,new Y.MyCommonCall<String>() {
-                                @Override
-                                public void onSuccess(String result) {
-                                    StyledDialog.dismissLoading();
-                                    String message = JSON.parseObject(result).getString("message");
-                                    if (Y.getRespCode(result)) {
-                                        Y.t("成功" + message);
-                                        data = Y.getData(result);//上传成功后返回的网络路径
-                                        Y.USER.setIcon(data);
-                                        Y.i(data);
-                                        ImageOptions imageOptions=new ImageOptions.Builder().setUseMemCache(true).setCircular(true).build();
-                                        x.image().bind(ivPeMytou,photoPath,imageOptions);
-                                    } else {
-                                        Y.t("失败" + message);
-                                    }
-                                }
-                            });
-                                    // Glide.with(Activity_Prcenter.this).load(photoPath).into(ivPeMytou);
+                            final File file=new File(photoPath);
+                            ImageOptions options = new ImageOptions.Builder().setCircular(true).build();
+                            x.image().bind(ivPeMytou,photoPath,options);
+                            Luban.get(Activity_Prcenter.this)
+                                    .load(file)                     //传人要压缩的图片
+                                    .putGear(Luban.THIRD_GEAR)      //设定压缩档次，默认三挡
+                                    .setCompressListener(new OnCompressListener() { //设置回调
+                                        @Override
+                                        public void onStart() {
+                                            //TODO 压缩开始前调用，可以在方法内启动 loading UI
+                                        }
+                                        @Override
+                                        public void onSuccess(File file) {
+                                            Y.t("压缩成功");
+                                            RequestParams requestParams=new RequestParams(YURL.UP_LOAD_ICON);
+                                            requestParams.addBodyParameter("icon",file);
+                                            Y.i("--------"+file);
+                                            requestParams.addBodyParameter("token",Y.USER.getToken());
+                                            Y.i(""+Y.USER.getToken());
+                                            x.http().post(requestParams,new Callback.CommonCallback<String>() {
+                                                @Override
+                                                public void onSuccess(String result) {
+                                                    String message = JSON.parseObject(result).getString("message");
+                                                    if (Y.getRespCode(result)){
+                                                        Y.t("成功"+message);
+                                                        String data = Y.getData(result);
+                                                        Y.i(""+data);
+                                                        Y.USER.setIcon(data);
+                                                        Y.i(""+Y.USER.getIcon());
+                                                    }else {
+                                                        Y.t(""+message);
+                                                    }
+
+                                                }
+                                                @Override
+                                                public void onError(Throwable ex, boolean isOnCallback) {
+                                                }
+                                                @Override
+                                                public void onCancelled(CancelledException cex) {
+                                                }
+                                                @Override
+                                                public void onFinished() {
+                                                }
+                                            });
+                                            //TODO 压缩成功后调用，返回压缩后的图片文件
+                                        }
+
+                                        @Override
+                                        public void onError(Throwable e) {
+                                            //TODO 当压缩过去出现问题时调用
+                                        }
+                                    }).launch();    //启动压缩
+
+                            // Glide.with(Activity_Prcenter.this).load(photoPath).into(ivPeMytou);
                                    /* Map<String, String> map = new HashMap<String, String>();
                                     File file=new File(photoPath);
                                     map.put("icon",file+"");//icon: 头像文件

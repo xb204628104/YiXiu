@@ -32,6 +32,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.finalteam.galleryfinal.GalleryFinal;
 import cn.finalteam.galleryfinal.model.PhotoInfo;
+import top.zibin.luban.Luban;
+import top.zibin.luban.OnCompressListener;
 
 /**
  * Created by zykj on 2017/4/18.
@@ -274,7 +276,26 @@ public class Activity_Computereservice extends Activity {
                         if (reqeustCode == 1001) {
                             photoPath = resultList.get(0).getPhotoPath();
                             Glide.with(Activity_Computereservice.this).load(photoPath).into(ivPhoneImg);
+                            Luban.get(Activity_Computereservice.this)
+                                    .load(new File(photoPath))                     //传人要压缩的图片
+                                    .putGear(Luban.THIRD_GEAR)      //设定压缩档次，默认三挡
+                                    .setCompressListener(new OnCompressListener() { //设置回调
 
+                                        @Override
+                                        public void onStart() {
+                                            //TODO 压缩开始前调用，可以在方法内启动 loading UI
+                                        }
+                                        @Override
+                                        public void onSuccess(File file) {
+                                            //TODO 压缩成功后调用，返回压缩后的图片文件
+                                            Y.t("压缩成功");
+                                        }
+
+                                        @Override
+                                        public void onError(Throwable e) {
+                                            //TODO 当压缩过去出现问题时调用
+                                        }
+                                    }).launch();    //启动压缩
                         } else {
 
                         }

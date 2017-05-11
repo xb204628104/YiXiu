@@ -81,7 +81,7 @@ public class Main_only_register_pwd extends Activity {
                     return;
                 }
                 //判断俩次输入的密码是否一样
-                if (onepwd.equals(twopwd)){
+                if (!onepwd.equals(twopwd)){
                     Y.t("两次输入的密码不一致");
                     return;
                 }

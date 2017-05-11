@@ -13,6 +13,7 @@ import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.zykj.yixiu.R;
 import com.zykj.yixiu.utils.OptionsPicke;
+import com.zykj.yixiu.utils.Y;
 
 import java.util.ArrayList;
 import java.util.List;

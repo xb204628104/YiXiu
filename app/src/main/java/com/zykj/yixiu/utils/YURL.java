@@ -15,8 +15,8 @@ public class YURL {
     //项目名称
     public  static   final  String HOST=BASE_HOST+"yxg/";
 
-  //  http://221.207.184.124:7071/yxg/robOrder?order_id=333&engineer_id=20
-  //  http://221.207.184.124:7071/yxg/finishOrder?order_id=333&engineer_id=20
+  //  http://221.207.184.124:7071/yxg/robOrder?order_id=397&engineer_id=20
+  //  http://221.207.184.124:7071/yxg/finishOrder?order_id=397&engineer_id=20
   //  http://221.207.184.124:7071/yxg/findOrderByState?custom_id=150&order_state=1
 
     //查找手机品牌

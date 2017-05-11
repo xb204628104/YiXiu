@@ -17,6 +17,9 @@ import com.zykj.yixiu.bean.Oreder;
 import com.zykj.yixiu.utils.Y;
 import com.zykj.yixiu.utils.YURL;
 
+import org.xutils.http.RequestParams;
+import org.xutils.x;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -75,7 +78,22 @@ public class Activity_Prcenter_myorder extends Activity {
                     ivNyordleWei.setVisibility(View.VISIBLE);
                     ivNyordleYi.setVisibility(View.INVISIBLE);
                     ivNyordleQu.setVisibility(View.INVISIBLE);
-                    Map map = new HashMap();
+                    RequestParams requestParams=new RequestParams(YURL.FIND_ORDERBYSTATE);
+                    requestParams.addBodyParameter("custom_id",Y.USER.getUser_id()+"");
+                    requestParams.addBodyParameter("order_state",1+"");
+                    x.http().post(requestParams,  new Y.MyCommonCall<String>() {
+                        @Override
+                        public void onSuccess(String result) {
+                            if (Y.getRespCode(result)){
+                                List<Oreder> oreders = JSON.parseArray(Y.getData(result), Oreder.class);
+                                MyBaseAdapter myBaseAdapter=new MyBaseAdapter(Activity_Prcenter_myorder.this,oreders,0);
+                                lv.setAdapter(myBaseAdapter);
+                            }else {
+                                Y.t("失败了");
+                            }
+                        }
+                    });
+                   /* Map map = new HashMap();
                     map.put("custom_id",Y.USER.getUser_id()+"");
                     map.put("order_state",1+"");
                     Y.get(YURL.FIND_ORDERBYSTATE, map, new Y.MyCommonCall<String>() {
@@ -85,7 +103,7 @@ public class Activity_Prcenter_myorder extends Activity {
                             if (Y.getRespCode(result)) {
                                 List<Oreder> oreders = JSON.parseArray(Y.getData(result), Oreder.class);
                                 Y.i(oreders.toString());
-                                MyBaseAdapter myBaseAdapter = new MyBaseAdapter(Activity_Prcenter_myorder.this,oreders,0);
+                                MyBaseAdapter myBaseAdapter = new MyBaseAdapter(Activity_Prcenter_myorder.this,oreders,1);
                                 lv.setAdapter(myBaseAdapter);
                             } else {
                                 Y.t("失败了");
@@ -93,6 +111,7 @@ public class Activity_Prcenter_myorder extends Activity {
 
                         }
                     });
+*/
                     break;
                 case "2":
                     tvNyordleWei.setTextColor(HEI);
