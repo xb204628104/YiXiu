@@ -20,6 +20,7 @@ import com.zykj.yixiu.bean.IdCard;
 import com.zykj.yixiu.utils.Y;
 import com.zykj.yixiu.utils.YURL;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -68,7 +69,7 @@ public class Activity_Prcenter_myself_approve extends Activity {
                 map.put("idcard_image1",path);
                 map.put("idcard_image2",path1);
                 map.put("token",Y.TOKEN);
-                Y.get(YURL.UP_LOADID_CARD, map, new Y.MyCommonCall<String>() {
+                Y.post(YURL.UP_LOADID_CARD, map, new Y.MyCommonCall<String>() {
                     @Override
                     public void onSuccess(String result) {
                         StyledDialog.dismissLoading();
@@ -79,6 +80,7 @@ public class Activity_Prcenter_myself_approve extends Activity {
                                 String idcard_image1 = card.getIdcard_image1();
                                 String idcard_image2 = card.getIdcard_image2();
                                 Y.i(idcard_image1+"0000............");
+                                Y.i(idcard_image2+"0000............");
                             }
                             Y.t(message+"成功");
                         }else {
@@ -99,9 +101,10 @@ public class Activity_Prcenter_myself_approve extends Activity {
                     public void onHanlderSuccess(int reqeustCode, List<PhotoInfo> resultList) {
                         if (reqeustCode == 1000) {
                             path = resultList.get(0).getPhotoPath();
+                            File file=new File(path);
                             if (resultList != null) {
-                                Glide.with(Activity_Prcenter_myself_approve.this).load(path).into(iv1);
-
+                                Glide.with(Activity_Prcenter_myself_approve.this).load(file).into(iv1);
+                                Y.i(path);
 
                                 //llAppZheng.setBackgroundResource(R.mipmap.add_camera);
 
@@ -124,6 +127,7 @@ public class Activity_Prcenter_myself_approve extends Activity {
                         if (reqeustCode == 1000) {
                             path1 = resultList.get(0).getPhotoPath();
                             if (resultList != null) {
+                                Y.i(path1);
                                 Glide.with(Activity_Prcenter_myself_approve.this).load(path).into(iv2);
                                 iv2.setScaleType(ImageView.ScaleType.FIT_XY);
                             }

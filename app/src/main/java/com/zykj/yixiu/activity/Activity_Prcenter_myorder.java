@@ -82,8 +82,10 @@ public class Activity_Prcenter_myorder extends Activity {
                     requestParams.addBodyParameter("custom_id",Y.USER.getUser_id()+"");
                     requestParams.addBodyParameter("order_state",1+"");
                     x.http().post(requestParams,  new Y.MyCommonCall<String>() {
+
                         @Override
                         public void onSuccess(String result) {
+                            StyledDialog.dismissLoading();
                             if (Y.getRespCode(result)){
                                 List<Oreder> oreders = JSON.parseArray(Y.getData(result), Oreder.class);
                                 MyBaseAdapter myBaseAdapter=new MyBaseAdapter(Activity_Prcenter_myorder.this,oreders,0);

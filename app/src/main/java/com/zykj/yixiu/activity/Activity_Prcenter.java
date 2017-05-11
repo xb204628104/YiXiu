@@ -158,6 +158,7 @@ public class Activity_Prcenter extends Activity {
                                             x.http().post(requestParams,new Callback.CommonCallback<String>() {
                                                 @Override
                                                 public void onSuccess(String result) {
+                                                    StyledDialog.dismissLoading();
                                                     String message = JSON.parseObject(result).getString("message");
                                                     if (Y.getRespCode(result)){
                                                         Y.t("成功"+message);
