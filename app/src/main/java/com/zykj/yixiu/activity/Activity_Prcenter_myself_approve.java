@@ -20,6 +20,9 @@ import com.zykj.yixiu.bean.IdCard;
 import com.zykj.yixiu.utils.Y;
 import com.zykj.yixiu.utils.YURL;
 
+import org.xutils.http.RequestParams;
+import org.xutils.x;
+
 import java.io.File;
 import java.util.HashMap;
 import java.util.List;
@@ -30,6 +33,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.finalteam.galleryfinal.GalleryFinal;
 import cn.finalteam.galleryfinal.model.PhotoInfo;
+import top.zibin.luban.Luban;
+import top.zibin.luban.OnCompressListener;
 
 /**
  * Created by zykj on 2017/4/19.
@@ -65,7 +70,29 @@ public class Activity_Prcenter_myself_approve extends Activity {
         btAppOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final Map<String,String> map=new HashMap<String, String>();
+                RequestParams requestParams=new RequestParams(YURL.UP_LOADID_CARD);
+                File file=new File(path);
+                File file1=new File(path1);
+                requestParams.addBodyParameter("idcard_image1",file);
+                requestParams.addBodyParameter("idcard_image2",file1);
+                requestParams.addBodyParameter("token",Y.USER.getToken());
+                x.http().post(requestParams, new Y.MyCommonCall<String>() {
+                    @Override
+                    public void onSuccess(String result) {
+                        StyledDialog.dismissLoading();
+                        JSONObject jsonObject = JSON.parseObject(result);
+                        String message = jsonObject.getString("message");
+                        if (Y.getRespCode(result)){
+                            Y.i("chenggong------"+message);
+                            String data = Y.getData(result);
+                            Y.i(data.toString()+"..............");
+                            finish();
+                        }else{
+                            Y.i("------"+message);
+                        }
+                    }
+                });
+               /* final Map<String,String> map=new HashMap<String, String>();
                 map.put("idcard_image1",path);
                 map.put("idcard_image2",path1);
                 map.put("token",Y.TOKEN);
@@ -87,7 +114,7 @@ public class Activity_Prcenter_myself_approve extends Activity {
                             Y.t(message+"失败");
                         }
                     }
-                });
+                });*/
             }
         });
     }
@@ -105,7 +132,26 @@ public class Activity_Prcenter_myself_approve extends Activity {
                             if (resultList != null) {
                                 Glide.with(Activity_Prcenter_myself_approve.this).load(file).into(iv1);
                                 Y.i(path);
+                                Luban.get(Activity_Prcenter_myself_approve.this)
+                                        .load(new File(path))                     //传人要压缩的图片
+                                        .putGear(Luban.THIRD_GEAR)      //设定压缩档次，默认三挡
+                                        .setCompressListener(new OnCompressListener() { //设置回调
 
+                                            @Override
+                                            public void onStart() {
+                                                //TODO 压缩开始前调用，可以在方法内启动 loading UI
+                                            }
+                                            @Override
+                                            public void onSuccess(File file) {
+                                                //TODO 压缩成功后调用，返回压缩后的图片文件
+                                               // Y.t("压缩成功");
+                                            }
+
+                                            @Override
+                                            public void onError(Throwable e) {
+                                                //TODO 当压缩过去出现问题时调用
+                                            }
+                                        }).launch();    //启动压缩
                                 //llAppZheng.setBackgroundResource(R.mipmap.add_camera);
 
                             }
@@ -130,6 +176,26 @@ public class Activity_Prcenter_myself_approve extends Activity {
                                 Y.i(path1);
                                 Glide.with(Activity_Prcenter_myself_approve.this).load(path).into(iv2);
                                 iv2.setScaleType(ImageView.ScaleType.FIT_XY);
+                                Luban.get(Activity_Prcenter_myself_approve.this)
+                                        .load(new File(path1))                     //传人要压缩的图片
+                                        .putGear(Luban.THIRD_GEAR)      //设定压缩档次，默认三挡
+                                        .setCompressListener(new OnCompressListener() { //设置回调
+
+                                            @Override
+                                            public void onStart() {
+                                                //TODO 压缩开始前调用，可以在方法内启动 loading UI
+                                            }
+                                            @Override
+                                            public void onSuccess(File file) {
+                                                //TODO 压缩成功后调用，返回压缩后的图片文件
+                                               // Y.t("path1压缩成功");
+                                            }
+
+                                            @Override
+                                            public void onError(Throwable e) {
+                                                //TODO 当压缩过去出现问题时调用
+                                            }
+                                        }).launch();    //启动压缩
                             }
                         } else {
 
